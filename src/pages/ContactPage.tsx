@@ -10,7 +10,7 @@ const fadeUp = {
 
 export const ContactPage = () => {
     return (
-        <PageTransition className="pt-[140px] pb-16">
+        <PageTransition className="pb-16">
             <section id="contact" style={{ padding: '2rem', position: 'relative', zIndex: 10 }}>
                 <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
                     <motion.h2 {...fadeUp} style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, marginBottom: '1rem', color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif' }}>
@@ -33,7 +33,7 @@ export const ContactPage = () => {
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                             {[
                                 { icon: '📍', title: 'Location', detail: 'Gwalior, Madhya Pradesh, India', gradient: 'linear-gradient(135deg, #2563eb, #1e3a5f)' },
-                                { icon: '📞', title: 'Phone', detail: '+91 98765 43210', gradient: 'linear-gradient(135deg, #d4a847, #b8922e)' },
+                                { icon: '📞', title: 'Phone', detail: '+91 82238 34121', gradient: 'linear-gradient(135deg, #d4a847, #b8922e)' },
                                 { icon: '✉️', title: 'Email', detail: 'contact@arunyafoundation.org', gradient: 'linear-gradient(135deg, #2563eb, #1e3a5f)' },
                                 { icon: '⏰', title: 'Class Timings', detail: 'Sat & Sun: 10 AM – 1 PM', gradient: 'linear-gradient(135deg, #d4a847, #b8922e)' },
                             ].map((item, idx) => (

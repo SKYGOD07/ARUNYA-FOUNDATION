@@ -4,23 +4,34 @@ interface LoadingScreenProps {
     onComplete: () => void;
 }
 
-const images = [
+const desktopImages = [
     '/assets/loading-screen/1.png',
-    '/assets/loading-screen/2.png',
-    '/assets/loading-screen/3.png',
     '/assets/loading-screen/4.png',
-    '/assets/loading-screen/5.png',
-    '/assets/loading-screen/6.png',
     '/assets/loading-screen/7.png',
 ];
 
-const IMAGE_DURATION = 1000; // 1 second per image
-const TOTAL_DURATION = IMAGE_DURATION * images.length; // 7 seconds total
+const mobileImages = [
+    '/assets/loading-screen/1.png',
+    '/assets/loading-screen/mobile-loading.jpg',
+    '/assets/loading-screen/7.png',
+];
+
+const TOTAL_DURATION = 10000; // 10 seconds total
 
 const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
     const [progress, setProgress] = useState(0);
     const [currentImage, setCurrentImage] = useState(0);
     const [fadeClass, setFadeClass] = useState('ls-img-enter');
+
+    const images = isMobile ? mobileImages : desktopImages;
+    const IMAGE_DURATION = TOTAL_DURATION / images.length;
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 768);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     useEffect(() => {
         const intervalTime = 50;
@@ -81,7 +92,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
                 <div className="ls-footer-inner">
                     <div className="ls-brand">
                         <img
-                            src="/logo.jpg"
+                            src="/logo.png"
                             alt="Arunya Logo"
                             className="ls-logo"
                             onError={(e) => {

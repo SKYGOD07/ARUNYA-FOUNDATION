@@ -89,7 +89,7 @@ const LandingPage = () => {
                 <div className="hidden lg:flex w-full justify-between items-center px-4">
                     {/* Brand Pill */}
                     <div className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md rounded-full px-5 py-2.5 flex items-center shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] border border-gray-100 dark:border-slate-800 pointer-events-auto">
-                        <img src="/logo.jpg" alt="Logo" style={{ width: '28px', height: '28px', objectFit: 'cover', borderRadius: '50%', marginRight: '12px' }}
+                        <img src="/logo.png" alt="Logo" style={{ width: '28px', height: '28px', objectFit: 'contain', marginRight: '12px' }}
                             onError={(e) => { e.currentTarget.style.display = 'none'; }} />
                         <h2 className="font-bold text-lg text-slate-800 dark:text-white mr-2">Arunya</h2>
                     </div>
@@ -120,7 +120,7 @@ const LandingPage = () => {
                     <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-md rounded-[2rem] p-2 flex justify-between items-center shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] border border-gray-100 dark:border-slate-800 pointer-events-auto w-full">
                         {/* Brand */}
                         <div className="flex items-center pl-3">
-                            <img src="/logo.jpg" alt="Logo" style={{ width: '26px', height: '26px', objectFit: 'cover', borderRadius: '50%', marginRight: '10px' }}
+                            <img src="/logo.png" alt="Logo" style={{ width: '26px', height: '26px', objectFit: 'contain', marginRight: '10px' }}
                                 onError={(e) => { e.currentTarget.style.display = 'none'; }} />
                             <h2 className="font-bold text-[1.1rem] text-slate-800 dark:text-white">Arunya</h2>
                         </div>
@@ -173,9 +173,11 @@ const LandingPage = () => {
                     pixelSize={2}
                     mouseRadius={0.4}
                 />
-                <h1 className="hero-title absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none select-none drop-shadow-2xl" style={{ fontSize: '10vw', whiteSpace: 'nowrap', color: 'white', letterSpacing: '0.05em' }}>
-                    ARUNYA
-                </h1>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none select-none drop-shadow-2xl">
+                    <h1 style={{ fontSize: '10vw', whiteSpace: 'nowrap', color: 'white', letterSpacing: '0.05em', margin: 0 }}>
+                        ARUNYA
+                    </h1>
+                </div>
             </main>
 
             {/* Mission Section (Moved down) */}
@@ -271,14 +273,14 @@ const LandingPage = () => {
                         <div className="flex-center icon-circle bg-orange" style={{ width: '60px', height: '60px', fontSize: '1.5rem', marginBottom: '1.5rem' }}>👁️</div>
                         <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Our Vision</h3>
                         <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>To build empowered rural communities where every child has access to quality education, opportunities to learn, and the support needed to grow into responsible, confident, and capable leaders of the future.</p>
-                        <img src="/assets/work/20251102_131638.jpg" alt="Vision" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '16px', marginTop: '1.5rem' }} />
+                        <img src="/assets/work/63624.jpg.jpeg" alt="Vision" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '16px', marginTop: '1.5rem' }} />
                     </div>
                     {/* Mission Card */}
                     <div className="glass-panel scroll-animate" style={{ padding: '2rem', borderRadius: '24px', opacity: 0, transform: 'translateY(40px)', transition: 'all 0.8s ease-out 0.4s' }}>
                         <div className="flex-center icon-circle" style={{ background: 'linear-gradient(135deg, #10b981, #059669)', color: 'white', width: '60px', height: '60px', fontSize: '1.5rem', marginBottom: '1.5rem' }}>🎯</div>
                         <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Our Mission</h3>
                         <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>To empower children in rural areas through accessible and meaningful education by mobilizing youth volunteers, strengthening foundational learning, and creating community-driven initiatives that nurture knowledge, creativity, and social responsibility.</p>
-                        <img src="/assets/work/20251102_131641.jpg" alt="Mission" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '16px', marginTop: '1.5rem' }} />
+                        <img src="/assets/work/63626.jpg.jpeg" alt="Mission" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '16px', marginTop: '1.5rem' }} />
                     </div>
                     {/* Objective Card */}
                     <div className="glass-panel scroll-animate" style={{ padding: '2rem', borderRadius: '24px', opacity: 0, transform: 'translateY(40px)', transition: 'all 0.8s ease-out 0.5s' }}>
@@ -292,7 +294,7 @@ const LandingPage = () => {
                             <li style={{ marginBottom: '0.4rem' }}>To raise awareness about the importance of education.</li>
                             <li style={{ marginBottom: '0.4rem' }}>To develop sustainable community initiatives.</li>
                         </ul>
-                        <img src="/assets/work/20251102_131647.jpg" alt="Objectives" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '16px', marginTop: '1.5rem' }} />
+                        <img src="/assets/work/63627.jpg.jpeg" alt="Objectives" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '16px', marginTop: '1.5rem' }} />
                     </div>
                 </div>
             </section>

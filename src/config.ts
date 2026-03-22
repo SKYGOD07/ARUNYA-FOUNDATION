@@ -119,7 +119,7 @@ export const NAV_CONFIG = {
  */
 export const CONTACT_CONFIG = {
   email: 'contact@arunya.org',
-  phone: '+91-XXXXXXXXXX',
+  phone: '+91 82238 34121',
   address: 'Arunya Foundation, Address Line 1, City, Country',
   formEndpoint: 'https://api.arunya.org/contact', // Update with your backend
 };

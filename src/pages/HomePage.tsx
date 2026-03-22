@@ -8,9 +8,9 @@ import BounceCards from '../components/BounceCards';
 /* ── Images ────────────────────────────────────── */
 const HERO_IMG = 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1600&q=80';
 const IMAGES = {
-    vision: 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=800&q=80',
-    mission: 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=800&q=80',
-    objective: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=800&q=80',
+    vision: '/assets/work/63624.jpg.jpeg',
+    mission: '/assets/work/63626.jpg.jpeg',
+    objective: '/assets/work/63627.jpg.jpeg',
     cause1: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80',
     cause2: 'https://images.unsplash.com/photo-1594708767771-a7502209ff51?w=800&q=80',
     cause3: 'https://images.unsplash.com/photo-1560785496-3c9d27877182?w=800&q=80',
@@ -156,9 +156,9 @@ export const HomePage = () => {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7, delay: 0.3 }}
+                        style={{ fontSize: 'clamp(3.5rem, 10vw, 7rem)', fontWeight: 900 }}
                     >
-                        Lighting the Path<br />
-                        <span className="accent">to Education</span>
+                        शिक्षा सर्वार्थसाधिका
                     </motion.h1>
 
                     <motion.p
@@ -167,9 +167,7 @@ export const HomePage = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7, delay: 0.45 }}
                     >
-                        Teaching underprivileged children aged 5–16 in rural India. 
-                        Free weekend classes, study materials, and career guidance —
-                        empowering them to build their own futures.
+                        We believe education is the ultimate equalizer, transforming underserved communities while empowering young teachers to lead and inspire real change.
                     </motion.p>
 
                     <motion.div
@@ -191,14 +189,18 @@ export const HomePage = () => {
                 </div>
 
                 <div className="hero-bottom-bar">
-                    <span>Gwalior, India</span>
-                    <div className="divider-line" />
-                    <span>Education • Empowerment • Future</span>
+                    <div className="hbb-left">Education • Empowerment • Future</div>
+                    <div className="hbb-center">Gwalior, India</div>
+                    <div className="hbb-right">
+                        <a href="#next-section" className="scroll-hint-arrow" aria-label="Scroll down">
+                           ↓
+                        </a>
+                    </div>
                 </div>
             </section>
 
             {/* ═══════════════════ BOUNCE CARDS 3D ═══════════════════ */}
-            <section style={{ background: '#EEF4FB', padding: '5rem 2rem', textAlign: 'center', overflow: 'hidden' }}>
+            <section id="next-section" style={{ background: '#EEF4FB', padding: '5rem 2rem', textAlign: 'center', overflow: 'hidden' }}>
                 <motion.h2 {...fadeUp} style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', fontWeight: 800, color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif', marginBottom: '0.5rem' }}>
                     Life Inside Our Classrooms
                 </motion.h2>
@@ -206,11 +208,11 @@ export const HomePage = () => {
                 <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.15 }} style={{ display: 'flex', justifyContent: 'center' }}>
                     <BounceCards
                         images={[
-                            'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80',
-                            'https://images.unsplash.com/photo-1560785496-3c9d27877182?w=600&q=80',
-                            'https://images.unsplash.com/photo-1529390079861-591de354faf5?w=600&q=80',
-                            'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80',
-                            'https://images.unsplash.com/photo-1594708767771-a7502209ff51?w=600&q=80',
+                            '/assets/classrooms/63632.jpg.jpeg',
+                            '/assets/classrooms/63633.jpg.jpeg',
+                            '/assets/classrooms/63634.jpg.jpeg',
+                            '/assets/classrooms/63635.jpg.jpeg',
+                            '/assets/classrooms/IMG-20260321-WA0067.jpg.jpeg',
                         ]}
                         containerWidth={500}
                         containerHeight={320}
@@ -228,6 +230,7 @@ export const HomePage = () => {
             </section>
 
             {/* ═══════════════════ IMPACT NUMBERS ═══════════════════ */}
+            {/* 
             <div ref={statsRef} className="stats-row" style={{ background: 'var(--color-offwhite)' }}>
                 {[
                     { icon: '👨‍🎓', value: 1250, suffix: '+', label: 'Students Taught' },
@@ -244,6 +247,7 @@ export const HomePage = () => {
                     </motion.div>
                 ))}
             </div>
+            */}
 
             {/* ═══════════════════ ABOUT / VISION / MISSION ═══════════════════ */}
             <section className="section-block">
@@ -262,8 +266,8 @@ export const HomePage = () => {
                     style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px,1fr))' }}
                 >
                     {[
-                        { icon: '👁️', title: 'Our Vision', text: 'To create a society where every child, regardless of economic background, has access to quality education and the opportunity to become self-reliant, confident, and capable of building their own future.', img: IMAGES.vision },
-                        { icon: '🎯', title: 'Our Mission', text: 'To provide free, structured education to underprivileged children aged 5–16 through volunteer-led weekend classes, study materials, and career guidance — transforming lives one classroom at a time.', img: IMAGES.mission },
+                        { icon: '👁️', title: 'Our Vision', text: 'To achieve the social and economic upliftment of underserved and minority communities by ensuring every individual has the direction, goals, and educational foundation needed to thrive.', img: IMAGES.vision },
+                        { icon: '🎯', title: 'Our Mission', text: 'To provide transformative education and mentorship to underserved communities by creating a premier platform where young educators and youth can showcase their skills, grow professionally, and serve as catalysts for social change.', img: IMAGES.mission },
                         { icon: '📋', title: 'Our Goal', text: 'To enroll 1,000+ students by 2027, expand to 20 villages, and equip every child with the academic foundation and life skills needed to pursue higher education and meaningful careers.', img: IMAGES.objective },
                     ].map((c, i) => (
                         <motion.div key={i} className="premium-card" {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.12 }}>
