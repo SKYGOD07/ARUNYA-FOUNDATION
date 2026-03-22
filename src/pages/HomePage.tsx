@@ -191,14 +191,18 @@ export const HomePage = () => {
                 </div>
 
                 <div className="hero-bottom-bar">
-                    <span>Gwalior, India</span>
-                    <div className="divider-line" />
-                    <span>Education • Empowerment • Future</span>
+                    <div className="hbb-left">Education • Empowerment • Future</div>
+                    <div className="hbb-center">Gwalior, India</div>
+                    <div className="hbb-right">
+                        <a href="#next-section" className="scroll-hint-arrow" aria-label="Scroll down">
+                           ↓
+                        </a>
+                    </div>
                 </div>
             </section>
 
             {/* ═══════════════════ BOUNCE CARDS 3D ═══════════════════ */}
-            <section style={{ background: '#EEF4FB', padding: '5rem 2rem', textAlign: 'center', overflow: 'hidden' }}>
+            <section id="next-section" style={{ background: '#EEF4FB', padding: '5rem 2rem', textAlign: 'center', overflow: 'hidden' }}>
                 <motion.h2 {...fadeUp} style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', fontWeight: 800, color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif', marginBottom: '0.5rem' }}>
                     Life Inside Our Classrooms
                 </motion.h2>
