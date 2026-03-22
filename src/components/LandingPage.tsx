@@ -273,14 +273,14 @@ const LandingPage = () => {
                         <div className="flex-center icon-circle bg-orange" style={{ width: '60px', height: '60px', fontSize: '1.5rem', marginBottom: '1.5rem' }}>👁️</div>
                         <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Our Vision</h3>
                         <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>To build empowered rural communities where every child has access to quality education, opportunities to learn, and the support needed to grow into responsible, confident, and capable leaders of the future.</p>
-                        <img src="/assets/work/20251102_131638.jpg" alt="Vision" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '16px', marginTop: '1.5rem' }} />
+                        <img src="/assets/work/63624.jpg.jpeg" alt="Vision" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '16px', marginTop: '1.5rem' }} />
                     </div>
                     {/* Mission Card */}
                     <div className="glass-panel scroll-animate" style={{ padding: '2rem', borderRadius: '24px', opacity: 0, transform: 'translateY(40px)', transition: 'all 0.8s ease-out 0.4s' }}>
                         <div className="flex-center icon-circle" style={{ background: 'linear-gradient(135deg, #10b981, #059669)', color: 'white', width: '60px', height: '60px', fontSize: '1.5rem', marginBottom: '1.5rem' }}>🎯</div>
                         <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Our Mission</h3>
                         <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>To empower children in rural areas through accessible and meaningful education by mobilizing youth volunteers, strengthening foundational learning, and creating community-driven initiatives that nurture knowledge, creativity, and social responsibility.</p>
-                        <img src="/assets/work/20251102_131641.jpg" alt="Mission" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '16px', marginTop: '1.5rem' }} />
+                        <img src="/assets/work/63626.jpg.jpeg" alt="Mission" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '16px', marginTop: '1.5rem' }} />
                     </div>
                     {/* Objective Card */}
                     <div className="glass-panel scroll-animate" style={{ padding: '2rem', borderRadius: '24px', opacity: 0, transform: 'translateY(40px)', transition: 'all 0.8s ease-out 0.5s' }}>
@@ -294,7 +294,7 @@ const LandingPage = () => {
                             <li style={{ marginBottom: '0.4rem' }}>To raise awareness about the importance of education.</li>
                             <li style={{ marginBottom: '0.4rem' }}>To develop sustainable community initiatives.</li>
                         </ul>
-                        <img src="/assets/work/20251102_131647.jpg" alt="Objectives" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '16px', marginTop: '1.5rem' }} />
+                        <img src="/assets/work/63627.jpg.jpeg" alt="Objectives" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '16px', marginTop: '1.5rem' }} />
                     </div>
                 </div>
             </section>

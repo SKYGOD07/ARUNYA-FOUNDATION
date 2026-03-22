@@ -8,9 +8,9 @@ import BounceCards from '../components/BounceCards';
 /* ── Images ────────────────────────────────────── */
 const HERO_IMG = 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1600&q=80';
 const IMAGES = {
-    vision: 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=800&q=80',
-    mission: 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=800&q=80',
-    objective: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=800&q=80',
+    vision: '/assets/work/63624.jpg.jpeg',
+    mission: '/assets/work/63626.jpg.jpeg',
+    objective: '/assets/work/63627.jpg.jpeg',
     cause1: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80',
     cause2: 'https://images.unsplash.com/photo-1594708767771-a7502209ff51?w=800&q=80',
     cause3: 'https://images.unsplash.com/photo-1560785496-3c9d27877182?w=800&q=80',
@@ -167,9 +167,7 @@ export const HomePage = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7, delay: 0.45 }}
                     >
-                        Teaching underprivileged children aged 5–16 in rural India. 
-                        Free weekend classes, study materials, and career guidance —
-                        empowering them to build their own futures.
+                        We believe education is the ultimate equalizer, transforming underserved communities while empowering young teachers to lead and inspire real change.
                     </motion.p>
 
                     <motion.div
