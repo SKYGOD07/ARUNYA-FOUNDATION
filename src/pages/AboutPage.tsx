@@ -1,54 +1,104 @@
 import { PageTransition } from '../components/ui/PageTransition';
+import { motion } from 'framer-motion';
+
+const fadeUp = {
+    initial: { opacity: 0, y: 40 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: '-80px' },
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const },
+};
 
 export const AboutPage = () => {
     return (
         <PageTransition className="pt-[140px] pb-16">
             <section className="about-section" style={{ padding: '2rem', position: 'relative', zIndex: 10 }}>
+                {/* Header */}
                 <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                    <h2 className="section-title scroll-animate" style={{ fontSize: '3rem', fontWeight: 800, marginBottom: '1rem', opacity: 0, transform: 'translateY(20px)', transition: 'all 0.8s ease-out' }}>About Arunya</h2>
-                    <p className="section-subtitle scroll-animate" style={{ color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto', fontSize: '1.2rem', opacity: 0, transform: 'translateY(20px)', transition: 'all 0.8s ease-out 0.2s' }}>
-                        We are a passionate team dedicated to creating sustainable change through education, health, and community empowerment.
-                    </p>
+                    <motion.h2 {...fadeUp} style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, marginBottom: '1rem', color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif' }}>
+                        About Arunya Foundation
+                    </motion.h2>
+                    <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #d4a847, #b8922e)', borderRadius: 2, margin: '1rem auto' }} />
+                    <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }} style={{ color: '#6b7280', maxWidth: 800, margin: '0 auto', fontSize: '1.05rem', textAlign: 'justify', lineHeight: 1.8 }}>
+                        <p style={{ marginBottom: '1rem' }}>
+                            Arunya Foundation is a youth-driven community initiative based in Gwalior, dedicated to empowering underprivileged children through free education. We believe that every child aged 5–16, regardless of their economic background, deserves the chance to learn, grow, and build a self-sufficient future.
+                        </p>
+                        <p style={{ marginBottom: '1rem' }}>
+                            Founded by passionate youth volunteers, our Foundation runs structured weekend classes covering literacy, numeracy, science, English, computer skills, and career guidance. We bridge learning gaps through dedicated teaching, free study materials, and holistic mentoring that builds both academic skill and confidence.
+                        </p>
+                        <p>
+                            With 300+ active volunteers, 12+ villages reached, and 1,250+ students taught so far, Arunya Foundation is proving that a community of caring young people can transform the educational landscape of rural India — one child at a time.
+                        </p>
+                    </motion.div>
                 </div>
 
-                <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
+                {/* Vision / Mission / Objective Grid */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', maxWidth: 1200, margin: '0 auto' }}>
                     {/* Vision Card */}
-                    <div className="glass-panel scroll-animate" style={{ padding: '2rem', borderRadius: '24px', opacity: 0, transform: 'translateY(40px)', transition: 'all 0.8s ease-out 0.3s' }}>
-                        <div className="flex-center icon-circle bg-orange" style={{ width: '60px', height: '60px', fontSize: '1.5rem', marginBottom: '1.5rem' }}>👁️</div>
-                        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Our Vision</h3>
-                        <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>To build a world where every individual has access to basic rights, education, and opportunities to thrive, regardless of their background.</p>
-                        <img src="/assets/work/20251102_131638.jpg" alt="Vision" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '16px', marginTop: '1.5rem' }} />
-                    </div>
+                    <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.15 }} style={{
+                        padding: '2rem', borderRadius: 24, background: 'white',
+                        border: '1px solid rgba(30,58,95,0.08)',
+                        boxShadow: '0 4px 24px rgba(30,58,95,0.06)',
+                    }}>
+                        <div style={{ width: 60, height: 60, borderRadius: '50%', background: 'linear-gradient(135deg, #2563eb, #1e3a5f)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', marginBottom: '1.5rem' }}>👁️</div>
+                        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif' }}>Our Vision</h3>
+                        <p style={{ color: '#6b7280', lineHeight: 1.6 }}>To create a society where every underprivileged child has access to quality education, the opportunity to develop skills, and the confidence to become a self-reliant, responsible future leader.</p>
+                        <img src="/assets/work/20251102_131638.jpg" alt="Vision" style={{ width: '100%', height: 200, objectFit: 'cover', borderRadius: 16, marginTop: '1.5rem' }} />
+                    </motion.div>
+
                     {/* Mission Card */}
-                    <div className="glass-panel scroll-animate" style={{ padding: '2rem', borderRadius: '24px', opacity: 0, transform: 'translateY(40px)', transition: 'all 0.8s ease-out 0.4s' }}>
-                        <div className="flex-center icon-circle" style={{ background: 'linear-gradient(135deg, #10b981, #059669)', color: 'white', width: '60px', height: '60px', fontSize: '1.5rem', marginBottom: '1.5rem' }}>🎯</div>
-                        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Our Mission</h3>
-                        <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>To empower marginalized communities by providing sustainable resources, education, and support systems that foster long-term growth.</p>
-                        <img src="/assets/work/20251102_131641.jpg" alt="Mission" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '16px', marginTop: '1.5rem' }} />
-                    </div>
-                    {/* Values Card */}
-                    <div className="glass-panel scroll-animate" style={{ padding: '2rem', borderRadius: '24px', opacity: 0, transform: 'translateY(40px)', transition: 'all 0.8s ease-out 0.5s' }}>
-                        <div className="flex-center icon-circle" style={{ background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)', color: 'white', width: '60px', height: '60px', fontSize: '1.5rem', marginBottom: '1.5rem' }}>🤝</div>
-                        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Core Values</h3>
-                        <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>Integrity, Compassion, Transparency, and Community-driven action guide every decision and project we undertake.</p>
-                        <img src="/assets/work/20251102_131647.jpg" alt="Values" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '16px', marginTop: '1.5rem' }} />
-                    </div>
+                    <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.2 }} style={{
+                        padding: '2rem', borderRadius: 24, background: 'white',
+                        border: '1px solid rgba(30,58,95,0.08)',
+                        boxShadow: '0 4px 24px rgba(30,58,95,0.06)',
+                    }}>
+                        <div style={{ width: 60, height: 60, borderRadius: '50%', background: 'linear-gradient(135deg, #d4a847, #b8922e)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', marginBottom: '1.5rem' }}>🎯</div>
+                        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif' }}>Our Mission</h3>
+                        <p style={{ color: '#6b7280', lineHeight: 1.6 }}>To provide free, structured education to children aged 5–16 through volunteer-led weekend classes, free study materials, and career mentoring — enabling every child to enroll in higher education and eventually support themselves.</p>
+                        <img src="/assets/work/20251102_131641.jpg" alt="Mission" style={{ width: '100%', height: 200, objectFit: 'cover', borderRadius: 16, marginTop: '1.5rem' }} />
+                    </motion.div>
+
+                    {/* Objective Card */}
+                    <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.25 }} style={{
+                        padding: '2rem', borderRadius: 24, background: 'white',
+                        border: '1px solid rgba(30,58,95,0.08)',
+                        boxShadow: '0 4px 24px rgba(30,58,95,0.06)',
+                    }}>
+                        <div style={{ width: 60, height: 60, borderRadius: '50%', background: 'linear-gradient(135deg, #2563eb, #1e3a5f)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', marginBottom: '1.5rem' }}>📋</div>
+                        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif' }}>Our Objectives</h3>
+                        <ul style={{ color: '#6b7280', lineHeight: 1.5, textAlign: 'left', listStyleType: 'disc', paddingLeft: '1.2rem', fontSize: '0.95rem' }}>
+                            <li style={{ marginBottom: '0.4rem' }}>Provide free weekend classes to children aged 5–16 in rural areas</li>
+                            <li style={{ marginBottom: '0.4rem' }}>Distribute study materials and school supplies to every enrolled child</li>
+                            <li style={{ marginBottom: '0.4rem' }}>Teach computer literacy and career readiness to secondary students</li>
+                            <li style={{ marginBottom: '0.4rem' }}>Bridge learning gaps through structured syllabus and mentoring</li>
+                            <li style={{ marginBottom: '0.4rem' }}>Encourage youth volunteering and community engagement</li>
+                            <li style={{ marginBottom: '0.4rem' }}>Reach 1,000+ students and 20 villages by 2027</li>
+                        </ul>
+                        <img src="/assets/work/20251102_131647.jpg" alt="Objectives" style={{ width: '100%', height: 200, objectFit: 'cover', borderRadius: 16, marginTop: '1.5rem' }} />
+                    </motion.div>
                 </div>
 
                 {/* Team Section */}
-                <div style={{ maxWidth: '1200px', margin: '6rem auto 0' }}>
-                    <h3 className="section-title scroll-animate" style={{ fontSize: '2.5rem', textAlign: 'center', marginBottom: '3rem', opacity: 0, transform: 'translateY(20px)', transition: 'all 0.8s ease-out' }}>Meet the Team</h3>
+                <div style={{ maxWidth: 1200, margin: '6rem auto 0' }}>
+                    <motion.h3 {...fadeUp} style={{ fontSize: '2rem', textAlign: 'center', marginBottom: '0.75rem', color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif' }}>Our Leadership</motion.h3>
+                    <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #d4a847, #b8922e)', borderRadius: 2, margin: '0 auto 3rem' }} />
                     <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
                         {[
-                            { name: 'Sahil Sharma', role: 'Team Leader', img: '/assets/work/20251102_131451.jpg' },
-                            { name: 'Sahajpreet Singh', role: 'Operations Lead', img: '/assets/work/20251102_131454.jpg' },
-                            { name: 'Rza Mohammed', role: 'Community & Outreach', img: '/assets/work/20251102_131457.jpg' },
+                            { name: 'Prabal', role: 'Founder', img: '/assets/work/20251102_131451.jpg', quote: 'Every child we teach is a future we build together.' },
+                            { name: 'Prateek Sharma', role: 'Co-Founder', img: '/assets/work/20251102_131454.jpg', quote: 'Education is the one gift that keeps multiplying.' },
+                            { name: 'Anjali Mishra', role: 'President', img: '/assets/work/20251102_131457.jpg', quote: 'We believe every child deserves the chance to learn, grow, and dream.' },
+                            { name: 'Aaleya', role: 'Social Media Head', img: '/assets/work/20251102_131502.jpg', quote: 'Every story we share reaches someone who wants to help.' },
                         ].map((member, idx) => (
-                            <div key={idx} className="glass-panel scroll-animate" style={{ width: '280px', padding: '1.5rem', borderRadius: '16px', textAlign: 'center', opacity: 0, transform: 'translateY(40px)', transition: `all 0.8s ease-out ${0.2 + (idx * 0.1)}s` }}>
-                                <img src={member.img} alt={member.name} style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: 'cover', margin: '0 auto 1rem' }} />
-                                <h4 style={{ fontSize: '1.2rem', marginBottom: '0.25rem' }}>{member.name}</h4>
-                                <p style={{ color: 'var(--accent-color)', fontSize: '0.9rem', fontWeight: 600 }}>{member.role}</p>
-                            </div>
+                            <motion.div key={idx} {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 + idx * 0.08 }} style={{
+                                width: 280, padding: '1.5rem', borderRadius: 20, textAlign: 'center',
+                                background: 'white', border: '1px solid rgba(30,58,95,0.08)',
+                                boxShadow: '0 4px 24px rgba(30,58,95,0.06)',
+                                transition: 'transform 0.3s, box-shadow 0.3s',
+                            }}>
+                                <img src={member.img} alt={member.name} style={{ width: 120, height: 120, borderRadius: '50%', objectFit: 'cover', margin: '0 auto 1rem', border: '3px solid #f5e6b8' }} />
+                                <h4 style={{ fontSize: '1.3rem', marginBottom: '0.25rem', color: '#1e3a5f' }}>{member.name}</h4>
+                                <p style={{ color: '#2563eb', fontSize: '0.95rem', fontWeight: 600, marginBottom: '1rem' }}>{member.role}</p>
+                                <p style={{ color: '#6b7280', fontSize: '0.85rem', fontStyle: 'italic', lineHeight: 1.4 }}>"{member.quote}"</p>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
