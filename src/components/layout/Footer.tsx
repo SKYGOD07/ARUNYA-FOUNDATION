@@ -194,7 +194,7 @@ export const Footer = () => {
                         <h4 style={{ color: '#d4a847', fontWeight: 700, fontSize: '0.8rem', letterSpacing: 2, textTransform: 'uppercase', marginBottom: '1.25rem' }}>Get in Touch</h4>
                         {[
                             { icon: '📧', text: 'contact@arunyafoundation.org' },
-                            { icon: '📱', text: '+91 98765 43210' },
+                            { icon: '📱', text: '+91 82238 34121' },
                             { icon: '📍', text: 'Gwalior, Madhya Pradesh, India' },
                             { icon: '⏰', text: 'Sat & Sun: 10 AM – 1 PM' },
                         ].map((c, i) => (

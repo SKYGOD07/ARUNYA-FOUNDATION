@@ -33,7 +33,7 @@ export const ContactPage = () => {
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                             {[
                                 { icon: '📍', title: 'Location', detail: 'Gwalior, Madhya Pradesh, India', gradient: 'linear-gradient(135deg, #2563eb, #1e3a5f)' },
-                                { icon: '📞', title: 'Phone', detail: '+91 98765 43210', gradient: 'linear-gradient(135deg, #d4a847, #b8922e)' },
+                                { icon: '📞', title: 'Phone', detail: '+91 82238 34121', gradient: 'linear-gradient(135deg, #d4a847, #b8922e)' },
                                 { icon: '✉️', title: 'Email', detail: 'contact@arunyafoundation.org', gradient: 'linear-gradient(135deg, #2563eb, #1e3a5f)' },
                                 { icon: '⏰', title: 'Class Timings', detail: 'Sat & Sun: 10 AM – 1 PM', gradient: 'linear-gradient(135deg, #d4a847, #b8922e)' },
                             ].map((item, idx) => (
