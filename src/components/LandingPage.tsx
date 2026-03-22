@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import { ThemeToggle } from './ui/theme-toggle';
 import { Menu, X } from 'lucide-react';
 import { HeartIcon } from './ui/animated-state-icons';
 import { ContainerScroll } from './ui/container-scroll-animation';
@@ -28,12 +27,7 @@ const bounceTransformStyles = [
 
 
 
-interface LandingPageProps {
-    theme: 'light' | 'dark';
-    toggleTheme: () => void;
-}
-
-const LandingPage = ({ theme, toggleTheme }: LandingPageProps) => {
+const LandingPage = () => {
     const scrollRef = useRef<HTMLDivElement>(null);
     const statsRef = useRef<HTMLDivElement>(null);
     const parallaxRef = useRef<HTMLDivElement>(null);
@@ -115,9 +109,6 @@ const LandingPage = ({ theme, toggleTheme }: LandingPageProps) => {
 
                     {/* Controls Pill */}
                     <div className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md rounded-full p-1.5 flex items-center gap-2 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] border border-gray-100 dark:border-slate-800 pointer-events-auto">
-                        <div className="w-10 h-10 rounded-xl bg-gray-100 hover:bg-gray-200 dark:bg-slate-800 dark:hover:bg-slate-700 flex items-center justify-center transition-colors cursor-pointer text-slate-800 dark:text-slate-200">
-                            <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-                        </div>
                         <div className="w-10 h-10 rounded-xl bg-gray-100 hover:bg-gray-200 dark:bg-slate-800 dark:hover:bg-slate-700 flex items-center justify-center transition-colors cursor-pointer text-slate-800 dark:text-slate-200" title="Profile">
                             <VscAccount size={18} />
                         </div>
@@ -136,9 +127,6 @@ const LandingPage = ({ theme, toggleTheme }: LandingPageProps) => {
 
                         {/* Controls & Hamburger */}
                         <div className="flex items-center gap-1.5">
-                            <div className="w-10 h-10 rounded-xl bg-gray-100 hover:bg-gray-200 dark:bg-slate-800 dark:hover:bg-slate-700 flex items-center justify-center transition-colors cursor-pointer text-slate-800 dark:text-slate-200">
-                                <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-                            </div>
                             <div className="w-10 h-10 rounded-xl bg-gray-100 hover:bg-gray-200 dark:bg-slate-800 dark:hover:bg-slate-700 flex items-center justify-center transition-colors cursor-pointer text-slate-800 dark:text-slate-200">
                                 <VscAccount size={18} />
                             </div>
@@ -265,31 +253,46 @@ const LandingPage = ({ theme, toggleTheme }: LandingPageProps) => {
             <section id="about" className="about-section" style={{ padding: '6rem 2rem', position: 'relative', zIndex: 10 }}>
                 <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
                     <h2 className="section-title scroll-animate" style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '1rem', opacity: 0, transform: 'translateY(20px)', transition: 'all 0.8s ease-out' }}>About Arunya</h2>
-                    <p className="section-subtitle scroll-animate" style={{ color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto', opacity: 0, transform: 'translateY(20px)', transition: 'all 0.8s ease-out 0.2s' }}>
-                        We are a passionate team dedicated to creating sustainable change through education, health, and community empowerment.
-                    </p>
+                    <div className="section-subtitle scroll-animate" style={{ color: 'var(--text-muted)', maxWidth: '800px', margin: '0 auto', opacity: 0, transform: 'translateY(20px)', transition: 'all 0.8s ease-out 0.2s', textAlign: 'justify' }}>
+                        <p style={{ marginBottom: '1rem' }}>
+                            Arunya Foundation is a youth-driven community initiative based in Gwalior, dedicated to empowering rural communities and transforming the lives of children through education. Founded with the belief that education is the most powerful tool for social change, the foundation works to bridge learning gaps and create opportunities for children in underserved areas.
+                        </p>
+                        <p style={{ marginBottom: '1rem' }}>
+                            Through volunteer-led programs, community engagement, and collaborative initiatives, Arunya Foundation focuses on strengthening foundational learning, nurturing curiosity, and encouraging young minds to dream beyond limitations. Our work is rooted in compassion, innovation, and the collective spirit of youth working together for meaningful change.
+                        </p>
+                        <p>
+                            With passionate volunteers, grassroots engagement, and a vision for inclusive development, Arunya Foundation aims to build stronger rural communities where every child has access to quality education, guidance, and the opportunity to grow into a confident and capable future leader.
+                        </p>
+                    </div>
                 </div>
                 <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
                     {/* Vision Card */}
                     <div className="glass-panel scroll-animate" style={{ padding: '2rem', borderRadius: '24px', opacity: 0, transform: 'translateY(40px)', transition: 'all 0.8s ease-out 0.3s' }}>
                         <div className="flex-center icon-circle bg-orange" style={{ width: '60px', height: '60px', fontSize: '1.5rem', marginBottom: '1.5rem' }}>👁️</div>
                         <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Our Vision</h3>
-                        <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>To build a world where every individual has access to basic rights, education, and opportunities to thrive, regardless of their background.</p>
+                        <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>To build empowered rural communities where every child has access to quality education, opportunities to learn, and the support needed to grow into responsible, confident, and capable leaders of the future.</p>
                         <img src="/assets/work/20251102_131638.jpg" alt="Vision" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '16px', marginTop: '1.5rem' }} />
                     </div>
                     {/* Mission Card */}
                     <div className="glass-panel scroll-animate" style={{ padding: '2rem', borderRadius: '24px', opacity: 0, transform: 'translateY(40px)', transition: 'all 0.8s ease-out 0.4s' }}>
                         <div className="flex-center icon-circle" style={{ background: 'linear-gradient(135deg, #10b981, #059669)', color: 'white', width: '60px', height: '60px', fontSize: '1.5rem', marginBottom: '1.5rem' }}>🎯</div>
                         <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Our Mission</h3>
-                        <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>To empower marginalized communities by providing sustainable resources, education, and support systems that foster long-term growth.</p>
+                        <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>To empower children in rural areas through accessible and meaningful education by mobilizing youth volunteers, strengthening foundational learning, and creating community-driven initiatives that nurture knowledge, creativity, and social responsibility.</p>
                         <img src="/assets/work/20251102_131641.jpg" alt="Mission" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '16px', marginTop: '1.5rem' }} />
                     </div>
-                    {/* Values Card */}
+                    {/* Objective Card */}
                     <div className="glass-panel scroll-animate" style={{ padding: '2rem', borderRadius: '24px', opacity: 0, transform: 'translateY(40px)', transition: 'all 0.8s ease-out 0.5s' }}>
-                        <div className="flex-center icon-circle" style={{ background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)', color: 'white', width: '60px', height: '60px', fontSize: '1.5rem', marginBottom: '1.5rem' }}>🤝</div>
-                        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Core Values</h3>
-                        <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>Integrity, Compassion, Transparency, and Community-driven action guide every decision and project we undertake.</p>
-                        <img src="/assets/work/20251102_131647.jpg" alt="Values" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '16px', marginTop: '1.5rem' }} />
+                        <div className="flex-center icon-circle" style={{ background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)', color: 'white', width: '60px', height: '60px', fontSize: '1.5rem', marginBottom: '1.5rem' }}>📋</div>
+                        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Our Objectives</h3>
+                        <ul style={{ color: 'var(--text-muted)', lineHeight: 1.4, textAlign: 'left', listStyleType: 'disc', paddingLeft: '1.2rem', fontSize: '0.9rem' }}>
+                            <li style={{ marginBottom: '0.4rem' }}>To promote access to quality education for children in rural communities.</li>
+                            <li style={{ marginBottom: '0.4rem' }}>To bridge learning gaps through volunteer-led teaching and support.</li>
+                            <li style={{ marginBottom: '0.4rem' }}>To encourage youth participation in community development.</li>
+                            <li style={{ marginBottom: '0.4rem' }}>To create safe and supportive learning environments.</li>
+                            <li style={{ marginBottom: '0.4rem' }}>To raise awareness about the importance of education.</li>
+                            <li style={{ marginBottom: '0.4rem' }}>To develop sustainable community initiatives.</li>
+                        </ul>
+                        <img src="/assets/work/20251102_131647.jpg" alt="Objectives" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '16px', marginTop: '1.5rem' }} />
                     </div>
                 </div>
             </section>
