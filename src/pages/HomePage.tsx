@@ -1,52 +1,134 @@
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { PageTransition } from '../components/ui/PageTransition';
-import { ContainerScroll } from '../components/ui/container-scroll-animation';
-import { InteractiveHoverButton } from '@/components/ui/interactive-hover-button';
-import BounceCards from '../components/BounceCards';
-import DomeGallery from '../components/DomeGallery';
 import CountUp from '../components/CountUp';
+import BounceCards from '../components/BounceCards';
 
-/* ── Image Data ───────────────────────────────────────────── */
-const heroImages = [
-    "/assets/work/20251102_131451.jpg",
-    "/assets/work/20251102_131454.jpg",
-    "/assets/work/20251102_131457.jpg",
-    "/assets/work/20251102_131502.jpg",
-    "/assets/work/20251102_131508.jpg"
+/* ── Images ────────────────────────────────────── */
+const HERO_IMG = 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1600&q=80';
+const IMAGES = {
+    vision: 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=800&q=80',
+    mission: 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=800&q=80',
+    objective: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=800&q=80',
+    cause1: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80',
+    cause2: 'https://images.unsplash.com/photo-1594708767771-a7502209ff51?w=800&q=80',
+    cause3: 'https://images.unsplash.com/photo-1560785496-3c9d27877182?w=800&q=80',
+    cause4: 'https://images.unsplash.com/photo-1529390079861-591de354faf5?w=800&q=80',
+    fullbleed: 'https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=1600&q=80',
+    blog1: 'https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=800&q=80',
+    blog2: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=800&q=80',
+    blog3: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800&q=80',
+};
+
+/* ── Animation variants ───────────────────────── */
+const fadeUp = {
+    initial: { opacity: 0, y: 40 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: '-80px' },
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const },
+};
+
+const staggerContainer = {
+    initial: {},
+    whileInView: { transition: { staggerChildren: 0.12 } },
+    viewport: { once: true, margin: '-80px' },
+};
+
+/* ── Syllabus Data ────────────────────────────── */
+const syllabusData = [
+    {
+        level: 'Foundation',
+        ages: '5 – 8 Years',
+        icon: '🌱',
+        color: 'blue',
+        description: 'Building strong fundamentals through play-based and story-based learning that sparks curiosity.',
+        subjects: [
+            { icon: '📖', name: 'Basic Literacy', detail: 'Alphabets, phonics, simple reading in Hindi & English' },
+            { icon: '🔢', name: 'Numeracy', detail: 'Counting, basic addition & subtraction, shapes' },
+            { icon: '🎨', name: 'Art & Drawing', detail: 'Creative expression through colors, shapes, and craft' },
+            { icon: '📚', name: 'Moral Stories', detail: 'Value-based storytelling for character development' },
+            { icon: '🎵', name: 'Rhymes & Music', detail: 'Learning through songs, rhymes, and rhythm activities' },
+            { icon: '🧩', name: 'Activity Based', detail: 'Puzzles, games, and hands-on learning activities' },
+        ],
+    },
+    {
+        level: 'Primary',
+        ages: '9 – 12 Years',
+        icon: '📘',
+        color: 'golden',
+        description: 'Strengthening core academic skills with structured lessons and real-world applications.',
+        subjects: [
+            { icon: '📝', name: 'English', detail: 'Grammar, comprehension, essay writing, spoken English' },
+            { icon: '📕', name: 'Hindi', detail: 'Vyakaran, nibandh, kavita, and conversational Hindi' },
+            { icon: '➕', name: 'Mathematics', detail: 'Multiplication, division, fractions, basic geometry' },
+            { icon: '🔬', name: 'Science Basics', detail: 'Plants, animals, human body, simple experiments' },
+            { icon: '🌍', name: 'General Knowledge', detail: 'India, world, current affairs, environment awareness' },
+            { icon: '🎭', name: 'Art & Culture', detail: 'Drama, folk art, cultural heritage activities' },
+        ],
+    },
+    {
+        level: 'Secondary',
+        ages: '13 – 16 Years',
+        icon: '🎓',
+        color: 'blue',
+        description: 'Preparing students for higher education and self-sufficiency through advanced academics and life skills.',
+        subjects: [
+            { icon: '📐', name: 'Advanced Math', detail: 'Algebra, geometry, statistics, trigonometry basics' },
+            { icon: '⚗️', name: 'Science', detail: 'Physics, Chemistry, Biology fundamentals and practicals' },
+            { icon: '🗣️', name: 'Communication', detail: 'Public speaking, debate, interview preparation' },
+            { icon: '💡', name: 'Career Guidance', detail: 'Skill assessment, career paths, scholarship awareness' },
+            { icon: '💻', name: 'Computer Literacy', detail: 'MS Office, internet, basic coding, digital safety' },
+            { icon: '🏦', name: 'Financial Literacy', detail: 'Savings, budgeting, banking basics for self-reliance' },
+        ],
+    },
 ];
 
-const bounceTransforms = [
-    "rotate(5deg) translate(-150px)",
-    "rotate(0deg) translate(-70px)",
-    "rotate(-5deg)",
-    "rotate(5deg) translate(70px)",
-    "rotate(-5deg) translate(150px)"
+/* ── Programs Data ────────────────────────────── */
+const programs = [
+    { title: 'Weekend Classes', icon: '📚', desc: 'Free weekend classes every Saturday & Sunday covering core subjects for all age groups, taught by trained volunteers.', img: IMAGES.cause1 },
+    { title: 'Study Material Kit', icon: '🎒', desc: 'Complete kit with notebooks, textbooks, stationery, and school bags distributed free to every enrolled student.', img: IMAGES.cause2 },
+    { title: 'Computer Literacy', icon: '💻', desc: 'Hands-on computer education teaching MS Office, internet skills, and basics of coding to secondary students.', img: IMAGES.cause3 },
+    { title: 'Career Counselling', icon: '💡', desc: 'Monthly career guidance sessions helping students discover scholarships, skill development paths, and job readiness.', img: IMAGES.cause4 },
 ];
 
-const causes = [
-    { title: 'Weekend Basic Classes', category: 'Education', icon: '📚', amount: '₹500/Child', img: '/assets/work/20251102_131620.jpg', desc: 'Free weekend classes teaching reading, writing, and basic math to underprivileged children.' },
-    { title: 'Feed a Homeless Child', category: 'Food', icon: '🍲', amount: '₹50/Meal', img: '/assets/work/20251102_131624.jpg', desc: 'Nutritious meals served daily to children who cannot afford regular food.' },
-    { title: 'Virtual Cake Cutting', category: 'Birthday', icon: '🎂', amount: '₹2000/Event', img: '/assets/work/20251102_131626.jpg', desc: 'Celebrate your birthday by sponsoring a party for orphaned children.' },
-    { title: 'School Supplies Kit', category: 'Education', icon: '🎒', amount: '₹350/Kit', img: '/assets/work/20251102_131627.jpg', desc: 'Complete kit with notebooks, pens, and bags for each child\'s school year.' },
-];
-
+/* ── Blog / Stories Data ─────────────────────── */
 const blogPosts = [
-    { title: 'A New School in Rantau', date: 'Oct 12, 2023', excerpt: 'Thanks to our generous donors, we successfully inaugurated a primary school catering to 120 children.', img: '/assets/work/20251102_131631.jpg' },
-    { title: "Ramesh's Journey to College", date: 'Sep 28, 2023', excerpt: 'Meet Ramesh, the first from his village to attend university — an inspiring story of perseverance.', img: '/assets/work/20251102_131634.jpg' },
-    { title: 'Annual Food Drive Success', date: 'Aug 15, 2023', excerpt: 'Over 15,000 meals were served across the city on Independence Day by our volunteer network.', img: '/assets/work/20251102_131635.jpg' },
+    {
+        title: 'Meera Scored 92% in Board Exams',
+        date: 'Mar 05, 2026',
+        excerpt: 'From struggling with basic math to topping her class — meet Meera, an Arunya student from a village near Gwalior who proved that with the right support, anything is possible. Her journey from our weekend classes to board exam success inspires every child in our program.',
+        img: IMAGES.blog1,
+        readMore: 'Meera joined Arunya Foundation at age 9. She could barely read Hindi and had never held a textbook of her own. Our volunteers noticed her curiosity and quiet determination. Over four years of weekend classes, moral support, and study materials, she transformed. In her board exams, she scored 92%, the highest in her village. Today she dreams of becoming a teacher herself.'
+    },
+    {
+        title: '500+ Students Enrolled This Year',
+        date: 'Feb 12, 2026',
+        excerpt: 'Our 2026 enrollment drive crossed 500 students across five villages! We\'re expanding our classrooms, training more volunteers, and adding new subjects like Computer Literacy and English Speaking to our syllabus.',
+        img: IMAGES.blog2,
+        readMore: 'With increasing demand from communities, we organized enrollment camps in five villages surrounding Gwalior. Parents who once hesitated to send their children now actively seek our classes. We added 15 new volunteers, set up two new learning centers, and introduced computer literacy classes. Our goal is to reach 1,000 students by December 2026.'
+    },
+    {
+        title: 'Annual Day Celebration 2026',
+        date: 'Jan 26, 2026',
+        excerpt: 'Republic Day became extra special as 300+ students performed cultural programs, received certificates, and celebrated their learning milestones. Parents, volunteers, and community leaders came together in an emotional day of pride and joy.',
+        img: IMAGES.blog3,
+        readMore: 'The Annual Day was held at a local community hall. Students performed skits on education, sang patriotic songs, and showcased their art projects. Top students received certificates and school supply kits. Several parents shared testimonials about how their children have changed since joining Arunya. It was a day that reminded us why we do what we do.'
+    },
 ];
 
-/* ── Component ────────────────────────────────────────────── */
+/* ── Component ────────────────────────────────── */
 export const HomePage = () => {
-    const [scrollY, setScrollY] = useState(0);
+    const navigate = useNavigate();
     const statsRef = useRef<HTMLDivElement>(null);
     const [statsVisible, setStatsVisible] = useState(false);
+    const [scrollY, setScrollY] = useState(0);
+    const [expandedBlog, setExpandedBlog] = useState<number | null>(null);
 
     useEffect(() => {
         const handleScroll = () => setScrollY(window.scrollY);
         window.addEventListener('scroll', handleScroll);
 
-        /* CountUp observer */
         const countObs = new IntersectionObserver((entries) => {
             entries.forEach(e => { if (e.isIntersecting) setStatsVisible(true); });
         }, { threshold: 0.2 });
@@ -58,281 +140,383 @@ export const HomePage = () => {
     return (
         <PageTransition>
             {/* ═══════════════════ HERO ═══════════════════ */}
-            <section className="relative" style={{ minHeight: '100vh', overflow: 'hidden' }}>
-                {/* Parallax background */}
-                <div className="hero-bg-parallax" style={{ transform: `translateY(${scrollY * 0.35}px)` }} />
+            <section className="hero-section">
+                <img
+                    src={HERO_IMG}
+                    alt="Children learning"
+                    className="hero-bg-image"
+                    style={{ transform: `scale(${1 + scrollY * 0.0003})` }}
+                />
+                <div className="hero-overlay" />
 
-                {/* Hero content – centered */}
-                <div className="flex flex-col items-center justify-center text-center px-6" style={{ minHeight: '100vh', paddingTop: '7rem', position: 'relative', zIndex: 2 }}>
-                    <div className="hero-badge glass-panel" style={{ animation: 'fadeInDown 0.6s ease-out' }}>
-                        <span className="badge-new">Welcome</span> To Our Community! 🌿 📖 ✨
-                    </div>
+                <div className="hero-content">
 
-                    <h1 className="hero-title" style={{ animation: 'slideUp 0.7s ease-out' }}>
-                        Empowering Individuals &<br />Building Futures
-                    </h1>
+                    <motion.h1
+                        className="hero-heading"
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7, delay: 0.3 }}
+                    >
+                        Lighting the Path<br />
+                        <span className="accent">to Education</span>
+                    </motion.h1>
 
-                    <p style={{ fontSize: '1.25rem', color: 'var(--text-muted)', maxWidth: '680px', marginBottom: '2.5rem', lineHeight: 1.7, animation: 'slideUp 0.8s ease-out' }}>
-                        Dedicated to spreading the light of education and building a future where no one is left behind. Together, we rise. Together, we transform.
-                    </p>
+                    <motion.p
+                        className="hero-description"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7, delay: 0.45 }}
+                    >
+                        Teaching underprivileged children aged 5–16 in rural India. 
+                        Free weekend classes, study materials, and career guidance —
+                        empowering them to build their own futures.
+                    </motion.p>
 
-                    <div className="flex gap-4 flex-wrap justify-center" style={{ animation: 'slideUp 0.9s ease-out' }}>
-                        <a href="https://forms.gle/CGpuK1YiLiF1D5UJA" target="_blank" rel="noreferrer" className="btn btn-primary" style={{ textDecoration: 'none' }}>Join as Volunteer</a>
-                        <a href="#causes" className="btn btn-secondary glass-panel" style={{ textDecoration: 'none' }}>View Our Causes</a>
-                    </div>
-
-                    {/* Scroll indicator */}
-                    <div className="mt-16 flex flex-col items-center gap-2 opacity-40">
-                        <span className="text-sm">Scroll to explore</span>
-                        <div style={{ width: '2px', height: '40px', background: 'var(--text-muted)', borderRadius: '2px', animation: 'pulse 2s infinite' }} />
-                    </div>
+                    <motion.div
+                        className="hero-actions"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7, delay: 0.55 }}
+                    >
+                        <a href="https://forms.gle/CGpuK1YiLiF1D5UJA" target="_blank" rel="noreferrer" className="hero-btn-primary">
+                            Join as Volunteer ↗
+                        </a>
+                        <a href="#syllabus" className="hero-btn-secondary">
+                            View Syllabus
+                        </a>
+                        <button onClick={() => navigate('/login')} className="hero-btn-golden">
+                            Donate Now 💛
+                        </button>
+                    </motion.div>
                 </div>
+
+                <div className="hero-bottom-bar">
+                    <span>Gwalior, India</span>
+                    <div className="divider-line" />
+                    <span>Education • Empowerment • Future</span>
+                </div>
+            </section>
+
+            {/* ═══════════════════ BOUNCE CARDS 3D ═══════════════════ */}
+            <section style={{ background: '#EEF4FB', padding: '5rem 2rem', textAlign: 'center', overflow: 'hidden' }}>
+                <motion.h2 {...fadeUp} style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', fontWeight: 800, color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif', marginBottom: '0.5rem' }}>
+                    Life Inside Our Classrooms
+                </motion.h2>
+                <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #d4a847, #b8922e)', borderRadius: 2, margin: '0.75rem auto 3rem' }} />
+                <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.15 }} style={{ display: 'flex', justifyContent: 'center' }}>
+                    <BounceCards
+                        images={[
+                            'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80',
+                            'https://images.unsplash.com/photo-1560785496-3c9d27877182?w=600&q=80',
+                            'https://images.unsplash.com/photo-1529390079861-591de354faf5?w=600&q=80',
+                            'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80',
+                            'https://images.unsplash.com/photo-1594708767771-a7502209ff51?w=600&q=80',
+                        ]}
+                        containerWidth={500}
+                        containerHeight={320}
+                        animationDelay={0.3}
+                        enableHover={true}
+                        transformStyles={[
+                            'rotate(10deg) translate(-180px)',
+                            'rotate(5deg) translate(-90px)',
+                            'rotate(-3deg)',
+                            'rotate(-10deg) translate(90px)',
+                            'rotate(2deg) translate(180px)'
+                        ]}
+                    />
+                </motion.div>
             </section>
 
             {/* ═══════════════════ IMPACT NUMBERS ═══════════════════ */}
-            <section ref={statsRef} className="py-16 px-6" style={{ position: 'relative', zIndex: 10 }}>
-                <div className="stats-container glass-panel scroll-animate max-w-5xl mx-auto" style={{ opacity: 0, transform: 'translateY(40px)', transition: 'all 0.8s ease-out' }}>
-                    {[
-                        { icon: '👥', gradient: 'bg-orange', value: 1250, suffix: '+', label: 'Children Taught', tooltip: 'Every weekend, volunteers teach basic knowledge on-site to underprivileged children.' },
-                        { icon: '💚', gradient: '', gradientStyle: { background: 'linear-gradient(135deg, #10b981, #059669)', color: 'white' }, prefix: '₹', value: 5.2, suffix: 'L+', label: 'Donation Raised' },
-                        { icon: '🍲', gradient: '', gradientStyle: { background: 'linear-gradient(135deg, #ec4899, #be185d)', color: 'white' }, value: 15, suffix: 'k+', label: 'Meals Served' },
-                        { icon: '🤝', gradient: '', gradientStyle: { background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)', color: 'white' }, value: 300, suffix: '+', label: 'Active Volunteers' },
-                    ].map((s, i) => (
-                        <div key={i} className={`stat-item ${s.tooltip ? 'tooltip-container' : ''}`}>
-                            <div className={`stat-icon flex-center ${s.gradient}`} style={s.gradientStyle}>{s.icon}</div>
-                            <h3 className="stat-number">
-                                {s.prefix}<CountUp from={0} to={s.value} separator="," direction="up" duration={2} startWhen={statsVisible} />{s.suffix}
-                            </h3>
-                            <p className="stat-label">{s.label}</p>
-                            {s.tooltip && <div className="tooltip-text glass-panel">{s.tooltip}</div>}
+            <div ref={statsRef} className="stats-row" style={{ background: 'var(--color-offwhite)' }}>
+                {[
+                    { icon: '👨‍🎓', value: 1250, suffix: '+', label: 'Students Taught' },
+                    { icon: '📖', value: 520, suffix: '+', label: 'Classes Conducted' },
+                    { icon: '🤝', value: 300, suffix: '+', label: 'Active Volunteers' },
+                    { icon: '🏘️', value: 12, suffix: '+', label: 'Villages Reached' },
+                ].map((s, i) => (
+                    <motion.div key={i} className="stat-block" {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.1 }}>
+                        <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>{s.icon}</div>
+                        <div className="number">
+                            <CountUp from={0} to={s.value} separator="," direction="up" duration={2} startWhen={statsVisible} />{s.suffix}
                         </div>
-                    ))}
-                </div>
-            </section>
+                        <div className="label">{s.label}</div>
+                    </motion.div>
+                ))}
+            </div>
 
-            {/* ═══════════════════ ABOUT / MISSION ═══════════════════ */}
-            <section id="about" className="py-24 px-6" style={{ position: 'relative', zIndex: 10 }}>
-                <div className="text-center mb-16">
-                    <h2 className="section-title scroll-animate" style={{ fontSize: '3rem', fontWeight: 800, marginBottom: '1rem', opacity: 0, transform: 'translateY(20px)', transition: 'all 0.8s ease-out' }}>About Arunya</h2>
-                    <p className="scroll-animate" style={{ color: 'var(--text-muted)', maxWidth: '650px', margin: '0 auto', fontSize: '1.15rem', lineHeight: 1.7, opacity: 0, transform: 'translateY(20px)', transition: 'all 0.8s ease-out 0.2s' }}>
-                        We are a passionate team dedicated to creating sustainable change through education, health, and community empowerment.
-                    </p>
+            {/* ═══════════════════ ABOUT / VISION / MISSION ═══════════════════ */}
+            <section className="section-block">
+                <div className="section-header">
+                    <motion.h2 {...fadeUp}>About Arunya Foundation</motion.h2>
+                    <div className="golden-underline" />
+                    <motion.p {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }}>
+                        A youth-driven initiative based in Gwalior, dedicated to empowering
+                        underprivileged children through free education and holistic development.
+                    </motion.p>
                 </div>
 
-                <div className="grid gap-8 max-w-6xl mx-auto" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px,1fr))' }}>
+                <motion.div
+                    {...staggerContainer}
+                    className="grid gap-8 max-w-6xl mx-auto"
+                    style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px,1fr))' }}
+                >
                     {[
-                        { icon: '👁️', gradient: 'bg-orange', title: 'Our Vision', text: 'To build a world where every individual has access to basic rights, education, and opportunities to thrive.', img: '/assets/work/20251102_131638.jpg' },
-                        { icon: '🎯', gradient: '', gradientStyle: { background: 'linear-gradient(135deg, #10b981, #059669)', color: 'white' }, title: 'Our Mission', text: 'To empower marginalized communities with sustainable resources, education, and support systems.', img: '/assets/work/20251102_131641.jpg' },
-                        { icon: '🤝', gradient: '', gradientStyle: { background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)', color: 'white' }, title: 'Core Values', text: 'Integrity, Compassion, Transparency, and Community-driven action guide every decision we make.', img: '/assets/work/20251102_131647.jpg' },
+                        { icon: '👁️', title: 'Our Vision', text: 'To create a society where every child, regardless of economic background, has access to quality education and the opportunity to become self-reliant, confident, and capable of building their own future.', img: IMAGES.vision },
+                        { icon: '🎯', title: 'Our Mission', text: 'To provide free, structured education to underprivileged children aged 5–16 through volunteer-led weekend classes, study materials, and career guidance — transforming lives one classroom at a time.', img: IMAGES.mission },
+                        { icon: '📋', title: 'Our Goal', text: 'To enroll 1,000+ students by 2027, expand to 20 villages, and equip every child with the academic foundation and life skills needed to pursue higher education and meaningful careers.', img: IMAGES.objective },
                     ].map((c, i) => (
-                        <div key={i} className="glass-panel scroll-animate" style={{ padding: '2rem', borderRadius: '24px', opacity: 0, transform: 'translateY(40px)', transition: `all 0.8s ease-out ${0.3 + i * 0.1}s` }}>
-                            <div className={`flex-center icon-circle ${c.gradient}`} style={{ ...c.gradientStyle, width: 60, height: 60, fontSize: '1.5rem', marginBottom: '1.5rem' }}>{c.icon}</div>
-                            <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', fontWeight: 700 }}>{c.title}</h3>
-                            <p style={{ color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '1.5rem' }}>{c.text}</p>
-                            <img src={c.img} alt={c.title} style={{ width: '100%', height: 200, objectFit: 'cover', borderRadius: 16 }} />
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            {/* ═══════════════════ SCROLL ANIMATION ═══════════════════ */}
-            <section style={{ position: 'relative', zIndex: 10, overflow: 'hidden' }}>
-                <ContainerScroll titleComponent={
-                    <h1 className="text-4xl font-semibold text-black dark:text-white pb-4">
-                        Experience the future of<br />
-                        <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none text-[var(--accent-color)]">Impact Tracking</span>
-                    </h1>
-                }>
-                    <img
-                        src="/assets/work/20251102_131451.jpg"
-                        alt="hero" draggable={false}
-                        style={{ height: '100%', width: '100%', objectFit: 'cover', borderRadius: '1rem', objectPosition: 'left top' }}
-                    />
-                </ContainerScroll>
-            </section>
-
-            {/* ═══════════════════ CAUSES ═══════════════════ */}
-            <section id="causes" className="py-24 px-6" style={{ position: 'relative', zIndex: 10 }}>
-                <div className="text-center mb-12">
-                    <h2 className="section-title scroll-animate" style={{ fontSize: '3rem', fontWeight: 800, marginBottom: '1rem', opacity: 0, transform: 'translateY(20px)', transition: 'all 0.8s ease-out' }}>Support Our Mission</h2>
-                    <p className="scroll-animate" style={{ color: 'var(--text-muted)', maxWidth: '700px', margin: '0 auto', fontSize: '1.15rem', lineHeight: 1.7, opacity: 0, transform: 'translateY(20px)', transition: 'all 0.8s ease-out 0.2s' }}>
-                        Your contribution directly impacts lives. Explore our focus areas and choose where you'd like to make a difference.
-                    </p>
-                </div>
-
-                {/* BounceCards showcase */}
-                <div className="flex-center mb-20 scroll-animate" style={{ opacity: 0, transform: 'translateY(20px)', transition: 'all 0.8s ease-out 0.3s' }}>
-                    <BounceCards images={heroImages} containerWidth={700} containerHeight={420} transformStyles={bounceTransforms} enableHover={true} animationDelay={0.4} className="scale-90 md:scale-110" />
-                </div>
-
-                {/* Filter bar */}
-                <div className="filter-bar scroll-animate" style={{ opacity: 0, transform: 'translateY(20px)', transition: 'all 0.8s ease-out 0.3s' }}>
-                    {['🏠 All', '🍲 Food', '📚 Education', '🎂 Birthday', '🌱 Environment'].map((f, i) => (
-                        <button key={i} className={`filter-btn ${i === 0 ? 'active' : ''}`}>{f}</button>
-                    ))}
-                </div>
-
-                {/* Cards grid */}
-                <div className="causes-grid max-w-6xl mx-auto">
-                    {causes.map((cause, idx) => (
-                        <div key={idx} className="cause-card glass-panel scroll-animate" style={{ opacity: 0, transform: 'translateY(40px)', transition: `all 0.8s ease-out ${0.4 + idx * 0.1}s` }}>
-                            <div className="cause-image" style={{ backgroundImage: `url(${cause.img})` }}>
-                                <div className="cause-badge">{cause.amount}</div>
+                        <motion.div key={i} className="premium-card" {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.12 }}>
+                            <img src={c.img} alt={c.title} className="premium-card-img" />
+                            <div className="premium-card-body">
+                                <h3>{c.icon} {c.title}</h3>
+                                <p>{c.text}</p>
                             </div>
-                            <div className="cause-content">
-                                <h3>{cause.icon} {cause.title}</h3>
-                                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '1rem', lineHeight: 1.6 }}>{cause.desc}</p>
-                                <InteractiveHoverButton text="Donate Now" className="w-full" />
+                        </motion.div>
+                    ))}
+                </motion.div>
+            </section>
+
+            {/* ═══════════════════ SYLLABUS OVERVIEW ═══════════════════ */}
+            <section id="syllabus" className="section-block alt-bg">
+                <div className="section-header">
+                    <motion.h2 {...fadeUp}>Syllabus Overview</motion.h2>
+                    <div className="golden-underline" />
+                    <motion.p {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }}>
+                        Our carefully designed curriculum covers three age groups, 
+                        building from foundational literacy to career readiness.
+                    </motion.p>
+                </div>
+
+                <div className="syllabus-grid">
+                    {syllabusData.map((level, idx) => (
+                        <motion.div
+                            key={idx}
+                            className={`syllabus-card ${level.color === 'golden' ? 'golden' : ''}`}
+                            {...fadeUp}
+                            transition={{ ...fadeUp.transition, delay: idx * 0.15 }}
+                        >
+                            <div className="age-badge">
+                                <span>{level.icon}</span> {level.ages}
                             </div>
-                        </div>
+                            <h3>{level.level} Level</h3>
+                            <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.6, marginBottom: '0.5rem' }}>
+                                {level.description}
+                            </p>
+                            <ul className="subject-list">
+                                {level.subjects.map((sub, si) => (
+                                    <li key={si}>
+                                        <span className="subject-icon">{sub.icon}</span>
+                                        <div>
+                                            <strong style={{ color: 'var(--color-deep-blue)', fontSize: '0.9rem' }}>{sub.name}</strong>
+                                            <span style={{ display: 'block', fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '2px' }}>{sub.detail}</span>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </motion.div>
                     ))}
                 </div>
             </section>
 
-            {/* ═══════════════════ GALLERY ═══════════════════ */}
-            <section id="gallery" className="py-24 px-6">
-                <div className="text-center mb-16">
-                    <h2 className="section-title scroll-animate" style={{ fontSize: '3rem', fontWeight: 800, marginBottom: '1rem', opacity: 0, transform: 'translateY(20px)', transition: 'all 0.8s ease-out' }}>Impact in Action</h2>
-                    <p className="scroll-animate" style={{ color: 'var(--text-muted)', fontSize: '1.15rem', opacity: 0, transform: 'translateY(20px)', transition: 'all 0.8s ease-out 0.2s' }}>Moments of joy, learning, and community building.</p>
+            {/* ═══════════════════ FULL BLEED IMAGE ═══════════════════ */}
+            <motion.img
+                src={IMAGES.fullbleed}
+                alt="Students learning together"
+                className="full-bleed-image"
+                {...fadeUp}
+            />
+
+            {/* ═══════════════════ OUR PROGRAMS ═══════════════════ */}
+            <section className="section-block">
+                <div className="section-header">
+                    <motion.h2 {...fadeUp}>Our Programs</motion.h2>
+                    <div className="golden-underline" />
+                    <motion.p {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }}>
+                        Structured educational programs designed to build skills, 
+                        knowledge, and confidence in every child.
+                    </motion.p>
                 </div>
-                <div className="scroll-animate" style={{ height: '80vh', width: '100%', maxWidth: '1400px', margin: '0 auto', borderRadius: 24, overflow: 'hidden', opacity: 0, transform: 'translateY(40px)', transition: 'all 0.8s ease-out 0.3s' }}>
-                    <DomeGallery />
+
+                <div className="grid gap-8 max-w-6xl mx-auto" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px,1fr))' }}>
+                    {programs.map((prog, idx) => (
+                        <motion.div key={idx} className="premium-card" {...fadeUp} transition={{ ...fadeUp.transition, delay: idx * 0.1 }}>
+                            <img src={prog.img} alt={prog.title} className="premium-card-img" />
+                            <div className="premium-card-body">
+                                <h3>{prog.icon} {prog.title}</h3>
+                                <p>{prog.desc}</p>
+                                <button
+                                    className="hero-btn-primary"
+                                    style={{ marginTop: '1rem', width: '100%', justifyContent: 'center', fontSize: '0.9rem', padding: '0.7rem 1.5rem' }}
+                                    onClick={() => navigate('/causes')}
+                                >
+                                    Learn More →
+                                </button>
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
+            </section>
+
+            {/* ═══════════════════ DONATION ═══════════════════ */}
+            <section className="donation-section">
+                <motion.h2 {...fadeUp}>Support a Child's Education</motion.h2>
+                <motion.p {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }}>
+                    Your contribution directly funds textbooks, notebooks, 
+                    learning materials, and new classrooms for children in need.
+                </motion.p>
+
+                <div className="donation-cards">
+                    {[
+                        { amount: '₹500', desc: 'Study Materials for 1 child for a month' },
+                        { amount: '₹2,000', desc: 'Complete school kit with bag, books & uniform' },
+                        { amount: '₹5,000', desc: 'Sponsor a child\'s education for a full year' },
+                    ].map((d, idx) => (
+                        <motion.div
+                            key={idx}
+                            className="donation-card"
+                            {...fadeUp}
+                            transition={{ ...fadeUp.transition, delay: idx * 0.1 }}
+                            onClick={() => navigate('/login')}
+                        >
+                            <div className="amount">{d.amount}</div>
+                            <div className="desc">{d.desc}</div>
+                        </motion.div>
+                    ))}
+                </div>
+
+                <motion.button
+                    className="hero-btn-golden"
+                    style={{ marginTop: '2.5rem', padding: '1rem 3rem', fontSize: '1.1rem' }}
+                    onClick={() => navigate('/login')}
+                    {...fadeUp}
+                    transition={{ ...fadeUp.transition, delay: 0.3 }}
+                >
+                    Donate Now 💛
+                </motion.button>
             </section>
 
             {/* ═══════════════════ STORIES / BLOG ═══════════════════ */}
-            <section id="blog" className="py-24 px-6" style={{ position: 'relative', zIndex: 10 }}>
-                <div className="text-center mb-16">
-                    <h2 className="section-title scroll-animate" style={{ fontSize: '3rem', fontWeight: 800, marginBottom: '1rem', opacity: 0, transform: 'translateY(20px)', transition: 'all 0.8s ease-out' }}>Stories of Change</h2>
-                    <p className="scroll-animate" style={{ color: 'var(--text-muted)', fontSize: '1.15rem', opacity: 0, transform: 'translateY(20px)', transition: 'all 0.8s ease-out 0.2s' }}>Read about the lives we've touched together.</p>
+            <section className="section-block">
+                <div className="section-header">
+                    <motion.h2 {...fadeUp}>Stories of Impact</motion.h2>
+                    <div className="golden-underline" />
+                    <motion.p {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }}>
+                        Real stories from our classrooms — proof that education changes lives.
+                    </motion.p>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px,1fr))', gap: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
+                <div className="grid gap-8 max-w-6xl mx-auto" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px,1fr))' }}>
                     {blogPosts.map((post, idx) => (
-                        <div key={idx} className="blog-card glass-panel scroll-animate" style={{ borderRadius: 24, overflow: 'hidden', opacity: 0, transform: 'translateY(40px)', transition: `all 0.8s ease-out ${0.3 + idx * 0.1}s` }}>
-                            <div className="blog-image" style={{ height: 220, backgroundImage: `url(${post.img})`, backgroundSize: 'cover', backgroundPosition: 'center', transition: 'transform 0.5s' }} />
-                            <div style={{ padding: '2rem' }}>
-                                <span style={{ color: 'var(--accent-color)', fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '0.75rem' }}>{post.date}</span>
-                                <h3 style={{ fontSize: '1.35rem', marginBottom: '0.75rem', fontWeight: 700 }}>{post.title}</h3>
-                                <p style={{ color: 'var(--text-muted)', marginBottom: '1.5rem', lineHeight: 1.6 }}>{post.excerpt}</p>
-                                <a href="#" style={{ color: 'var(--accent-color)', textDecoration: 'none', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>Read Full Story <span>→</span></a>
+                        <motion.div key={idx} className="premium-card" {...fadeUp} transition={{ ...fadeUp.transition, delay: idx * 0.1 }}>
+                            <img src={post.img} alt={post.title} className="premium-card-img" />
+                            <div className="premium-card-body">
+                                <span style={{ color: 'var(--color-royal-blue)', fontSize: '0.8rem', fontWeight: 600 }}>{post.date}</span>
+                                <h3>{post.title}</h3>
+                                <p style={{ WebkitLineClamp: 3, display: '-webkit-box', WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{post.excerpt}</p>
+                                <button
+                                    onClick={() => setExpandedBlog(idx)}
+                                    style={{
+                                        color: 'var(--color-royal-blue)', background: 'none', border: 'none',
+                                        fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.4rem',
+                                        marginTop: '1rem', cursor: 'pointer', fontFamily: 'inherit', fontSize: '0.95rem',
+                                        padding: 0,
+                                    }}
+                                >
+                                    Read Full Story →
+                                </button>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
+
+                {/* Blog story overlay modal */}
+                <AnimatePresence>
+                    {expandedBlog !== null && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setExpandedBlog(null)}
+                            style={{
+                                position: 'fixed', inset: 0, zIndex: 999,
+                                background: 'rgba(30,58,95,0.7)', backdropFilter: 'blur(8px)',
+                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                padding: '2rem',
+                            }}
+                        >
+                            <motion.div
+                                initial={{ scale: 0.85, opacity: 0, y: 40 }}
+                                animate={{ scale: 1, opacity: 1, y: 0 }}
+                                exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                                onClick={(e) => e.stopPropagation()}
+                                style={{
+                                    background: 'white', borderRadius: 28, maxWidth: 700, width: '100%',
+                                    maxHeight: '85vh', overflow: 'auto',
+                                    boxShadow: '0 32px 64px rgba(0,0,0,0.25)',
+                                }}
+                            >
+                                {expandedBlog !== null && (
+                                    <>
+                                        <div style={{ position: 'relative' }}>
+                                            <img src={blogPosts[expandedBlog].img} alt={blogPosts[expandedBlog].title} style={{ width: '100%', height: 260, objectFit: 'cover', borderRadius: '28px 28px 0 0', display: 'block' }} />
+                                            <button
+                                                onClick={() => setExpandedBlog(null)}
+                                                style={{ position: 'absolute', top: 16, right: 16, background: 'rgba(255,255,255,0.9)', border: 'none', borderRadius: '50%', width: 40, height: 40, fontSize: '1.3rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                                            >×</button>
+                                        </div>
+                                        <div style={{ padding: '2rem' }}>
+                                            <span style={{ color: '#d4a847', fontWeight: 600, fontSize: '0.85rem', display: 'block', marginBottom: '0.5rem' }}>{blogPosts[expandedBlog].date}</span>
+                                            <h3 style={{ fontSize: '1.6rem', color: '#1e3a5f', marginBottom: '1.25rem', fontFamily: 'Outfit, Inter, sans-serif' }}>{blogPosts[expandedBlog].title}</h3>
+                                            <p style={{ color: '#4b5563', lineHeight: 1.8, fontSize: '1rem' }}>{blogPosts[expandedBlog].readMore}</p>
+                                        </div>
+                                    </>
+                                )}
+                            </motion.div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </section>
 
-            {/* ═══════════════════ VIDEO COMPILATION ═══════════════════ */}
-            <section id="videos" className="py-24 px-6" style={{ position: 'relative', zIndex: 10 }}>
-                <div className="text-center mb-16">
-                    <h2 className="section-title scroll-animate" style={{ fontSize: '3rem', fontWeight: 800, marginBottom: '1rem', opacity: 0, transform: 'translateY(20px)', transition: 'all 0.8s ease-out' }}>Moments Captured</h2>
-                    <p className="scroll-animate" style={{ color: 'var(--text-muted)', fontSize: '1.15rem', opacity: 0, transform: 'translateY(20px)', transition: 'all 0.8s ease-out 0.2s' }}>Watch our journey and the lives we've impacted.</p>
-                </div>
-
-                <div className="grid gap-6 max-w-7xl mx-auto" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
-                    {/* Item 1: Video */}
-                    <div className="glass-panel scroll-animate overflow-hidden flex flex-col" style={{ borderRadius: '24px', opacity: 0, transform: 'translateY(40px)', transition: 'all 0.8s ease-out 0.3s' }}>
-                        <div className="relative w-full h-64">
-                            <video
-                                src="/assets/work/20251019_103737.mp4"
-                                autoPlay
-                                loop
-                                playsInline
-                                muted
-                                className="absolute inset-0 w-full h-full object-cover"
-                            />
-                        </div>
-                        <div style={{ padding: '1.5rem', flex: 1 }}>
-                            <h3 style={{ fontSize: '1.25rem', fontWeight: 700 }}>Diwali Celebrations</h3>
-                            <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>Spreading light and joy in the community.</p>
-                        </div>
-                    </div>
-
-                    {/* Item 2: Image */}
-                    <div className="glass-panel scroll-animate overflow-hidden flex flex-col" style={{ borderRadius: '24px', opacity: 0, transform: 'translateY(40px)', transition: 'all 0.8s ease-out 0.4s' }}>
-                        <div className="relative w-full h-64">
-                            <img
-                                src="/assets/work/20260118_114526.jpg"
-                                alt="Community Event"
-                                className="absolute inset-0 w-full h-full object-cover"
-                            />
-                        </div>
-                        <div style={{ padding: '1.5rem', flex: 1 }}>
-                            <h3 style={{ fontSize: '1.25rem', fontWeight: 700 }}>Heartwarming Smiles</h3>
-                            <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>A beautiful moment capturing the innocence of childhood.</p>
-                        </div>
-                    </div>
-
-                    {/* Item 3: Video */}
-                    <div className="glass-panel scroll-animate overflow-hidden flex flex-col" style={{ borderRadius: '24px', opacity: 0, transform: 'translateY(40px)', transition: 'all 0.8s ease-out 0.5s' }}>
-                        <div className="relative w-full h-64">
-                            <video
-                                src="/assets/work/VID-20251109-WA0106.mp4"
-                                autoPlay
-                                loop
-                                playsInline
-                                muted
-                                className="absolute inset-0 w-full h-full object-cover"
-                            />
-                        </div>
-                        <div style={{ padding: '1.5rem', flex: 1 }}>
-                            <h3 style={{ fontSize: '1.25rem', fontWeight: 700 }}>Education Drive</h3>
-                            <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>Providing resources and tutoring to underserved areas.</p>
-                        </div>
-                    </div>
-
-                    {/* Item 4: Image */}
-                    <div className="glass-panel scroll-animate overflow-hidden flex flex-col" style={{ borderRadius: '24px', opacity: 0, transform: 'translateY(40px)', transition: 'all 0.8s ease-out 0.6s' }}>
-                        <div className="relative w-full h-64">
-                            <img
-                                src="/assets/work/IMG-20251109-WA0095.jpg"
-                                alt="Volunteer Work"
-                                className="absolute inset-0 w-full h-full object-cover"
-                            />
-                        </div>
-                        <div style={{ padding: '1.5rem', flex: 1 }}>
-                            <h3 style={{ fontSize: '1.25rem', fontWeight: 700 }}>Team Effort</h3>
-                            <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>Volunteers coming together to organize supplies.</p>
-                        </div>
-                    </div>
-
-                    {/* Item 5: Video */}
-                    <div className="glass-panel scroll-animate overflow-hidden flex flex-col" style={{ borderRadius: '24px', opacity: 0, transform: 'translateY(40px)', transition: 'all 0.8s ease-out 0.7s' }}>
-                        <div className="relative w-full h-64">
-                            <video
-                                src="/assets/work/VID-20251109-WA0121.mp4"
-                                autoPlay
-                                loop
-                                playsInline
-                                muted
-                                className="absolute inset-0 w-full h-full object-cover"
-                            />
-                        </div>
-                        <div style={{ padding: '1.5rem', flex: 1 }}>
-                            <h3 style={{ fontSize: '1.25rem', fontWeight: 700 }}>Food Distribution</h3>
-                            <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>Ensuring no one goes to sleep hungry tonight.</p>
-                        </div>
-                    </div>
-
-                    {/* Item 6: Video */}
-                    <div className="glass-panel scroll-animate overflow-hidden flex flex-col" style={{ borderRadius: '24px', opacity: 0, transform: 'translateY(40px)', transition: 'all 0.8s ease-out 0.8s' }}>
-                        <div className="relative w-full h-64">
-                            <video
-                                src="/assets/work/20251109_120100.mp4"
-                                autoPlay
-                                loop
-                                playsInline
-                                muted
-                                className="absolute inset-0 w-full h-full object-cover"
-                            />
-                        </div>
-                        <div style={{ padding: '1.5rem', flex: 1 }}>
-                            <h3 style={{ fontSize: '1.25rem', fontWeight: 700 }}>Community Outreach</h3>
-                            <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>Connecting with the people who need our support the most.</p>
-                        </div>
-                    </div>
+            {/* ═══════════════════ BECOME A VOLUNTEER CTA ═══════════════════ */}
+            <section style={{
+                background: 'linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%)',
+                padding: 'clamp(3rem, 6vw, 5rem) 1.5rem',
+                textAlign: 'center',
+                position: 'relative',
+                overflow: 'hidden',
+            }}>
+                {/* Decorative circles */}
+                <div style={{ position: 'absolute', top: -80, right: -80, width: 300, height: 300, borderRadius: '50%', background: 'rgba(212,168,71,0.08)', pointerEvents: 'none' }} />
+                <div style={{ position: 'absolute', bottom: -60, left: -60, width: 200, height: 200, borderRadius: '50%', background: 'rgba(255,255,255,0.05)', pointerEvents: 'none' }} />
+                <div style={{ position: 'relative', zIndex: 1, maxWidth: 700, margin: '0 auto' }}>
+                    <motion.div {...fadeUp} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(212,168,71,0.2)', border: '1px solid rgba(212,168,71,0.35)', borderRadius: 9999, padding: '0.4rem 1.1rem', marginBottom: '1.5rem' }}>
+                        <span style={{ color: '#d4a847', fontWeight: 700, fontSize: '0.8rem', letterSpacing: 1, textTransform: 'uppercase' }}>🙌 Join Our Team</span>
+                    </motion.div>
+                    <motion.h2 {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.05 }} style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 900, color: 'white', fontFamily: 'Outfit, Inter, sans-serif', marginBottom: '1.25rem', lineHeight: 1.1 }}>
+                        Become a <span style={{ color: '#d4a847' }}>Volunteer</span>
+                    </motion.h2>
+                    <motion.p {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }} style={{ fontSize: 'clamp(1rem, 2.5vw, 1.15rem)', color: 'rgba(255,255,255,0.8)', lineHeight: 1.75, marginBottom: '2.5rem' }}>
+                        Join 300+ passionate youth volunteers who give their weekends to teach, mentor, and inspire. No experience needed — just the heart to serve.
+                    </motion.p>
+                    <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.15 }} style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                        <button
+                            onClick={() => navigate('/volunteer')}
+                            style={{
+                                padding: 'clamp(0.875rem, 2vw, 1rem) clamp(1.75rem, 4vw, 2.5rem)',
+                                borderRadius: 9999, background: '#d4a847', color: 'white',
+                                fontWeight: 800, fontSize: 'clamp(0.95rem, 2.5vw, 1.05rem)',
+                                border: 'none', cursor: 'pointer', fontFamily: 'inherit',
+                                boxShadow: '0 6px 24px rgba(212,168,71,0.4)', transition: 'all 0.2s',
+                                display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+                            }}
+                        >
+                            Fill the Volunteer Form ↗
+                        </button>
+                    </motion.div>
                 </div>
             </section>
-        </PageTransition >
+        </PageTransition>
     );
 };
