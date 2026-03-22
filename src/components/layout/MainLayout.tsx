@@ -96,7 +96,7 @@ export const MainLayout = () => {
                     {/* ── Logo ── */}
                     <div className="nav-brand" onClick={() => navigate('/')}>
                         <img
-                            src="/logo.jpg"
+                            src="/logo.png"
                             alt="Arunya Foundation"
                             className="nav-logo-img"
                             onError={(e) => { e.currentTarget.style.display = 'none'; }}

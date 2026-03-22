@@ -81,7 +81,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
                 <div className="ls-footer-inner">
                     <div className="ls-brand">
                         <img
-                            src="/logo.jpg"
+                            src="/logo.png"
                             alt="Arunya Logo"
                             className="ls-logo"
                             onError={(e) => {
