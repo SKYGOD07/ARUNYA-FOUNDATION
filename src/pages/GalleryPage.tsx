@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { PageTransition } from '../components/ui/PageTransition';
 import { motion, AnimatePresence } from 'framer-motion';
 import DomeGallery from '../components/DomeGallery';
@@ -113,6 +113,16 @@ const DOME_IMAGES = [
 export const GalleryPage = () => {
     const [selected, setSelected] = useState<GalleryItem | null>(null);
 
+    // Lock body scroll when modal is open
+    useEffect(() => {
+        if (selected) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => { document.body.style.overflow = ''; };
+    }, [selected]);
+
     return (
         <PageTransition className="pt-[140px] pb-0">
             {/* ─── SECTION 1: IMAGE GRID WITH STORIES ─── */}
@@ -199,77 +209,74 @@ export const GalleryPage = () => {
                 </div>
             </section>
 
-            {/* Story Modal */}
+            {/* ── Story Modal Overlay ── */}
             <AnimatePresence>
                 {selected && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
+                        transition={{ duration: 0.25 }}
                         onClick={() => setSelected(null)}
                         style={{
-                            position: 'fixed', inset: 0, zIndex: 9999,
-                            background: 'rgba(10,25,50,0.82)',
-                            backdropFilter: 'blur(14px)',
+                            position: 'fixed', inset: 0, zIndex: 99999,
+                            background: 'rgba(10,25,50,0.75)',
+                            backdropFilter: 'blur(12px)',
                             display: 'flex', alignItems: 'center', justifyContent: 'center',
-                            padding: '2rem',
+                            padding: '1rem',
                         }}
                     >
                         <motion.div
-                            initial={{ scale: 0.85, opacity: 0, y: 40 }}
+                            initial={{ scale: 0.88, opacity: 0, y: 30 }}
                             animate={{ scale: 1, opacity: 1, y: 0 }}
-                            exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                            exit={{ scale: 0.92, opacity: 0, y: 20 }}
+                            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                             onClick={e => e.stopPropagation()}
                             style={{
-                                background: 'white', borderRadius: 28, maxWidth: 780, width: '100%',
-                                maxHeight: '90vh', overflow: 'hidden',
-                                boxShadow: '0 40px 80px rgba(0,0,0,0.35)',
+                                background: 'white', borderRadius: 24,
+                                maxWidth: 640, width: '100%',
+                                maxHeight: '85vh',
+                                overflow: 'hidden',
+                                boxShadow: '0 40px 100px rgba(0,0,0,0.35)',
                                 display: 'flex', flexDirection: 'column',
                             }}
                         >
+                            {/* Image header */}
                             <div style={{ position: 'relative', flexShrink: 0 }}>
                                 <img
                                     src={selected.src}
                                     alt={selected.alt}
-                                    style={{ width: '100%', height: 300, objectFit: 'cover', display: 'block' }}
+                                    style={{ width: '100%', height: 260, objectFit: 'cover', display: 'block' }}
                                 />
                                 <div style={{
                                     position: 'absolute', bottom: 0, left: 0, right: 0,
-                                    background: 'linear-gradient(to top, rgba(30,58,95,0.75) 0%, transparent 60%)',
-                                    padding: '3rem 2rem 1.5rem', color: 'white',
+                                    background: 'linear-gradient(to top, rgba(30,58,95,0.85) 0%, transparent 100%)',
+                                    padding: '3rem 1.5rem 1.25rem', color: 'white',
                                 }}>
                                     <div style={{ fontSize: '0.8rem', color: '#d4a847', fontWeight: 700, marginBottom: 4 }}>{selected.date}</div>
-                                    <h2 style={{ fontSize: '1.6rem', fontFamily: 'Outfit, Inter, sans-serif', fontWeight: 800, margin: 0 }}>{selected.alt}</h2>
+                                    <h2 style={{ fontSize: 'clamp(1.2rem, 3vw, 1.6rem)', fontFamily: 'Outfit, Inter, sans-serif', fontWeight: 800, margin: 0 }}>{selected.alt}</h2>
                                 </div>
+                                {/* Close button */}
                                 <button
                                     onClick={() => setSelected(null)}
                                     style={{
-                                        position: 'absolute', top: 15, right: 15,
+                                        position: 'absolute', top: 12, right: 12,
                                         background: 'rgba(255,255,255,0.9)', border: 'none',
-                                        borderRadius: '50%', width: 40, height: 40,
-                                        fontSize: '1.3rem', cursor: 'pointer',
+                                        borderRadius: '50%', width: 36, height: 36,
+                                        fontSize: '1.2rem', cursor: 'pointer',
                                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                                         fontWeight: 700, color: '#1e3a5f',
+                                        boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
                                     }}
                                 >×</button>
                             </div>
-                            <div style={{ padding: '2rem', overflowY: 'auto', flex: 1 }}>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem' }}>
-                                    <div style={{ width: 4, height: 22, background: '#d4a847', borderRadius: 2 }} />
-                                    <span style={{ fontWeight: 700, color: '#1e3a5f', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: 1 }}>Story from the Field</span>
+                            {/* Scrollable story content */}
+                            <div style={{ padding: '1.5rem', overflowY: 'auto', flex: 1 }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+                                    <div style={{ width: 4, height: 20, background: '#d4a847', borderRadius: 2 }} />
+                                    <span style={{ fontWeight: 700, color: '#1e3a5f', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: 1 }}>Story from the Field</span>
                                 </div>
-                                <p style={{ color: '#374151', lineHeight: 1.9, fontSize: '1.05rem' }}>{selected.story}</p>
-                                <button
-                                    onClick={() => setSelected(null)}
-                                    style={{
-                                        marginTop: '1.75rem',
-                                        padding: '0.75rem 2rem', borderRadius: 9999,
-                                        background: '#1e3a5f', color: 'white',
-                                        border: 'none', fontWeight: 600, cursor: 'pointer',
-                                        fontFamily: 'inherit', fontSize: '0.95rem',
-                                    }}
-                                >Close</button>
+                                <p style={{ color: '#374151', lineHeight: 1.85, fontSize: '0.95rem' }}>{selected.story}</p>
                             </div>
                         </motion.div>
                     </motion.div>
