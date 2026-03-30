@@ -254,8 +254,7 @@ export const HomePage = () => {
 
                 <motion.div
                     {...staggerContainer}
-                    className="grid gap-8 max-w-6xl mx-auto"
-                    style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px,1fr))' }}
+                    style={{ display: 'grid', gap: '2rem', maxWidth: 1200, margin: '0 auto', gridTemplateColumns: 'repeat(auto-fit, minmax(320px,1fr))' }}
                 >
                     {[
                         { icon: '👁️', title: 'Our Vision', text: 'To achieve the social and economic upliftment of underserved and minority communities by ensuring every individual has the direction, goals, and educational foundation needed to thrive.', img: IMAGES.vision },
@@ -425,7 +424,7 @@ export const HomePage = () => {
                     </motion.p>
                 </div>
 
-                <div className="grid gap-8 max-w-6xl mx-auto" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px,1fr))' }}>
+                <div style={{ display: 'grid', gap: '2rem', maxWidth: 1200, margin: '0 auto', gridTemplateColumns: 'repeat(auto-fill, minmax(280px,1fr))' }}>
                     {programs.map((prog, idx) => (
                         <motion.div key={idx} className="premium-card" {...fadeUp} transition={{ ...fadeUp.transition, delay: idx * 0.1 }}>
                             <img src={prog.img} alt={prog.title} className="premium-card-img" />
@@ -493,7 +492,7 @@ export const HomePage = () => {
                     </motion.p>
                 </div>
 
-                <div className="grid gap-8 max-w-6xl mx-auto" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px,1fr))' }}>
+                <div style={{ display: 'grid', gap: '2rem', maxWidth: 1200, margin: '0 auto', gridTemplateColumns: 'repeat(auto-fit, minmax(320px,1fr))' }}>
                     {blogPosts.map((post, idx) => (
                         <motion.div key={idx} className="premium-card" {...fadeUp} transition={{ ...fadeUp.transition, delay: idx * 0.1 }}>
                             <img src={post.img} alt={post.title} className="premium-card-img" />
