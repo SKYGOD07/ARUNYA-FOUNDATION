@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { PageTransition } from '../components/ui/PageTransition';
-import { motion, AnimatePresence } from 'framer-motion';
+import { BookOpen, Backpack, Laptop, Megaphone, Lightbulb, Palette, Calendar, CheckCircle2 } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ModalOverlay } from '../components/ui/ModalOverlay';
 
 const fadeUp = {
     initial: { opacity: 0, y: 40 },
@@ -12,7 +14,7 @@ const fadeUp = {
 interface Program {
     title: string;
     category: string;
-    icon: string;
+    icon: React.ReactNode;
     tagline: string;
     detail: string;
     img: string;
@@ -26,7 +28,7 @@ const programs: Program[] = [
     {
         title: 'Weekend Basic Classes',
         category: 'Teaching',
-        icon: '📚',
+        icon: <BookOpen size={24} />,
         tagline: 'Free education every Saturday & Sunday',
         detail: 'Every Saturday & Sunday, our volunteers teach Hindi, English, Math, Science, and GK to children aged 5–16. Classes are held in community spaces and are completely free.',
         img: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=900&q=80',
@@ -43,7 +45,7 @@ const programs: Program[] = [
     {
         title: 'Study Material Distribution',
         category: 'Supplies',
-        icon: '🎒',
+        icon: <Backpack size={24} />,
         tagline: 'Notebooks, bags, uniforms — free of cost',
         detail: 'We provide free notebooks, textbooks, pens, pencils, school bags, and uniforms to every enrolled student. A full kit is given at the start of each academic term.',
         img: 'https://images.unsplash.com/photo-1594708767771-a7502209ff51?w=900&q=80',
@@ -60,7 +62,7 @@ const programs: Program[] = [
     {
         title: 'Computer Literacy Program',
         category: 'Skills',
-        icon: '💻',
+        icon: <Laptop size={24} />,
         tagline: 'Bridging the digital divide',
         detail: 'Secondary students (13–16) learn MS Office, internet navigation, basic coding logic, and digital safety. Many students use a computer for the first time in our classes.',
         img: 'https://images.unsplash.com/photo-1529390079861-591de354faf5?w=900&q=80',
@@ -77,7 +79,7 @@ const programs: Program[] = [
     {
         title: 'English Speaking Workshop',
         category: 'Language',
-        icon: '🗣️',
+        icon: <Megaphone size={24} />,
         tagline: 'Speak with confidence, grow without limits',
         detail: 'Special weekly workshops focused on spoken English, vocabulary building, and confidence in public speaking. Students practice through role plays, debates, and storytelling.',
         img: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=900&q=80',
@@ -94,7 +96,7 @@ const programs: Program[] = [
     {
         title: 'Career Guidance Sessions',
         category: 'Guidance',
-        icon: '💡',
+        icon: <Lightbulb size={24} />,
         tagline: 'Know your path, own your future',
         detail: 'Monthly sessions introducing students to career paths, scholarship opportunities, competitive exams, and skill development workshops for self-reliance.',
         img: 'https://images.unsplash.com/photo-1560785496-3c9d27877182?w=900&q=80',
@@ -111,7 +113,7 @@ const programs: Program[] = [
     {
         title: 'Art & Creative Expression',
         category: 'Creative',
-        icon: '🎨',
+        icon: <Palette size={24} />,
         tagline: 'Every child is a creator',
         detail: 'Drawing, painting, craft, drama, and cultural activities that help children express themselves, build confidence, and explore their creative potential.',
         img: 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=900&q=80',
@@ -177,7 +179,7 @@ export const CausesPage = () => {
                 </motion.div>
 
                 {/* Programs Grid */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '2rem', maxWidth: 1200, margin: '0 auto' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', maxWidth: 1200, margin: '0 auto' }}>
                     {filtered.map((prog, idx) => (
                         <motion.div
                             key={prog.title}
@@ -190,28 +192,20 @@ export const CausesPage = () => {
                                 display: 'flex', flexDirection: 'column',
                                 cursor: 'pointer', transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                             }}
-                            onHoverStart={() => {}}
-                            whileHover={{ y: -6, boxShadow: '0 16px 48px rgba(30,58,95,0.14)' }}
+                            onMouseEnter={e => {
+                                (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-6px)';
+                                (e.currentTarget as HTMLDivElement).style.boxShadow = '0 16px 48px rgba(30,58,95,0.14)';
+                            }}
+                            onMouseLeave={e => {
+                                (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)';
+                                (e.currentTarget as HTMLDivElement).style.boxShadow = '0 4px 24px rgba(30,58,95,0.07)';
+                            }}
                         >
                             {/* Image */}
                             <div style={{ position: 'relative', height: 220, overflow: 'hidden' }}>
-                                <img
-                                    src={prog.img}
-                                    alt={prog.title}
-                                    style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
-                                />
-                                <div style={{
-                                    position: 'absolute', inset: 0,
-                                    background: 'linear-gradient(to top, rgba(30,58,95,0.5) 0%, transparent 60%)',
-                                }} />
-                                <div style={{
-                                    position: 'absolute', bottom: 14, left: 16,
-                                    padding: '4px 14px', borderRadius: 999,
-                                    background: categoryColors[prog.category] || '#2563eb',
-                                    color: 'white', fontWeight: 700, fontSize: '0.78rem',
-                                }}>
-                                    {prog.category}
-                                </div>
+                                <img src={prog.img} alt={prog.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} />
+                                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(30,58,95,0.5) 0%, transparent 60%)' }} />
+                                <div style={{ position: 'absolute', bottom: 14, left: 16, padding: '4px 14px', borderRadius: 999, background: categoryColors[prog.category] || '#2563eb', color: 'white', fontWeight: 700, fontSize: '0.78rem' }}>{prog.category}</div>
                             </div>
 
                             {/* Content */}
@@ -243,141 +237,54 @@ export const CausesPage = () => {
                 </div>
             </section>
 
-            {/* Program Detail Modal */}
-            <AnimatePresence>
+            {/* Program Detail Modal via Portal */}
+            <ModalOverlay open={!!selectedProgram} onClose={() => setSelectedProgram(null)} maxWidth={720}>
                 {selectedProgram && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        onClick={() => setSelectedProgram(null)}
-                        style={{
-                            position: 'fixed', inset: 0, zIndex: 9999,
-                            background: 'rgba(10,25,50,0.8)', backdropFilter: 'blur(12px)',
-                            display: 'flex', alignItems: 'center', justifyContent: 'center',
-                            padding: '2rem',
-                        }}
-                    >
-                        <motion.div
-                            initial={{ scale: 0.88, opacity: 0, y: 40 }}
-                            animate={{ scale: 1, opacity: 1, y: 0 }}
-                            exit={{ scale: 0.92, opacity: 0, y: 20 }}
-                            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                            onClick={e => e.stopPropagation()}
-                            style={{
-                                background: 'white', borderRadius: 28, maxWidth: 800, width: '100%',
-                                maxHeight: '90vh', overflow: 'auto',
-                                boxShadow: '0 40px 80px rgba(0,0,0,0.3)',
-                            }}
-                        >
-                            {/* Hero Image */}
-                            <div style={{ position: 'relative' }}>
-                                <img
-                                    src={selectedProgram.img}
-                                    alt={selectedProgram.title}
-                                    style={{ width: '100%', height: 280, objectFit: 'cover', display: 'block' }}
-                                />
-                                <div style={{
-                                    position: 'absolute', inset: 0,
-                                    background: 'linear-gradient(to top, rgba(30,58,95,0.75) 0%, transparent 50%)',
-                                    padding: '2rem',
-                                    display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
-                                }}>
-                                    <div style={{
-                                        display: 'inline-block', padding: '4px 14px', borderRadius: 999,
-                                        background: categoryColors[selectedProgram.category] || '#2563eb',
-                                        color: 'white', fontWeight: 700, fontSize: '0.78rem',
-                                        marginBottom: '0.75rem', width: 'fit-content',
-                                    }}>
-                                        {selectedProgram.category}
-                                    </div>
-                                    <h2 style={{ color: 'white', fontFamily: 'Outfit, Inter, sans-serif', fontSize: '1.75rem', fontWeight: 800, margin: 0 }}>
-                                        {selectedProgram.icon} {selectedProgram.title}
-                                    </h2>
-                                </div>
-                                <button
-                                    onClick={() => setSelectedProgram(null)}
-                                    style={{
-                                        position: 'absolute', top: 14, right: 14,
-                                        background: 'rgba(255,255,255,0.9)', border: 'none',
-                                        borderRadius: '50%', width: 40, height: 40,
-                                        fontSize: '1.2rem', cursor: 'pointer',
-                                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                        fontWeight: 700, color: '#1e3a5f',
-                                        boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
-                                    }}
-                                >×</button>
+                    <>
+                        {/* Hero Image */}
+                        <div style={{ position: 'relative', flexShrink: 0 }}>
+                            <img src={selectedProgram.img} alt={selectedProgram.title} style={{ width: '100%', height: 220, objectFit: 'cover', display: 'block' }} />
+                            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(30,58,95,0.75) 0%, transparent 50%)', padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+                                <div style={{ display: 'inline-block', padding: '4px 14px', borderRadius: 999, background: categoryColors[selectedProgram.category] || '#2563eb', color: 'white', fontWeight: 700, fontSize: '0.75rem', marginBottom: '0.5rem', width: 'fit-content' }}>{selectedProgram.category}</div>
+                                <h2 style={{ color: 'white', fontFamily: 'Outfit, Inter, sans-serif', fontSize: 'clamp(1.1rem, 3vw, 1.5rem)', fontWeight: 800, margin: 0 }}>{selectedProgram.icon} {selectedProgram.title}</h2>
                             </div>
+                            <button onClick={() => setSelectedProgram(null)} style={{ position: 'absolute', top: 12, right: 12, background: 'rgba(255,255,255,0.9)', border: 'none', borderRadius: '50%', width: 36, height: 36, fontSize: '1.2rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, color: '#1e3a5f', boxShadow: '0 4px 12px rgba(0,0,0,0.15)' }}>×</button>
+                        </div>
 
-                            <div style={{ padding: '2rem' }}>
-                                {/* Tagline */}
-                                <p style={{ color: '#d4a847', fontStyle: 'italic', fontWeight: 700, fontSize: '1rem', marginBottom: '1.5rem' }}>
-                                    "{selectedProgram.tagline}"
-                                </p>
+                        <div style={{ padding: '1.5rem', overflowY: 'auto', flex: 1 }}>
+                            {/* Tagline */}
+                            <p style={{ color: '#d4a847', fontStyle: 'italic', fontWeight: 700, fontSize: '0.95rem', marginBottom: '1.25rem' }}>"{selectedProgram.tagline}"</p>
 
-                                {/* Stats Grid */}
-                                <div style={{
-                                    display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
-                                    gap: '1rem', marginBottom: '2rem',
-                                }}>
-                                    {selectedProgram.stats.map((s, i) => (
-                                        <div key={i} style={{
-                                            background: '#f8fafc', borderRadius: 16, padding: '1rem',
-                                            textAlign: 'center', border: '1px solid rgba(30,58,95,0.06)',
-                                        }}>
-                                            <div style={{ fontWeight: 800, fontSize: '1.4rem', color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif' }}>{s.value}</div>
-                                            <div style={{ color: '#6b7280', fontSize: '0.78rem', marginTop: '0.2rem' }}>{s.label}</div>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                {/* Full Detail */}
-                                {selectedProgram.fullDetail.split('\n\n').map((para, i) => (
-                                    <p key={i} style={{ color: '#374151', lineHeight: 1.85, fontSize: '0.97rem', marginBottom: '1rem' }}>{para}</p>
+                            {/* Stats Grid */}
+                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '0.75rem', marginBottom: '1.5rem' }}>
+                                {selectedProgram.stats.map((s, i) => (
+                                    <div key={i} style={{ background: '#f8fafc', borderRadius: 14, padding: '0.875rem', textAlign: 'center', border: '1px solid rgba(30,58,95,0.06)' }}>
+                                        <div style={{ fontWeight: 800, fontSize: '1.2rem', color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif' }}>{s.value}</div>
+                                        <div style={{ color: '#6b7280', fontSize: '0.72rem', marginTop: '0.15rem' }}>{s.label}</div>
+                                    </div>
                                 ))}
+                            </div>
 
-                                {/* Schedule + Eligibility */}
-                                <div style={{
-                                    marginTop: '1.5rem', padding: '1.25rem 1.5rem',
-                                    background: '#eef4fb', borderRadius: 16, border: '1px solid rgba(37,99,235,0.1)',
-                                }}>
-                                    <div style={{ marginBottom: '0.75rem' }}>
-                                        <span style={{ fontWeight: 700, color: '#1e3a5f', fontSize: '0.85rem' }}>🗓️ Schedule: </span>
-                                        <span style={{ color: '#4b5563', fontSize: '0.9rem' }}>{selectedProgram.schedule}</span>
-                                    </div>
-                                    <div>
-                                        <span style={{ fontWeight: 700, color: '#1e3a5f', fontSize: '0.85rem' }}>✅ Eligibility: </span>
-                                        <span style={{ color: '#4b5563', fontSize: '0.9rem' }}>{selectedProgram.eligibility}</span>
-                                    </div>
+                            {/* Full Detail */}
+                            {selectedProgram.fullDetail.split('\n\n').map((para, i) => (
+                                <p key={i} style={{ color: '#374151', lineHeight: 1.8, fontSize: '0.9rem', marginBottom: '0.875rem' }}>{para}</p>
+                            ))}
+
+                            {/* Schedule + Eligibility */}
+                            <div style={{ marginTop: '1.25rem', padding: '1rem 1.25rem', background: '#eef4fb', borderRadius: 14, border: '1px solid rgba(37,99,235,0.1)' }}>
+                                <div style={{ marginBottom: '0.5rem', display: 'flex', alignItems: 'center' }}>
+                                    <span style={{ fontWeight: 700, color: '#1e3a5f', fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}><Calendar size={14} /> Schedule: </span>
+                                    <span style={{ color: '#4b5563', fontSize: '0.85rem', marginLeft: '0.25rem' }}>{selectedProgram.schedule}</span>
                                 </div>
-
-                                <div style={{ display: 'flex', gap: '0.75rem', marginTop: '2rem', flexWrap: 'wrap' }}>
-                                    <button
-                                        style={{
-                                            padding: '0.875rem 2rem', borderRadius: 9999,
-                                            background: 'linear-gradient(135deg, #d4a847, #b8922e)',
-                                            color: 'white', border: 'none', fontWeight: 700,
-                                            fontSize: '0.95rem', cursor: 'pointer', fontFamily: 'inherit',
-                                        }}
-                                    >
-                                        Register Child ↗
-                                    </button>
-                                    <button
-                                        onClick={() => setSelectedProgram(null)}
-                                        style={{
-                                            padding: '0.875rem 2rem', borderRadius: 9999,
-                                            background: '#f1f5f9', color: '#6b7280', border: 'none',
-                                            fontWeight: 600, fontSize: '0.95rem', cursor: 'pointer', fontFamily: 'inherit',
-                                        }}
-                                    >
-                                        Close
-                                    </button>
+                                <div style={{ display: 'flex', alignItems: 'center' }}>
+                                    <span style={{ fontWeight: 700, color: '#1e3a5f', fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}><CheckCircle2 size={14} /> Eligibility: </span>
+                                    <span style={{ color: '#4b5563', fontSize: '0.85rem', marginLeft: '0.25rem' }}>{selectedProgram.eligibility}</span>
                                 </div>
                             </div>
-                        </motion.div>
-                    </motion.div>
+                        </div>
+                    </>
                 )}
-            </AnimatePresence>
+            </ModalOverlay>
         </PageTransition>
     );
 };

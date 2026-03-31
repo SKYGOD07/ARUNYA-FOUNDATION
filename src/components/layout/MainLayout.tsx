@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import { JoinCommunity, Footer } from './Footer';
+import { FloatingShapes } from '../ui/FloatingShapes';
 
 /* ── Nav link data ─────────────────────────────────────────── */
 const NAV_LINKS = [
@@ -23,6 +24,7 @@ export const MainLayout = () => {
     const navigate = useNavigate();
     const { scrollY } = useScroll();
 
+    const isHome = location.pathname === '/';
     const compact = scrolled || isNarrow;
 
     /* Detect narrow viewport */
@@ -71,6 +73,9 @@ export const MainLayout = () => {
 
     return (
         <div className="site-root">
+            {/* Ambient Background layer */}
+            <FloatingShapes />
+
             {/* ═══════════════════ NAVBAR ═══════════════════ */}
             <motion.header
                 className="main-navbar"
@@ -84,23 +89,24 @@ export const MainLayout = () => {
             >
                 <motion.div
                     className="navbar-inner"
+                    animate={compact ? 'compact' : 'full'}
                     variants={{
                         full: {
                             maxWidth: '100vw',
                             borderRadius: '0px',
-                            backgroundColor: 'rgba(255,255,255,0.0)',
-                            backdropFilter: 'blur(0px)',
-                            boxShadow: 'none',
+                            backgroundColor: isHome ? 'rgba(0,0,0,0)' : 'rgba(18,35,58,0.97)',
+                            backdropFilter: isHome ? 'blur(0px)' : 'blur(12px)',
+                            boxShadow: isHome ? 'none' : '0 2px 24px rgba(0,0,0,0.2)',
                             padding: '1.25rem 3rem',
                         },
                         compact: {
                             maxWidth: '1100px',
                             borderRadius: '9999px',
-                            backgroundColor: 'rgba(255,255,255,0.15)',
+                            backgroundColor: 'rgba(15,30,50,0.82)',
                             backdropFilter: 'blur(24px)',
-                            boxShadow: '0 8px 32px rgba(30,58,95,0.18), inset 0 1px 0 rgba(255,255,255,0.3)',
+                            boxShadow: '0 8px 32px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.1)',
                             padding: '0.6rem 2rem',
-                            border: '1px solid rgba(255,255,255,0.25)',
+                            border: '1px solid rgba(255,255,255,0.12)',
                         }
                     }}
                     transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}

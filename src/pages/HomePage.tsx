@@ -1,8 +1,15 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { 
+    Leaf, BookOpen, Calculator, Palette, Library, Music, Puzzle, 
+    Book, FileText, Plus, Microscope, Globe, Smile, GraduationCap, 
+    Ruler, FlaskConical, Megaphone, Lightbulb, Laptop, Landmark, 
+    Backpack, Eye, Target, ClipboardList, HeartHandshake, 
+    Handshake, Heart, ShieldCheck, Flame 
+} from 'lucide-react';
+import { motion } from 'framer-motion';
 import { PageTransition } from '../components/ui/PageTransition';
-import CountUp from '../components/CountUp';
+import { ModalOverlay } from '../components/ui/ModalOverlay';
 import BounceCards from '../components/BounceCards';
 
 /* ── Images ────────────────────────────────────── */
@@ -15,7 +22,7 @@ const IMAGES = {
     cause2: 'https://images.unsplash.com/photo-1594708767771-a7502209ff51?w=800&q=80',
     cause3: 'https://images.unsplash.com/photo-1560785496-3c9d27877182?w=800&q=80',
     cause4: 'https://images.unsplash.com/photo-1529390079861-591de354faf5?w=800&q=80',
-    fullbleed: 'https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=1600&q=80',
+    fullbleed: '/IMAGE/LANDSCAPE/21492.jpg.jpeg',
     blog1: 'https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=800&q=80',
     blog2: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=800&q=80',
     blog3: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800&q=80',
@@ -40,56 +47,56 @@ const syllabusData = [
     {
         level: 'Foundation',
         ages: '5 – 8 Years',
-        icon: '🌱',
+        icon: <Leaf size={24} />,
         color: 'blue',
         description: 'Building strong fundamentals through play-based and story-based learning that sparks curiosity.',
         subjects: [
-            { icon: '📖', name: 'Basic Literacy', detail: 'Alphabets, phonics, simple reading in Hindi & English' },
-            { icon: '🔢', name: 'Numeracy', detail: 'Counting, basic addition & subtraction, shapes' },
-            { icon: '🎨', name: 'Art & Drawing', detail: 'Creative expression through colors, shapes, and craft' },
-            { icon: '📚', name: 'Moral Stories', detail: 'Value-based storytelling for character development' },
-            { icon: '🎵', name: 'Rhymes & Music', detail: 'Learning through songs, rhymes, and rhythm activities' },
-            { icon: '🧩', name: 'Activity Based', detail: 'Puzzles, games, and hands-on learning activities' },
+            { icon: <BookOpen size={16} />, name: 'Basic Literacy', detail: 'Alphabets, phonics, simple reading in Hindi & English' },
+            { icon: <Calculator size={16} />, name: 'Numeracy', detail: 'Counting, basic addition & subtraction, shapes' },
+            { icon: <Palette size={16} />, name: 'Art & Drawing', detail: 'Creative expression through colors, shapes, and craft' },
+            { icon: <Library size={16} />, name: 'Moral Stories', detail: 'Value-based storytelling for character development' },
+            { icon: <Music size={16} />, name: 'Rhymes & Music', detail: 'Learning through songs, rhymes, and rhythm activities' },
+            { icon: <Puzzle size={16} />, name: 'Activity Based', detail: 'Puzzles, games, and hands-on learning activities' },
         ],
     },
     {
         level: 'Primary',
         ages: '9 – 12 Years',
-        icon: '📘',
+        icon: <Book size={24} />,
         color: 'golden',
         description: 'Strengthening core academic skills with structured lessons and real-world applications.',
         subjects: [
-            { icon: '📝', name: 'English', detail: 'Grammar, comprehension, essay writing, spoken English' },
-            { icon: '📕', name: 'Hindi', detail: 'Vyakaran, nibandh, kavita, and conversational Hindi' },
-            { icon: '➕', name: 'Mathematics', detail: 'Multiplication, division, fractions, basic geometry' },
-            { icon: '🔬', name: 'Science Basics', detail: 'Plants, animals, human body, simple experiments' },
-            { icon: '🌍', name: 'General Knowledge', detail: 'India, world, current affairs, environment awareness' },
-            { icon: '🎭', name: 'Art & Culture', detail: 'Drama, folk art, cultural heritage activities' },
+            { icon: <FileText size={16} />, name: 'English', detail: 'Grammar, comprehension, essay writing, spoken English' },
+            { icon: <Book size={16} />, name: 'Hindi', detail: 'Vyakaran, nibandh, kavita, and conversational Hindi' },
+            { icon: <Plus size={16} />, name: 'Mathematics', detail: 'Multiplication, division, fractions, basic geometry' },
+            { icon: <Microscope size={16} />, name: 'Science Basics', detail: 'Plants, animals, human body, simple experiments' },
+            { icon: <Globe size={16} />, name: 'General Knowledge', detail: 'India, world, current affairs, environment awareness' },
+            { icon: <Smile size={16} />, name: 'Art & Culture', detail: 'Drama, folk art, cultural heritage activities' },
         ],
     },
     {
         level: 'Secondary',
         ages: '13 – 16 Years',
-        icon: '🎓',
+        icon: <GraduationCap size={24} />,
         color: 'blue',
         description: 'Preparing students for higher education and self-sufficiency through advanced academics and life skills.',
         subjects: [
-            { icon: '📐', name: 'Advanced Math', detail: 'Algebra, geometry, statistics, trigonometry basics' },
-            { icon: '⚗️', name: 'Science', detail: 'Physics, Chemistry, Biology fundamentals and practicals' },
-            { icon: '🗣️', name: 'Communication', detail: 'Public speaking, debate, interview preparation' },
-            { icon: '💡', name: 'Career Guidance', detail: 'Skill assessment, career paths, scholarship awareness' },
-            { icon: '💻', name: 'Computer Literacy', detail: 'MS Office, internet, basic coding, digital safety' },
-            { icon: '🏦', name: 'Financial Literacy', detail: 'Savings, budgeting, banking basics for self-reliance' },
+            { icon: <Ruler size={16} />, name: 'Advanced Math', detail: 'Algebra, geometry, statistics, trigonometry basics' },
+            { icon: <FlaskConical size={16} />, name: 'Science', detail: 'Physics, Chemistry, Biology fundamentals and practicals' },
+            { icon: <Megaphone size={16} />, name: 'Communication', detail: 'Public speaking, debate, interview preparation' },
+            { icon: <Lightbulb size={16} />, name: 'Career Guidance', detail: 'Skill assessment, career paths, scholarship awareness' },
+            { icon: <Laptop size={16} />, name: 'Computer Literacy', detail: 'MS Office, internet, basic coding, digital safety' },
+            { icon: <Landmark size={16} />, name: 'Financial Literacy', detail: 'Savings, budgeting, banking basics for self-reliance' },
         ],
     },
 ];
 
 /* ── Programs Data ────────────────────────────── */
 const programs = [
-    { title: 'Weekend Classes', icon: '📚', desc: 'Free weekend classes every Saturday & Sunday covering core subjects for all age groups, taught by trained volunteers.', img: IMAGES.cause1 },
-    { title: 'Study Material Kit', icon: '🎒', desc: 'Complete kit with notebooks, textbooks, stationery, and school bags distributed free to every enrolled student.', img: IMAGES.cause2 },
-    { title: 'Computer Literacy', icon: '💻', desc: 'Hands-on computer education teaching MS Office, internet skills, and basics of coding to secondary students.', img: IMAGES.cause3 },
-    { title: 'Career Counselling', icon: '💡', desc: 'Monthly career guidance sessions helping students discover scholarships, skill development paths, and job readiness.', img: IMAGES.cause4 },
+    { title: 'Weekend Classes', icon: <BookOpen size={24} />, desc: 'Free weekend classes every Saturday & Sunday covering core subjects for all age groups, taught by trained volunteers.', img: IMAGES.cause1 },
+    { title: 'Study Material Kit', icon: <Backpack size={24} />, desc: 'Complete kit with notebooks, textbooks, stationery, and school bags distributed free to every enrolled student.', img: IMAGES.cause2 },
+    { title: 'Computer Literacy', icon: <Laptop size={24} />, desc: 'Hands-on computer education teaching MS Office, internet skills, and basics of coding to secondary students.', img: IMAGES.cause3 },
+    { title: 'Career Counselling', icon: <Lightbulb size={24} />, desc: 'Monthly career guidance sessions helping students discover scholarships, skill development paths, and job readiness.', img: IMAGES.cause4 },
 ];
 
 /* ── Blog / Stories Data ─────────────────────── */
@@ -120,8 +127,6 @@ const blogPosts = [
 /* ── Component ────────────────────────────────── */
 export const HomePage = () => {
     const navigate = useNavigate();
-    const statsRef = useRef<HTMLDivElement>(null);
-    const [statsVisible, setStatsVisible] = useState(false);
     const [scrollY, setScrollY] = useState(0);
     const [expandedBlog, setExpandedBlog] = useState<number | null>(null);
 
@@ -129,12 +134,7 @@ export const HomePage = () => {
         const handleScroll = () => setScrollY(window.scrollY);
         window.addEventListener('scroll', handleScroll);
 
-        const countObs = new IntersectionObserver((entries) => {
-            entries.forEach(e => { if (e.isIntersecting) setStatsVisible(true); });
-        }, { threshold: 0.2 });
-        if (statsRef.current) countObs.observe(statsRef.current);
-
-        return () => { countObs.disconnect(); window.removeEventListener('scroll', handleScroll); };
+        return () => { window.removeEventListener('scroll', handleScroll); };
     }, []);
 
     return (
@@ -262,13 +262,12 @@ export const HomePage = () => {
 
                 <motion.div
                     {...staggerContainer}
-                    className="grid gap-8 max-w-6xl mx-auto"
-                    style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px,1fr))' }}
+                    style={{ display: 'grid', gap: '2rem', maxWidth: 1200, margin: '0 auto', gridTemplateColumns: 'repeat(auto-fit, minmax(320px,1fr))' }}
                 >
                     {[
-                        { icon: '👁️', title: 'Our Vision', text: 'To achieve the social and economic upliftment of underserved and minority communities by ensuring every individual has the direction, goals, and educational foundation needed to thrive.', img: IMAGES.vision },
-                        { icon: '🎯', title: 'Our Mission', text: 'To provide transformative education and mentorship to underserved communities by creating a premier platform where young educators and youth can showcase their skills, grow professionally, and serve as catalysts for social change.', img: IMAGES.mission },
-                        { icon: '📋', title: 'Our Goal', text: 'To enroll 1,000+ students by 2027, expand to 20 villages, and equip every child with the academic foundation and life skills needed to pursue higher education and meaningful careers.', img: IMAGES.objective },
+                        { icon: <Eye size={24} />, title: 'Our Vision', text: 'To achieve the social and economic upliftment of underserved and minority communities by ensuring every individual has the direction, goals, and educational foundation needed to thrive.', img: IMAGES.vision },
+                        { icon: <Target size={24} />, title: 'Our Mission', text: 'To provide transformative education and mentorship to underserved communities by creating a premier platform where young educators and youth can showcase their skills, grow professionally, and serve as catalysts for social change.', img: IMAGES.mission },
+                        { icon: <ClipboardList size={24} />, title: 'Our Goal', text: 'To promote educational equity by providing accessible, high-quality education, foundational learning, and life-direction coaching to children from underserved and minority communities. To empower youth educators by establishing a collaborative platform for pedagogical skills, practical teaching experience, and professional leadership. To facilitate social upliftment by equipping marginalized communities with knowledge, mentorship, and resources for self-reliance.', img: IMAGES.objective },
                     ].map((c, i) => (
                         <motion.div key={i} className="premium-card" {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.12 }}>
                             <img src={c.img} alt={c.title} className="premium-card-img" />
@@ -279,6 +278,97 @@ export const HomePage = () => {
                         </motion.div>
                     ))}
                 </motion.div>
+            </section>
+
+            {/* ═══════════════════ OUR VALUES ═══════════════════ */}
+            <section className="section-block alt-bg">
+                <div className="section-header">
+                    <motion.h2 {...fadeUp}>Our Core Values</motion.h2>
+                    <div className="golden-underline" />
+                    <motion.p {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }}>
+                        The guiding principles that shape every action, decision, and interaction at Arunya Foundation.
+                    </motion.p>
+                </div>
+
+                <div style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
+                    {[
+                        {
+                            hindi: 'सम्मान',
+                            title: 'Service with Dignity',
+                            icon: <HeartHandshake size={24} />,
+                            color: '#2563eb',
+                            concept: 'We do not view the communities we serve as "projects" to be fixed, but as equals who deserve respect, resources, and opportunity.',
+                            action: 'Our educators approach every student with respect, ensuring that our help builds self-reliance rather than dependency.',
+                        },
+                        {
+                            hindi: 'सह-विकास',
+                            title: 'Mutual Empowerment',
+                            icon: <Handshake size={24} />,
+                            color: '#d4a847',
+                            concept: 'True upliftment happens when both the teacher and the student grow.',
+                            action: 'We foster an environment where our youth volunteers develop real-world leadership and professional skills while delivering life-changing education.',
+                        },
+                        {
+                            hindi: 'सहानुभूति',
+                            title: 'Empathetic Leadership',
+                            icon: <Heart size={24} />,
+                            color: '#2563eb',
+                            concept: 'We seek to deeply understand the psychological and social barriers our communities face before attempting to remove them.',
+                            action: 'Our volunteers lead with emotional intelligence, creating safe, encouraging, and highly attuned learning environments for minority and underserved youth.',
+                        },
+                        {
+                            hindi: 'निष्ठा',
+                            title: 'Unwavering Integrity',
+                            icon: <ShieldCheck size={24} />,
+                            color: '#d4a847',
+                            concept: 'Trust is the currency of a successful foundation. We operate with complete transparency and discipline.',
+                            action: 'Whether handling resources, executing programs, or fulfilling our legal obligations as a registered organization, we hold ourselves to the highest ethical standards.',
+                        },
+                        {
+                            hindi: 'कर्मयोग',
+                            title: 'Resilient Action',
+                            icon: <Flame size={24} />,
+                            color: '#2563eb',
+                            concept: 'Social change is a marathon, not a sprint. We are committed to showing up, especially when the work gets difficult.',
+                            action: 'Like the first rays of the sun (Arunya) that persistently pierce through the dark, our team remains dedicated to our mission, regardless of obstacles.',
+                        },
+                    ].map((value, idx) => (
+                        <motion.div
+                            key={idx}
+                            {...fadeUp}
+                            transition={{ ...fadeUp.transition, delay: idx * 0.08 }}
+                            style={{
+                                background: 'white',
+                                borderRadius: 24,
+                                padding: '2rem',
+                                border: '1px solid rgba(30,58,95,0.08)',
+                                boxShadow: '0 4px 24px rgba(30,58,95,0.06)',
+                                transition: 'transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s',
+                                position: 'relative',
+                                overflow: 'hidden',
+                            }}
+                        >
+                            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: value.color === '#d4a847' ? 'linear-gradient(135deg, #d4a847, #b8922e)' : 'linear-gradient(135deg, #2563eb, #1e3a5f)', borderRadius: '24px 24px 0 0' }} />
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
+                                <div style={{ width: 48, height: 48, borderRadius: '50%', background: value.color === '#d4a847' ? 'linear-gradient(135deg, #d4a847, #b8922e)' : 'linear-gradient(135deg, #2563eb, #1e3a5f)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.3rem', flexShrink: 0 }}>
+                                    {value.icon}
+                                </div>
+                                <div>
+                                    <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif', lineHeight: 1.2 }}>{value.title}</h3>
+                                    <span style={{ fontSize: '0.85rem', color: value.color, fontWeight: 700 }}>({value.hindi})</span>
+                                </div>
+                            </div>
+                            <div style={{ marginBottom: '0.75rem' }}>
+                                <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1, color: '#9ca3af' }}>The Concept</span>
+                                <p style={{ color: '#4b5563', fontSize: '0.9rem', lineHeight: 1.6, marginTop: '0.25rem' }}>{value.concept}</p>
+                            </div>
+                            <div>
+                                <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1, color: '#9ca3af' }}>In Action</span>
+                                <p style={{ color: '#6b7280', fontSize: '0.85rem', lineHeight: 1.6, marginTop: '0.25rem', fontStyle: 'italic' }}>{value.action}</p>
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
             </section>
 
             {/* ═══════════════════ SYLLABUS OVERVIEW ═══════════════════ */}
@@ -342,7 +432,7 @@ export const HomePage = () => {
                     </motion.p>
                 </div>
 
-                <div className="grid gap-8 max-w-6xl mx-auto" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px,1fr))' }}>
+                <div style={{ display: 'grid', gap: '2rem', maxWidth: 1200, margin: '0 auto', gridTemplateColumns: 'repeat(auto-fill, minmax(280px,1fr))' }}>
                     {programs.map((prog, idx) => (
                         <motion.div key={idx} className="premium-card" {...fadeUp} transition={{ ...fadeUp.transition, delay: idx * 0.1 }}>
                             <img src={prog.img} alt={prog.title} className="premium-card-img" />
@@ -410,7 +500,7 @@ export const HomePage = () => {
                     </motion.p>
                 </div>
 
-                <div className="grid gap-8 max-w-6xl mx-auto" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px,1fr))' }}>
+                <div style={{ display: 'grid', gap: '2rem', maxWidth: 1200, margin: '0 auto', gridTemplateColumns: 'repeat(auto-fit, minmax(320px,1fr))' }}>
                     {blogPosts.map((post, idx) => (
                         <motion.div key={idx} className="premium-card" {...fadeUp} transition={{ ...fadeUp.transition, delay: idx * 0.1 }}>
                             <img src={post.img} alt={post.title} className="premium-card-img" />
@@ -434,53 +524,25 @@ export const HomePage = () => {
                     ))}
                 </div>
 
-                {/* Blog story overlay modal */}
-                <AnimatePresence>
+                {/* Blog story overlay modal via Portal */}
+                <ModalOverlay open={expandedBlog !== null} onClose={() => setExpandedBlog(null)}>
                     {expandedBlog !== null && (
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            onClick={() => setExpandedBlog(null)}
-                            style={{
-                                position: 'fixed', inset: 0, zIndex: 999,
-                                background: 'rgba(30,58,95,0.7)', backdropFilter: 'blur(8px)',
-                                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                padding: '2rem',
-                            }}
-                        >
-                            <motion.div
-                                initial={{ scale: 0.85, opacity: 0, y: 40 }}
-                                animate={{ scale: 1, opacity: 1, y: 0 }}
-                                exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                                onClick={(e) => e.stopPropagation()}
-                                style={{
-                                    background: 'white', borderRadius: 28, maxWidth: 700, width: '100%',
-                                    maxHeight: '85vh', overflow: 'auto',
-                                    boxShadow: '0 32px 64px rgba(0,0,0,0.25)',
-                                }}
-                            >
-                                {expandedBlog !== null && (
-                                    <>
-                                        <div style={{ position: 'relative' }}>
-                                            <img src={blogPosts[expandedBlog].img} alt={blogPosts[expandedBlog].title} style={{ width: '100%', height: 260, objectFit: 'cover', borderRadius: '28px 28px 0 0', display: 'block' }} />
-                                            <button
-                                                onClick={() => setExpandedBlog(null)}
-                                                style={{ position: 'absolute', top: 16, right: 16, background: 'rgba(255,255,255,0.9)', border: 'none', borderRadius: '50%', width: 40, height: 40, fontSize: '1.3rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                                            >×</button>
-                                        </div>
-                                        <div style={{ padding: '2rem' }}>
-                                            <span style={{ color: '#d4a847', fontWeight: 600, fontSize: '0.85rem', display: 'block', marginBottom: '0.5rem' }}>{blogPosts[expandedBlog].date}</span>
-                                            <h3 style={{ fontSize: '1.6rem', color: '#1e3a5f', marginBottom: '1.25rem', fontFamily: 'Outfit, Inter, sans-serif' }}>{blogPosts[expandedBlog].title}</h3>
-                                            <p style={{ color: '#4b5563', lineHeight: 1.8, fontSize: '1rem' }}>{blogPosts[expandedBlog].readMore}</p>
-                                        </div>
-                                    </>
-                                )}
-                            </motion.div>
-                        </motion.div>
+                        <>
+                            <div style={{ position: 'relative', flexShrink: 0 }}>
+                                <img src={blogPosts[expandedBlog].img} alt={blogPosts[expandedBlog].title} style={{ width: '100%', height: 260, objectFit: 'cover', display: 'block' }} />
+                                <button
+                                    onClick={() => setExpandedBlog(null)}
+                                    style={{ position: 'absolute', top: 16, right: 16, background: 'rgba(255,255,255,0.9)', border: 'none', borderRadius: '50%', width: 40, height: 40, fontSize: '1.3rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#1e3a5f', boxShadow: '0 4px 12px rgba(0,0,0,0.15)' }}
+                                >×</button>
+                            </div>
+                            <div style={{ padding: '2rem', overflowY: 'auto', flex: 1 }}>
+                                <span style={{ color: '#d4a847', fontWeight: 600, fontSize: '0.85rem', display: 'block', marginBottom: '0.5rem' }}>{blogPosts[expandedBlog].date}</span>
+                                <h3 style={{ fontSize: '1.6rem', color: '#1e3a5f', marginBottom: '1.25rem', fontFamily: 'Outfit, Inter, sans-serif' }}>{blogPosts[expandedBlog].title}</h3>
+                                <p style={{ color: '#4b5563', lineHeight: 1.8, fontSize: '1rem' }}>{blogPosts[expandedBlog].readMore}</p>
+                            </div>
+                        </>
                     )}
-                </AnimatePresence>
+                </ModalOverlay>
             </section>
 
             {/* ═══════════════════ BECOME A VOLUNTEER CTA ═══════════════════ */}
