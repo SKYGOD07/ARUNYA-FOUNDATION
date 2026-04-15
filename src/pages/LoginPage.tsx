@@ -82,7 +82,7 @@ export const LoginPage = () => {
                             Go to Home →
                         </motion.button>
                         <motion.button
-                            onClick={() => navigate('/volunteer')}
+                            onClick={() => navigate('/curriculum')}
                             whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
                             style={{
                                 width: '100%', padding: '0.9rem', borderRadius: 16,
@@ -91,7 +91,7 @@ export const LoginPage = () => {
                                 cursor: 'pointer', fontFamily: 'inherit',
                             }}
                         >
-                            Join as Volunteer
+                            View Curriculum
                         </motion.button>
                     </div>
                 </motion.div>
@@ -160,7 +160,7 @@ export const LoginPage = () => {
                     Welcome back
                 </h1>
                 <p style={{ color: '#6b7280', fontSize: '1rem', marginBottom: '2rem', lineHeight: 1.5 }}>
-                    Sign in to track your impact, donate, or manage your volunteer profile.
+                    Sign in to track your impact, donate, or explore our curriculum.
                 </p>
 
                 {/* Google Sign In */}

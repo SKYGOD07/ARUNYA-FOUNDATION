@@ -122,7 +122,7 @@ export const Footer = () => {
                             { label: 'Programs', path: '/causes' },
                             { label: 'Gallery', path: '/gallery' },
                             { label: 'Blog & Stories', path: '/blog' },
-                            { label: 'Volunteer', path: '/volunteer' },
+                            { label: 'Curriculum', path: '/curriculum' },
                             { label: 'Contact Us', path: '/contact' },
                         ].map(l => (
                             <button

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
-    Leaf, BookOpen, Calculator, Palette, Library, Music, Puzzle, 
-    Book, FileText, Microscope, Globe, Smile, GraduationCap, 
-    FlaskConical, Megaphone, Lightbulb, Laptop, Landmark, 
+    BookOpen, Calculator, Palette, Library,
+    Book, Globe, Smile, GraduationCap, 
+    FlaskConical, Megaphone, Lightbulb, Laptop,  
     Backpack, Eye, Target, ClipboardList, HeartHandshake, 
     Handshake, Heart, ShieldCheck, Flame 
 } from 'lucide-react';
@@ -42,80 +42,50 @@ const staggerContainer = {
     viewport: { once: true, margin: '-80px' },
 };
 
-/* ── Syllabus Data ────────────────────────────── */
+/* ── Syllabus Data (from official curriculum) ── */
 const syllabusData = [
     {
         level: 'Group A',
-        ages: '1 – 3 Years',
+        ages: '4 – 6 Years',
         icon: <Smile size={24} />,
         color: 'blue',
-        description: 'Senses, sounds, movement',
+        description: 'Early Learners — Fun activities & visuals',
         subjects: [
-            { icon: <Music size={16} />, name: 'Language', detail: 'Animal sounds, basic words (Songs, clapping)' },
-            { icon: <Puzzle size={16} />, name: 'Math', detail: 'Big-small, one-many (Toys, stones)' },
-            { icon: <FlaskConical size={16} />, name: 'Science', detail: 'Touch & feel, water (Sensory play)' },
-            { icon: <HeartHandshake size={16} />, name: 'Social', detail: 'Sharing, smiling (Group play)' },
-            { icon: <Palette size={16} />, name: 'Art', detail: 'Scribbling (Crayons & colors)' },
+            { icon: <BookOpen size={16} />, name: 'English', detail: 'Alphabet (A–Z), Phonics, Basic vocabulary' },
+            { icon: <Book size={16} />, name: 'Hindi', detail: 'Varnamala (अ–ज्ञ), Simple words (माँ, पानी, घर)' },
+            { icon: <Calculator size={16} />, name: 'Math', detail: 'Counting (1–100), Shapes, Big–Small' },
+            { icon: <FlaskConical size={16} />, name: 'EVS', detail: 'Myself, Family, Good touch–Bad touch' },
+            { icon: <Palette size={16} />, name: 'Activity', detail: 'Drawing, Coloring, Rhymes & Games' },
         ],
     },
     {
         level: 'Group B',
-        ages: '4 – 6 Years',
-        icon: <Leaf size={24} />,
+        ages: '7 – 11 Years',
+        icon: <Library size={24} />,
         color: 'golden',
-        description: 'Play-based learning',
+        description: 'Primary Learners — Reading, writing & communication',
         subjects: [
-            { icon: <BookOpen size={16} />, name: 'English', detail: 'Alphabets, words (Action songs)' },
-            { icon: <Book size={16} />, name: 'Hindi', detail: 'Swar, simple words (Rhymes)' },
-            { icon: <Calculator size={16} />, name: 'Math', detail: 'Counting 1-50 (Objects, jumps)' },
-            { icon: <Microscope size={16} />, name: 'Science', detail: 'Plants, animals (Pictures, walks)' },
-            { icon: <HeartHandshake size={16} />, name: 'Social', detail: 'Clean habits (Role play)' },
-            { icon: <Palette size={16} />, name: 'Art', detail: 'Drawing, clay (Free creativity)' },
+            { icon: <BookOpen size={16} />, name: 'English', detail: 'Word formation, Sentences, Daily-use words' },
+            { icon: <Book size={16} />, name: 'Hindi', detail: 'Varnamala with examples, Basic writing' },
+            { icon: <Calculator size={16} />, name: 'Math', detail: 'Tables (2–10), Time, Money concepts' },
+            { icon: <Globe size={16} />, name: 'EVS', detail: 'Environment, Animals, Personal hygiene' },
+            { icon: <HeartHandshake size={16} />, name: 'Life Skills', detail: 'Communication, Teamwork, Role play' },
+            { icon: <Palette size={16} />, name: 'Activities', detail: 'Drawing, Story Telling, Quiz Games' },
         ],
     },
     {
         level: 'Group C',
-        ages: '7 – 9 Years',
-        icon: <Library size={24} />,
-        color: 'blue',
-        description: 'Reading & curiosity',
-        subjects: [
-            { icon: <BookOpen size={16} />, name: 'English', detail: 'Reading, sentences (Story reading)' },
-            { icon: <Book size={16} />, name: 'Hindi', detail: 'Paragraphs, matras (Loud reading)' },
-            { icon: <Calculator size={16} />, name: 'Math', detail: 'Tables (2-5) (Group practice)' },
-            { icon: <Globe size={16} />, name: 'Science', detail: 'Living / non-living (Real examples)' },
-            { icon: <HeartHandshake size={16} />, name: 'Social', detail: 'Festivals, helpers (Discussion)' },
-            { icon: <Smile size={16} />, name: 'Games', detail: 'Team activities (Outdoor play)' },
-        ],
-    },
-    {
-        level: 'Group D',
-        ages: '10 – 12 Years',
-        icon: <Book size={24} />,
-        color: 'golden',
-        description: 'Concepts & expression',
-        subjects: [
-            { icon: <FileText size={16} />, name: 'English', detail: 'Paragraph writing (Picture-based)' },
-            { icon: <Book size={16} />, name: 'Hindi', detail: 'Short essays (Guided writing)' },
-            { icon: <Calculator size={16} />, name: 'Math', detail: 'Fractions (Paper activities)' },
-            { icon: <Microscope size={16} />, name: 'Science', detail: 'Human body (Charts)' },
-            { icon: <HeartHandshake size={16} />, name: 'Social', detail: 'Rights & duties (Storytelling)' },
-            { icon: <Lightbulb size={16} />, name: 'Life Skills', detail: 'Hygiene, emotions (Open discussion)' },
-        ],
-    },
-    {
-        level: 'Group E',
-        ages: '13 – 15 Years',
+        ages: '12 – 15 Years',
         icon: <GraduationCap size={24} />,
         color: 'blue',
-        description: 'Skills & leadership',
+        description: 'Secondary Learners — Skills & spoken English',
         subjects: [
-            { icon: <Megaphone size={16} />, name: 'English', detail: 'Speaking skills (Group discussion)' },
-            { icon: <FileText size={16} />, name: 'Hindi', detail: 'Debate, writing (Real-life topics)' },
-            { icon: <Calculator size={16} />, name: 'Math', detail: 'Percentages (Daily examples)' },
-            { icon: <Microscope size={16} />, name: 'Science', detail: 'Health, environment (Interactive talk)' },
-            { icon: <Landmark size={16} />, name: 'Social', detail: 'Constitution basics (Story method)' },
-            { icon: <Target size={16} />, name: 'Life Skills', detail: 'Leadership, career (Mentor interaction)' },
+            { icon: <Megaphone size={16} />, name: 'English', detail: 'Grammar, Spoken English, Paragraph writing' },
+            { icon: <Book size={16} />, name: 'Hindi', detail: 'Reading comprehension, Short paragraph writing' },
+            { icon: <Calculator size={16} />, name: 'Math', detail: 'All operations, Word problems, Practical math' },
+            { icon: <Globe size={16} />, name: 'EVS', detail: 'Health, Community awareness, Rights & duties' },
+            { icon: <Target size={16} />, name: 'Life Skills', detail: 'Decision-making, Confidence, Gender sensitivity' },
+            { icon: <Lightbulb size={16} />, name: 'Activities', detail: 'Group Discussions, Debate, Creative tasks' },
         ],
     },
 ];
@@ -586,7 +556,7 @@ export const HomePage = () => {
                 </ModalOverlay>
             </section>
 
-            {/* ═══════════════════ BECOME A VOLUNTEER CTA ═══════════════════ */}
+            {/* ═══════════════════ EXPLORE CURRICULUM CTA ═══════════════════ */}
             <section style={{
                 background: 'linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%)',
                 padding: 'clamp(3rem, 6vw, 5rem) 1.5rem',
@@ -602,14 +572,14 @@ export const HomePage = () => {
                         <span style={{ color: '#d4a847', fontWeight: 700, fontSize: '0.8rem', letterSpacing: 1, textTransform: 'uppercase' }}>🙌 Join Our Team</span>
                     </motion.div>
                     <motion.h2 {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.05 }} style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 900, color: 'white', fontFamily: 'Outfit, Inter, sans-serif', marginBottom: '1.25rem', lineHeight: 1.1 }}>
-                        Become a <span style={{ color: '#d4a847' }}>Volunteer</span>
+                        Explore Our <span style={{ color: '#d4a847' }}>Curriculum</span>
                     </motion.h2>
                     <motion.p {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }} style={{ fontSize: 'clamp(1rem, 2.5vw, 1.15rem)', color: 'rgba(255,255,255,0.8)', lineHeight: 1.75, marginBottom: '2.5rem' }}>
-                        Join our passionate youth volunteers who give their weekends to teach, mentor, and inspire. No experience needed — just the heart to serve.
+                        Discover our structured teaching framework — covering literacy, math, life skills, and value education across three age groups designed for holistic child development.
                     </motion.p>
                     <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.15 }} style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
                         <button
-                            onClick={() => navigate('/volunteer')}
+                            onClick={() => navigate('/curriculum')}
                             style={{
                                 padding: 'clamp(0.875rem, 2vw, 1rem) clamp(1.75rem, 4vw, 2.5rem)',
                                 borderRadius: 9999, background: '#d4a847', color: 'white',
@@ -619,7 +589,7 @@ export const HomePage = () => {
                                 display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
                             }}
                         >
-                            Fill the Volunteer Form ↗
+                            View Full Curriculum ↗
                         </button>
                     </motion.div>
                 </div>
