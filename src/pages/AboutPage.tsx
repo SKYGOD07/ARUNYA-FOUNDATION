@@ -319,7 +319,7 @@ export const AboutPage = () => {
                             <div style={{ padding: '0 1.5rem 1.5rem' }}>
                                 <h4 style={{ fontSize: '1.6rem', fontWeight: 800, marginBottom: '0.35rem', color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif' }}>Prabal</h4>
                                 <p style={{ color: '#d4a847', fontSize: '1rem', fontWeight: 700, marginBottom: '0.85rem' }}>Founder</p>
-                                <p style={{ color: '#6b7280', fontSize: '0.95rem', fontStyle: 'italic', lineHeight: 1.6 }}>"Every child we teach is a future we build together."</p>
+                                <p style={{ color: '#6b7280', fontSize: '0.95rem', fontStyle: 'italic', lineHeight: 1.6 }}>"True empowerment doesn't come from simply opening a door, but from lighting the path that leads to it. At the Arunya Foundation, our mission is to be that guiding light, equipping communities with the tools they need to build their own brighter futures."</p>
                             </div>
                         </motion.div>
 

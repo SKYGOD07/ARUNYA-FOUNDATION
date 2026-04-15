@@ -2,8 +2,8 @@ import { PageTransition } from '../components/ui/PageTransition';
 import { motion } from 'framer-motion';
 import {
     BookOpen, Smile, Library, GraduationCap, Target, Heart,
-    Lightbulb, Gamepad2, Palette, ShieldCheck, Clock, Brain,
-    Sparkles, TreePine, HandHeart, Users, Megaphone
+    Gamepad2, ShieldCheck, Clock, Brain,
+    Sparkles, HandHeart, Users, Megaphone
 } from 'lucide-react';
 
 const fadeUp = {

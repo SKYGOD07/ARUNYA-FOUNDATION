@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Menu, X, Target, Eye, ClipboardList, BookOpen, Utensils, Gift, GraduationCap, Leaf, Users, Handshake, CheckCircle2, Star, Sparkles, Home, Globe, Heart } from 'lucide-react';
+import { Menu, X, Target, Eye, ClipboardList, BookOpen, Utensils, Leaf, Users, Handshake, CheckCircle2, Star, Sparkles, Globe, Heart } from 'lucide-react';
 import { HeartIcon } from './ui/animated-state-icons';
 import { ContainerScroll } from './ui/container-scroll-animation';
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
