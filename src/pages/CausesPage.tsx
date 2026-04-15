@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { PageTransition } from '../components/ui/PageTransition';
-import { BookOpen, Backpack, Laptop, Megaphone, Lightbulb, Palette, Calendar, CheckCircle2 } from 'lucide-react';
+import { BookOpen, Calendar, CheckCircle2, Compass, Rocket } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { ModalOverlay } from '../components/ui/ModalOverlay';
 
@@ -42,25 +42,14 @@ const programs: Program[] = [
         schedule: 'Every Saturday & Sunday, 10 AM – 1 PM',
         eligibility: 'Children aged 5–16 from underprivileged families in Gwalior region.',
     },
-
 ];
-
-const categories = ['All', 'Teaching'];
 
 const categoryColors: Record<string, string> = {
     Teaching: '#2563eb',
-    Supplies: '#d4a847',
-    Skills: '#059669',
-    Language: '#7c3aed',
-    Guidance: '#ea580c',
-    Creative: '#db2777',
 };
 
 export const CausesPage = () => {
-    const [activeCategory, setActiveCategory] = useState('All');
     const [selectedProgram, setSelectedProgram] = useState<Program | null>(null);
-
-    const filtered = activeCategory === 'All' ? programs : programs.filter(p => p.category === activeCategory);
 
     return (
         <PageTransition className="pt-[140px] pb-16">
@@ -76,27 +65,9 @@ export const CausesPage = () => {
                     </motion.p>
                 </div>
 
-                {/* Filter Bar */}
-                <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.15 }} style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', justifyContent: 'center', marginBottom: '3rem' }}>
-                    {categories.map(cat => (
-                        <button
-                            key={cat}
-                            onClick={() => setActiveCategory(cat)}
-                            style={{
-                                padding: '0.6rem 1.5rem', borderRadius: 9999, border: 'none',
-                                fontWeight: 600, fontSize: '0.9rem', cursor: 'pointer',
-                                fontFamily: 'inherit', transition: 'all 0.2s',
-                                background: activeCategory === cat ? '#1e3a5f' : '#f1f5f9',
-                                color: activeCategory === cat ? 'white' : '#6b7280',
-                                boxShadow: activeCategory === cat ? '0 4px 16px rgba(30,58,95,0.2)' : 'none',
-                            }}
-                        >{cat}</button>
-                    ))}
-                </motion.div>
-
                 {/* Programs Grid */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', maxWidth: 1200, margin: '0 auto' }}>
-                    {filtered.map((prog, idx) => (
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', maxWidth: 800, margin: '0 auto' }}>
+                    {programs.map((prog, idx) => (
                         <motion.div
                             key={prog.title}
                             {...fadeUp}
@@ -151,6 +122,77 @@ export const CausesPage = () => {
                         </motion.div>
                     ))}
                 </div>
+            </section>
+
+            {/* Upcoming Programs Section */}
+            <section style={{ padding: '4rem 2rem 2rem', maxWidth: 1400, margin: '0 auto' }}>
+                <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+                    <motion.h2 {...fadeUp} style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)', fontWeight: 800, color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+                        <Rocket size={28} style={{ color: '#d4a847' }} /> Upcoming Programs
+                    </motion.h2>
+                    <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #d4a847, #b8922e)', borderRadius: 2, margin: '0.75rem auto 1.25rem' }} />
+                    <motion.p {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }} style={{ color: '#6b7280', fontSize: '1.05rem', maxWidth: 550, margin: '0 auto', lineHeight: 1.7 }}>
+                        New initiatives on the horizon — empowering more lives, one program at a time.
+                    </motion.p>
+                </div>
+
+                <motion.div
+                    {...fadeUp}
+                    transition={{ ...fadeUp.transition, delay: 0.15 }}
+                    style={{
+                        maxWidth: 800, margin: '0 auto',
+                        background: 'linear-gradient(135deg, #f0f7ff 0%, #fefce8 100%)',
+                        borderRadius: 24, overflow: 'hidden',
+                        border: '1px solid rgba(30,58,95,0.08)',
+                        boxShadow: '0 4px 32px rgba(30,58,95,0.06)',
+                        display: 'flex', flexDirection: 'column',
+                    }}
+                >
+                    {/* Upcoming Banner */}
+                    <div style={{
+                        background: 'linear-gradient(135deg, #1e3a5f, #2563eb)',
+                        padding: '1rem 1.5rem',
+                        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                    }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                            <Compass size={22} color="white" />
+                            <span style={{ color: 'white', fontWeight: 700, fontSize: '0.95rem', fontFamily: 'Outfit, Inter, sans-serif' }}>Coming Soon</span>
+                        </div>
+                        <span style={{
+                            background: 'rgba(212,168,71,0.25)', color: '#fbbf24',
+                            padding: '4px 14px', borderRadius: 999,
+                            fontWeight: 700, fontSize: '0.75rem', letterSpacing: '0.05em',
+                        }}>UPCOMING</span>
+                    </div>
+
+                    {/* Content */}
+                    <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                        <h3 style={{
+                            color: '#1e3a5f', fontSize: '1.5rem', fontWeight: 800,
+                            fontFamily: 'Outfit, Inter, sans-serif', margin: 0,
+                            display: 'flex', alignItems: 'center', gap: '0.5rem',
+                        }}>
+                            🧭 Project DISHA
+                        </h3>
+                        <p style={{ color: '#d4a847', fontStyle: 'italic', fontSize: '0.9rem', fontWeight: 600, margin: 0 }}>
+                            Direction · Inspiration · Skill-building · Holistic growth · Awareness
+                        </p>
+                        <p style={{ color: '#6b7280', fontSize: '0.95rem', lineHeight: 1.75, margin: 0 }}>
+                            Project DISHA is Arunya Foundation's upcoming flagship initiative designed to guide adolescents from underserved communities toward a brighter future. Combining mentorship, life-skills training, career awareness, and emotional well-being workshops, DISHA aims to equip young learners with the confidence and clarity they need to navigate their paths ahead.
+                        </p>
+                        <div style={{
+                            marginTop: '0.5rem', padding: '0.875rem 1.25rem',
+                            background: 'rgba(30,58,95,0.04)', borderRadius: 14,
+                            border: '1px dashed rgba(30,58,95,0.12)',
+                            display: 'flex', alignItems: 'center', gap: '0.5rem',
+                        }}>
+                            <Calendar size={16} style={{ color: '#1e3a5f', flexShrink: 0 }} />
+                            <span style={{ color: '#4b5563', fontSize: '0.88rem' }}>
+                                Launch details will be announced soon — stay tuned!
+                            </span>
+                        </div>
+                    </div>
+                </motion.div>
             </section>
 
             {/* Program Detail Modal via Portal */}
