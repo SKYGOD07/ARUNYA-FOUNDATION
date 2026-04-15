@@ -12,7 +12,7 @@ const GalleryPage = lazy(() => import('./pages/GalleryPage').then(module => ({ d
 const BlogPage = lazy(() => import('./pages/BlogPage').then(module => ({ default: module.BlogPage })));
 const ContactPage = lazy(() => import('./pages/ContactPage').then(module => ({ default: module.ContactPage })));
 const LoginPage = lazy(() => import('./pages/LoginPage').then(module => ({ default: module.LoginPage })));
-const VolunteerPage = lazy(() => import('./pages/VolunteerPage').then(module => ({ default: module.VolunteerPage })));
+const CurriculumPage = lazy(() => import('./pages/CurriculumPage').then(module => ({ default: module.CurriculumPage })));
 
 function App() {
     const [isLoading, setIsLoading] = useState(() => {
@@ -41,7 +41,7 @@ function App() {
                                 <Route path="/blog" element={<BlogPage />} />
                                 <Route path="/contact" element={<ContactPage />} />
                                 <Route path="/login" element={<LoginPage />} />
-                                <Route path="/volunteer" element={<VolunteerPage />} />
+                                <Route path="/curriculum" element={<CurriculumPage />} />
                             </Route>
                         </Routes>
                     </Suspense>

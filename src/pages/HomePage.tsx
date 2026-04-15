@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
-    Leaf, BookOpen, Calculator, Palette, Library, Music, Puzzle, 
-    Book, FileText, Plus, Microscope, Globe, Smile, GraduationCap, 
-    Ruler, FlaskConical, Megaphone, Lightbulb, Laptop, Landmark, 
+    BookOpen, Calculator, Palette, Library,
+    Book, Globe, Smile, GraduationCap, 
+    FlaskConical, Megaphone, Lightbulb, Laptop,  
     Backpack, Eye, Target, ClipboardList, HeartHandshake, 
     Handshake, Heart, ShieldCheck, Flame 
 } from 'lucide-react';
@@ -42,51 +42,50 @@ const staggerContainer = {
     viewport: { once: true, margin: '-80px' },
 };
 
-/* ── Syllabus Data ────────────────────────────── */
+/* ── Syllabus Data (from official curriculum) ── */
 const syllabusData = [
     {
-        level: 'Foundation',
-        ages: '5 – 8 Years',
-        icon: <Leaf size={24} />,
+        level: 'Group A',
+        ages: '4 – 6 Years',
+        icon: <Smile size={24} />,
         color: 'blue',
-        description: 'Building strong fundamentals through play-based and story-based learning that sparks curiosity.',
+        description: 'Early Learners — Fun activities & visuals',
         subjects: [
-            { icon: <BookOpen size={16} />, name: 'Basic Literacy', detail: 'Alphabets, phonics, simple reading in Hindi & English' },
-            { icon: <Calculator size={16} />, name: 'Numeracy', detail: 'Counting, basic addition & subtraction, shapes' },
-            { icon: <Palette size={16} />, name: 'Art & Drawing', detail: 'Creative expression through colors, shapes, and craft' },
-            { icon: <Library size={16} />, name: 'Moral Stories', detail: 'Value-based storytelling for character development' },
-            { icon: <Music size={16} />, name: 'Rhymes & Music', detail: 'Learning through songs, rhymes, and rhythm activities' },
-            { icon: <Puzzle size={16} />, name: 'Activity Based', detail: 'Puzzles, games, and hands-on learning activities' },
+            { icon: <BookOpen size={16} />, name: 'English', detail: 'Alphabet (A–Z), Phonics, Basic vocabulary' },
+            { icon: <Book size={16} />, name: 'Hindi', detail: 'Varnamala (अ–ज्ञ), Simple words (माँ, पानी, घर)' },
+            { icon: <Calculator size={16} />, name: 'Math', detail: 'Counting (1–100), Shapes, Big–Small' },
+            { icon: <FlaskConical size={16} />, name: 'EVS', detail: 'Myself, Family, Good touch–Bad touch' },
+            { icon: <Palette size={16} />, name: 'Activity', detail: 'Drawing, Coloring, Rhymes & Games' },
         ],
     },
     {
-        level: 'Primary',
-        ages: '9 – 12 Years',
-        icon: <Book size={24} />,
+        level: 'Group B',
+        ages: '7 – 11 Years',
+        icon: <Library size={24} />,
         color: 'golden',
-        description: 'Strengthening core academic skills with structured lessons and real-world applications.',
+        description: 'Primary Learners — Reading, writing & communication',
         subjects: [
-            { icon: <FileText size={16} />, name: 'English', detail: 'Grammar, comprehension, essay writing, spoken English' },
-            { icon: <Book size={16} />, name: 'Hindi', detail: 'Vyakaran, nibandh, kavita, and conversational Hindi' },
-            { icon: <Plus size={16} />, name: 'Mathematics', detail: 'Multiplication, division, fractions, basic geometry' },
-            { icon: <Microscope size={16} />, name: 'Science Basics', detail: 'Plants, animals, human body, simple experiments' },
-            { icon: <Globe size={16} />, name: 'General Knowledge', detail: 'India, world, current affairs, environment awareness' },
-            { icon: <Smile size={16} />, name: 'Art & Culture', detail: 'Drama, folk art, cultural heritage activities' },
+            { icon: <BookOpen size={16} />, name: 'English', detail: 'Word formation, Sentences, Daily-use words' },
+            { icon: <Book size={16} />, name: 'Hindi', detail: 'Varnamala with examples, Basic writing' },
+            { icon: <Calculator size={16} />, name: 'Math', detail: 'Tables (2–10), Time, Money concepts' },
+            { icon: <Globe size={16} />, name: 'EVS', detail: 'Environment, Animals, Personal hygiene' },
+            { icon: <HeartHandshake size={16} />, name: 'Life Skills', detail: 'Communication, Teamwork, Role play' },
+            { icon: <Palette size={16} />, name: 'Activities', detail: 'Drawing, Story Telling, Quiz Games' },
         ],
     },
     {
-        level: 'Secondary',
-        ages: '13 – 16 Years',
+        level: 'Group C',
+        ages: '12 – 15 Years',
         icon: <GraduationCap size={24} />,
         color: 'blue',
-        description: 'Preparing students for higher education and self-sufficiency through advanced academics and life skills.',
+        description: 'Secondary Learners — Skills & spoken English',
         subjects: [
-            { icon: <Ruler size={16} />, name: 'Advanced Math', detail: 'Algebra, geometry, statistics, trigonometry basics' },
-            { icon: <FlaskConical size={16} />, name: 'Science', detail: 'Physics, Chemistry, Biology fundamentals and practicals' },
-            { icon: <Megaphone size={16} />, name: 'Communication', detail: 'Public speaking, debate, interview preparation' },
-            { icon: <Lightbulb size={16} />, name: 'Career Guidance', detail: 'Skill assessment, career paths, scholarship awareness' },
-            { icon: <Laptop size={16} />, name: 'Computer Literacy', detail: 'MS Office, internet, basic coding, digital safety' },
-            { icon: <Landmark size={16} />, name: 'Financial Literacy', detail: 'Savings, budgeting, banking basics for self-reliance' },
+            { icon: <Megaphone size={16} />, name: 'English', detail: 'Grammar, Spoken English, Paragraph writing' },
+            { icon: <Book size={16} />, name: 'Hindi', detail: 'Reading comprehension, Short paragraph writing' },
+            { icon: <Calculator size={16} />, name: 'Math', detail: 'All operations, Word problems, Practical math' },
+            { icon: <Globe size={16} />, name: 'EVS', detail: 'Health, Community awareness, Rights & duties' },
+            { icon: <Target size={16} />, name: 'Life Skills', detail: 'Decision-making, Confidence, Gender sensitivity' },
+            { icon: <Lightbulb size={16} />, name: 'Activities', detail: 'Group Discussions, Debate, Creative tasks' },
         ],
     },
 ];
@@ -94,33 +93,23 @@ const syllabusData = [
 /* ── Programs Data ────────────────────────────── */
 const programs = [
     { title: 'Weekend Classes', icon: <BookOpen size={24} />, desc: 'Free weekend classes every Saturday & Sunday covering core subjects for all age groups, taught by trained volunteers.', img: IMAGES.cause1 },
-    { title: 'Study Material Kit', icon: <Backpack size={24} />, desc: 'Complete kit with notebooks, textbooks, stationery, and school bags distributed free to every enrolled student.', img: IMAGES.cause2 },
-    { title: 'Computer Literacy', icon: <Laptop size={24} />, desc: 'Hands-on computer education teaching MS Office, internet skills, and basics of coding to secondary students.', img: IMAGES.cause3 },
-    { title: 'Career Counselling', icon: <Lightbulb size={24} />, desc: 'Monthly career guidance sessions helping students discover scholarships, skill development paths, and job readiness.', img: IMAGES.cause4 },
 ];
 
 /* ── Blog / Stories Data ─────────────────────── */
 const blogPosts = [
     {
-        title: 'Meera Scored 92% in Board Exams',
-        date: 'Mar 05, 2026',
-        excerpt: 'From struggling with basic math to topping her class — meet Meera, an Arunya student from a village near Gwalior who proved that with the right support, anything is possible. Her journey from our weekend classes to board exam success inspires every child in our program.',
-        img: IMAGES.blog1,
-        readMore: 'Meera joined Arunya Foundation at age 9. She could barely read Hindi and had never held a textbook of her own. Our volunteers noticed her curiosity and quiet determination. Over four years of weekend classes, moral support, and study materials, she transformed. In her board exams, she scored 92%, the highest in her village. Today she dreams of becoming a teacher herself.'
+        title: 'Little Habits, Big Impact 🌿',
+        date: 'Apr 10, 2026',
+        excerpt: 'At Arunya Foundation, we believe that education is not limited to books—it begins with self-care and dignity. Before stepping into the classroom, children are gently guided to practice basic hygiene habits.',
+        img: '/assets/blog/hygiene.jpeg',
+        readMore: 'At Arunya Foundation, we believe that education is not limited to books—it begins with self-care and dignity. Before stepping into the classroom, children are gently guided to practice basic hygiene habits such as washing their face, brushing their teeth, and maintaining personal cleanliness.\n\nThese small routines not only promote better health but also build confidence, self-respect, and readiness to learn. Moments like these reflect how simple actions can create lasting change in a child\'s life.\n\nBecause nurturing clean habits today lays the foundation for a healthier, brighter tomorrow.\n\n#CleanlinessDrive #HygieneAwareness #HealthyHabits #ChildDevelopment #ArunyaFoundation #CommunityImpact'
     },
     {
-        title: '500+ Students Enrolled This Year',
-        date: 'Feb 12, 2026',
-        excerpt: 'Our 2026 enrollment drive crossed 500 students across five villages! We\'re expanding our classrooms, training more volunteers, and adding new subjects like Computer Literacy and English Speaking to our syllabus.',
-        img: IMAGES.blog2,
-        readMore: 'With increasing demand from communities, we organized enrollment camps in five villages surrounding Gwalior. Parents who once hesitated to send their children now actively seek our classes. We added 15 new volunteers, set up two new learning centers, and introduced computer literacy classes. Our goal is to reach 1,000 students by December 2026.'
-    },
-    {
-        title: 'Annual Day Celebration 2026',
-        date: 'Jan 26, 2026',
-        excerpt: 'Republic Day became extra special as 300+ students performed cultural programs, received certificates, and celebrated their learning milestones. Parents, volunteers, and community leaders came together in an emotional day of pride and joy.',
-        img: IMAGES.blog3,
-        readMore: 'The Annual Day was held at a local community hall. Students performed skits on education, sang patriotic songs, and showcased their art projects. Top students received certificates and school supply kits. Several parents shared testimonials about how their children have changed since joining Arunya. It was a day that reminded us why we do what we do.'
+        title: 'Colors of Joy, Learning Beyond Books 🎨',
+        date: 'Apr 05, 2026',
+        excerpt: 'Through creative activities like hand painting, children are encouraged to express themselves, explore their imagination, and simply enjoy the process of creating.',
+        img: '/assets/blog/creative.jpeg',
+        readMore: 'At Arunya Foundation, learning goes beyond textbooks.\n\nThrough creative activities like hand painting, children are encouraged to express themselves, explore their imagination, and simply enjoy the process of creating.\n\nMoments filled with colors, laughter, and little handprints remind us that education is not just about knowledge, but also about joy, confidence, and self-expression.\n\nBecause sometimes, the brightest learning happens when little hands dive into colors and hearts into happiness 💛\n\n#CreativeLearning #JoyfulEducation #ArtAndExpression #ArunyaFoundation #LearningWithFun #ChildhoodJoy'
     },
 ];
 
@@ -374,11 +363,13 @@ export const HomePage = () => {
             {/* ═══════════════════ SYLLABUS OVERVIEW ═══════════════════ */}
             <section id="syllabus" className="section-block alt-bg">
                 <div className="section-header">
-                    <motion.h2 {...fadeUp}>Syllabus Overview</motion.h2>
+                    <motion.h2 {...fadeUp}>Weekend Community Teaching Plan</motion.h2>
                     <div className="golden-underline" />
                     <motion.p {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }}>
-                        Our carefully designed curriculum covers three age groups, 
-                        building from foundational literacy to career readiness.
+                        Our carefully designed curriculum covers five age groups (1–15 years), 
+                        building from play-based learning to skills & leadership.
+                        <br/><br/>
+                        <strong style={{ color: 'var(--color-royal-blue)' }}>Every session ends with a story telling session.</strong>
                     </motion.p>
                 </div>
 
@@ -411,6 +402,26 @@ export const HomePage = () => {
                         </motion.div>
                     ))}
                 </div>
+
+                <motion.div {...fadeUp} style={{ display: 'grid', gap: '2rem', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', maxWidth: 1000, margin: '3rem auto 0' }}>
+                    <div className="premium-card" style={{ padding: '2rem' }}>
+                        <h3 style={{ color: '#1e3a5f', marginBottom: '1rem', borderBottom: '2px solid #d4a847', paddingBottom: '0.5rem', display: 'inline-block' }}>Common 2-Hour Session Flow</h3>
+                        <ul style={{ listStyle: 'none', padding: 0, margin: 0, color: '#4b5563', lineHeight: 1.8 }}>
+                            <li style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(0,0,0,0.05)', padding: '0.75rem 0' }}><strong>First 10 min</strong> <span>Prayer / song / warm-up</span></li>
+                            <li style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(0,0,0,0.05)', padding: '0.75rem 0' }}><strong>Next 80 min</strong> <span>Teaching + activities</span></li>
+                            <li style={{ display: 'flex', justifyContent: 'space-between', padding: '0.75rem 0' }}><strong>Last 30 min</strong> <span>Games / art / recap</span></li>
+                        </ul>
+                    </div>
+                    <div className="premium-card" style={{ padding: '2rem' }}>
+                        <h3 style={{ color: '#1e3a5f', marginBottom: '1rem', borderBottom: '2px solid #d4a847', paddingBottom: '0.5rem', display: 'inline-block' }}>Teaching Guidelines</h3>
+                        <ul style={{ listStyle: 'none', padding: 0, margin: 0, color: '#4b5563', lineHeight: 2 }}>
+                            <li style={{ padding: '0.25rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span style={{ color: '#d4a847' }}>✔</span> No exams or tests</li>
+                            <li style={{ padding: '0.25rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span style={{ color: '#d4a847' }}>✔</span> Flexible attendance</li>
+                            <li style={{ padding: '0.25rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span style={{ color: '#d4a847' }}>✔</span> Encourage participation</li>
+                            <li style={{ padding: '0.25rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span style={{ color: '#d4a847' }}>✔</span> Use local language + Hindi + English</li>
+                        </ul>
+                    </div>
+                </motion.div>
             </section>
 
             {/* ═══════════════════ FULL BLEED IMAGE ═══════════════════ */}
@@ -462,9 +473,9 @@ export const HomePage = () => {
 
                 <div className="donation-cards">
                     {[
-                        { amount: '₹500', desc: 'Study Materials for 1 child for a month' },
-                        { amount: '₹2,000', desc: 'Complete school kit with bag, books & uniform' },
-                        { amount: '₹5,000', desc: 'Sponsor a child\'s education for a full year' },
+                        { amount: '₹200', desc: 'Study materials for 1 child for a month' },
+                        { amount: '₹500', desc: 'Complete study kit with notebooks & stationery' },
+                        { amount: '₹1,000', desc: 'Sponsor a child\'s learning for a full term' },
                     ].map((d, idx) => (
                         <motion.div
                             key={idx}
@@ -538,14 +549,14 @@ export const HomePage = () => {
                             <div style={{ padding: '2rem', overflowY: 'auto', flex: 1 }}>
                                 <span style={{ color: '#d4a847', fontWeight: 600, fontSize: '0.85rem', display: 'block', marginBottom: '0.5rem' }}>{blogPosts[expandedBlog].date}</span>
                                 <h3 style={{ fontSize: '1.6rem', color: '#1e3a5f', marginBottom: '1.25rem', fontFamily: 'Outfit, Inter, sans-serif' }}>{blogPosts[expandedBlog].title}</h3>
-                                <p style={{ color: '#4b5563', lineHeight: 1.8, fontSize: '1rem' }}>{blogPosts[expandedBlog].readMore}</p>
+                                <p style={{ color: '#4b5563', lineHeight: 1.8, fontSize: '1rem', whiteSpace: 'pre-line' }}>{blogPosts[expandedBlog].readMore}</p>
                             </div>
                         </>
                     )}
                 </ModalOverlay>
             </section>
 
-            {/* ═══════════════════ BECOME A VOLUNTEER CTA ═══════════════════ */}
+            {/* ═══════════════════ EXPLORE CURRICULUM CTA ═══════════════════ */}
             <section style={{
                 background: 'linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%)',
                 padding: 'clamp(3rem, 6vw, 5rem) 1.5rem',
@@ -561,14 +572,14 @@ export const HomePage = () => {
                         <span style={{ color: '#d4a847', fontWeight: 700, fontSize: '0.8rem', letterSpacing: 1, textTransform: 'uppercase' }}>🙌 Join Our Team</span>
                     </motion.div>
                     <motion.h2 {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.05 }} style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 900, color: 'white', fontFamily: 'Outfit, Inter, sans-serif', marginBottom: '1.25rem', lineHeight: 1.1 }}>
-                        Become a <span style={{ color: '#d4a847' }}>Volunteer</span>
+                        Explore Our <span style={{ color: '#d4a847' }}>Curriculum</span>
                     </motion.h2>
                     <motion.p {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }} style={{ fontSize: 'clamp(1rem, 2.5vw, 1.15rem)', color: 'rgba(255,255,255,0.8)', lineHeight: 1.75, marginBottom: '2.5rem' }}>
-                        Join 300+ passionate youth volunteers who give their weekends to teach, mentor, and inspire. No experience needed — just the heart to serve.
+                        Discover our structured teaching framework — covering literacy, math, life skills, and value education across three age groups designed for holistic child development.
                     </motion.p>
                     <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.15 }} style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
                         <button
-                            onClick={() => navigate('/volunteer')}
+                            onClick={() => navigate('/curriculum')}
                             style={{
                                 padding: 'clamp(0.875rem, 2vw, 1rem) clamp(1.75rem, 4vw, 2.5rem)',
                                 borderRadius: 9999, background: '#d4a847', color: 'white',
@@ -578,7 +589,7 @@ export const HomePage = () => {
                                 display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
                             }}
                         >
-                            Fill the Volunteer Form ↗
+                            View Full Curriculum ↗
                         </button>
                     </motion.div>
                 </div>
