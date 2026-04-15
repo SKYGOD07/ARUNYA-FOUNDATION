@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { GraduationCap, Handshake, Home, Heart, Mail, Phone, MapPin, Clock, Leaf } from 'lucide-react';
+import { Heart, Mail, Phone, MapPin, Clock, Leaf } from 'lucide-react';
 import { FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 
 export const JoinCommunity = () => {

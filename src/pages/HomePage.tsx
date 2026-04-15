@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { 
     BookOpen, Calculator, Palette, Library,
     Book, Globe, Smile, GraduationCap, 
-    FlaskConical, Megaphone, Lightbulb, Laptop,  
-    Backpack, Eye, Target, ClipboardList, HeartHandshake, 
+    FlaskConical, Megaphone, Lightbulb,  
+    Eye, Target, ClipboardList, HeartHandshake, 
     Handshake, Heart, ShieldCheck, Flame 
 } from 'lucide-react';
 import { motion } from 'framer-motion';
