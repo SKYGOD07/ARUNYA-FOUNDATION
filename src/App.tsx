@@ -1,6 +1,5 @@
-import { useState, Suspense, lazy } from 'react';
+import { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import LoadingScreen from './components/LoadingScreen';
 import { MainLayout } from './components/layout/MainLayout';
 import { AuthProvider } from './lib/AuthContext';
 
@@ -15,37 +14,23 @@ const LoginPage = lazy(() => import('./pages/LoginPage').then(module => ({ defau
 const CurriculumPage = lazy(() => import('./pages/CurriculumPage').then(module => ({ default: module.CurriculumPage })));
 
 function App() {
-    const [isLoading, setIsLoading] = useState(() => {
-        const hasVisited = sessionStorage.getItem('hasVisited');
-        return !hasVisited;
-    });
-
-    const handleLoadingComplete = () => {
-        sessionStorage.setItem('hasVisited', 'true');
-        setIsLoading(false);
-    };
-
     return (
         <AuthProvider>
             <BrowserRouter>
-                {isLoading ? (
-                    <LoadingScreen onComplete={handleLoadingComplete} />
-                ) : (
-                    <Suspense fallback={null}>
-                        <Routes>
-                            <Route element={<MainLayout />}>
-                                <Route path="/" element={<HomePage />} />
-                                <Route path="/about" element={<AboutPage />} />
-                                <Route path="/causes" element={<CausesPage />} />
-                                <Route path="/gallery" element={<GalleryPage />} />
-                                <Route path="/blog" element={<BlogPage />} />
-                                <Route path="/contact" element={<ContactPage />} />
-                                <Route path="/login" element={<LoginPage />} />
-                                <Route path="/curriculum" element={<CurriculumPage />} />
-                            </Route>
-                        </Routes>
-                    </Suspense>
-                )}
+                <Suspense fallback={null}>
+                    <Routes>
+                        <Route element={<MainLayout />}>
+                            <Route path="/" element={<HomePage />} />
+                            <Route path="/about" element={<AboutPage />} />
+                            <Route path="/causes" element={<CausesPage />} />
+                            <Route path="/gallery" element={<GalleryPage />} />
+                            <Route path="/blog" element={<BlogPage />} />
+                            <Route path="/contact" element={<ContactPage />} />
+                            <Route path="/login" element={<LoginPage />} />
+                            <Route path="/curriculum" element={<CurriculumPage />} />
+                        </Route>
+                    </Routes>
+                </Suspense>
             </BrowserRouter>
         </AuthProvider>
     );

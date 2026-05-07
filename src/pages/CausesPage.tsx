@@ -56,10 +56,10 @@ export const CausesPage = () => {
             <section id="causes" style={{ padding: '2rem', maxWidth: 1400, margin: '0 auto' }}>
                 {/* Header */}
                 <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-                    <motion.h2 {...fadeUp} style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif', marginBottom: '0.5rem' }}>
+                    <motion.h2 {...fadeUp} style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif', marginBottom: '0.5rem' }}>
                         Our Programs
                     </motion.h2>
-                    <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #d4a847, #b8922e)', borderRadius: 2, margin: '0.75rem auto 1.25rem' }} />
+                    <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #E6B325, #C99A1E)', borderRadius: 2, margin: '0.75rem auto 1.25rem' }} />
                     <motion.p {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }} style={{ color: '#6b7280', fontSize: '1.1rem', maxWidth: 600, margin: '0 auto', lineHeight: 1.7 }}>
                         Structured educational programs designed to teach, empower, and prepare underprivileged children for a self-sufficient future.
                     </motion.p>
@@ -97,10 +97,10 @@ export const CausesPage = () => {
 
                             {/* Content */}
                             <div style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
-                                <h3 style={{ color: '#1e3a5f', fontSize: '1.2rem', fontWeight: 800, fontFamily: 'Outfit, Inter, sans-serif', marginBottom: '0.4rem' }}>
+                                <h3 style={{ color: '#1e3a5f', fontSize: '1.2rem', fontWeight: 800, fontFamily: 'Poppins, Inter, sans-serif', marginBottom: '0.4rem' }}>
                                     {prog.icon} {prog.title}
                                 </h3>
-                                <p style={{ color: '#d4a847', fontStyle: 'italic', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.75rem' }}>{prog.tagline}</p>
+                                <p style={{ color: '#E6B325', fontStyle: 'italic', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.75rem' }}>{prog.tagline}</p>
                                 <p style={{ color: '#6b7280', fontSize: '0.9rem', lineHeight: 1.65, marginBottom: '1.5rem', flex: 1 }}>
                                     {prog.detail}
                                 </p>
@@ -127,10 +127,10 @@ export const CausesPage = () => {
             {/* Upcoming Programs Section */}
             <section style={{ padding: '4rem 2rem 2rem', maxWidth: 1400, margin: '0 auto' }}>
                 <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-                    <motion.h2 {...fadeUp} style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)', fontWeight: 800, color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-                        <Rocket size={28} style={{ color: '#d4a847' }} /> Upcoming Programs
+                    <motion.h2 {...fadeUp} style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)', fontWeight: 800, color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+                        <Rocket size={28} style={{ color: '#E6B325' }} /> Upcoming Programs
                     </motion.h2>
-                    <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #d4a847, #b8922e)', borderRadius: 2, margin: '0.75rem auto 1.25rem' }} />
+                    <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #E6B325, #C99A1E)', borderRadius: 2, margin: '0.75rem auto 1.25rem' }} />
                     <motion.p {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }} style={{ color: '#6b7280', fontSize: '1.05rem', maxWidth: 550, margin: '0 auto', lineHeight: 1.7 }}>
                         New initiatives on the horizon — empowering more lives, one program at a time.
                     </motion.p>
@@ -156,7 +156,7 @@ export const CausesPage = () => {
                     }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                             <Compass size={22} color="white" />
-                            <span style={{ color: 'white', fontWeight: 700, fontSize: '0.95rem', fontFamily: 'Outfit, Inter, sans-serif' }}>Coming Soon</span>
+                            <span style={{ color: 'white', fontWeight: 700, fontSize: '0.95rem', fontFamily: 'Poppins, Inter, sans-serif' }}>Coming Soon</span>
                         </div>
                         <span style={{
                             background: 'rgba(212,168,71,0.25)', color: '#fbbf24',
@@ -169,12 +169,12 @@ export const CausesPage = () => {
                     <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                         <h3 style={{
                             color: '#1e3a5f', fontSize: '1.5rem', fontWeight: 800,
-                            fontFamily: 'Outfit, Inter, sans-serif', margin: 0,
+                            fontFamily: 'Poppins, Inter, sans-serif', margin: 0,
                             display: 'flex', alignItems: 'center', gap: '0.5rem',
                         }}>
                             🧭 Project DISHA
                         </h3>
-                        <p style={{ color: '#d4a847', fontStyle: 'italic', fontSize: '0.9rem', fontWeight: 600, margin: 0 }}>
+                        <p style={{ color: '#E6B325', fontStyle: 'italic', fontSize: '0.9rem', fontWeight: 600, margin: 0 }}>
                             Direction · Inspiration · Skill-building · Holistic growth · Awareness
                         </p>
                         <p style={{ color: '#6b7280', fontSize: '0.95rem', lineHeight: 1.75, margin: 0 }}>
@@ -204,20 +204,20 @@ export const CausesPage = () => {
                             <img src={selectedProgram.img} alt={selectedProgram.title} style={{ width: '100%', height: 220, objectFit: 'cover', display: 'block' }} />
                             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(30,58,95,0.75) 0%, transparent 50%)', padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
                                 <div style={{ display: 'inline-block', padding: '4px 14px', borderRadius: 999, background: categoryColors[selectedProgram.category] || '#2563eb', color: 'white', fontWeight: 700, fontSize: '0.75rem', marginBottom: '0.5rem', width: 'fit-content' }}>{selectedProgram.category}</div>
-                                <h2 style={{ color: 'white', fontFamily: 'Outfit, Inter, sans-serif', fontSize: 'clamp(1.1rem, 3vw, 1.5rem)', fontWeight: 800, margin: 0 }}>{selectedProgram.icon} {selectedProgram.title}</h2>
+                                <h2 style={{ color: 'white', fontFamily: 'Poppins, Inter, sans-serif', fontSize: 'clamp(1.1rem, 3vw, 1.5rem)', fontWeight: 800, margin: 0 }}>{selectedProgram.icon} {selectedProgram.title}</h2>
                             </div>
                             <button onClick={() => setSelectedProgram(null)} style={{ position: 'absolute', top: 12, right: 12, background: 'rgba(255,255,255,0.9)', border: 'none', borderRadius: '50%', width: 36, height: 36, fontSize: '1.2rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, color: '#1e3a5f', boxShadow: '0 4px 12px rgba(0,0,0,0.15)' }}>×</button>
                         </div>
 
                         <div style={{ padding: '1.5rem', overflowY: 'auto', flex: 1 }}>
                             {/* Tagline */}
-                            <p style={{ color: '#d4a847', fontStyle: 'italic', fontWeight: 700, fontSize: '0.95rem', marginBottom: '1.25rem' }}>"{selectedProgram.tagline}"</p>
+                            <p style={{ color: '#E6B325', fontStyle: 'italic', fontWeight: 700, fontSize: '0.95rem', marginBottom: '1.25rem' }}>"{selectedProgram.tagline}"</p>
 
                             {/* Stats Grid */}
                             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '0.75rem', marginBottom: '1.5rem' }}>
                                 {selectedProgram.stats.map((s, i) => (
                                     <div key={i} style={{ background: '#f8fafc', borderRadius: 14, padding: '0.875rem', textAlign: 'center', border: '1px solid rgba(30,58,95,0.06)' }}>
-                                        <div style={{ fontWeight: 800, fontSize: '1.2rem', color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif' }}>{s.value}</div>
+                                        <div style={{ fontWeight: 800, fontSize: '1.2rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>{s.value}</div>
                                         <div style={{ color: '#6b7280', fontSize: '0.72rem', marginTop: '0.15rem' }}>{s.label}</div>
                                     </div>
                                 ))}

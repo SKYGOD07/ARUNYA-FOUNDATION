@@ -61,7 +61,7 @@ export const LoginPage = () => {
                             <svg width="32" height="32" viewBox="0 0 24 24" fill="white"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" /></svg>
                         )}
                     </div>
-                    <h1 style={{ color: '#1e3a5f', fontSize: '1.75rem', fontWeight: 700, marginBottom: '0.5rem', fontFamily: 'Outfit, Inter, sans-serif' }}>
+                    <h1 style={{ color: '#1e3a5f', fontSize: '1.75rem', fontWeight: 700, marginBottom: '0.5rem', fontFamily: 'Poppins, Inter, sans-serif' }}>
                         Welcome, {user.displayName?.split(' ')[0] || 'Friend'}!
                     </h1>
                     <p style={{ color: '#6b7280', fontSize: '0.95rem', marginBottom: '2rem' }}>
@@ -86,7 +86,7 @@ export const LoginPage = () => {
                             whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
                             style={{
                                 width: '100%', padding: '0.9rem', borderRadius: 16,
-                                border: '2px solid #d4a847', background: 'transparent',
+                                border: '2px solid #E6B325', background: 'transparent',
                                 color: '#1e3a5f', fontWeight: 600, fontSize: '0.95rem',
                                 cursor: 'pointer', fontFamily: 'inherit',
                             }}
@@ -151,12 +151,12 @@ export const LoginPage = () => {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem' }}>
                     <img src="/logo.png" alt="Logo" style={{ width: 44, height: 44, objectFit: 'contain' }} onError={e => { e.currentTarget.style.display = 'none'; }} />
                     <div>
-                        <span style={{ color: '#1e3a5f', fontWeight: 800, fontSize: '1.2rem', fontFamily: 'Outfit, Inter, sans-serif', display: 'block' }}>Arunya Foundation</span>
+                        <span style={{ color: '#1e3a5f', fontWeight: 800, fontSize: '1.2rem', fontFamily: 'Poppins, Inter, sans-serif', display: 'block' }}>Arunya Foundation</span>
                         <span style={{ color: '#9ca3af', fontSize: '0.75rem', fontWeight: 500 }}>Education for Every Child</span>
                     </div>
                 </div>
 
-                <h1 style={{ color: '#1e3a5f', fontSize: '2rem', fontWeight: 700, marginBottom: '0.5rem', lineHeight: 1.2, fontFamily: 'Outfit, Inter, sans-serif' }}>
+                <h1 style={{ color: '#1e3a5f', fontSize: '2rem', fontWeight: 700, marginBottom: '0.5rem', lineHeight: 1.2, fontFamily: 'Poppins, Inter, sans-serif' }}>
                     Welcome back
                 </h1>
                 <p style={{ color: '#6b7280', fontSize: '1rem', marginBottom: '2rem', lineHeight: 1.5 }}>
