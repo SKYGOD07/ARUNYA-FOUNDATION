@@ -15,10 +15,10 @@ export const ContactPage = () => {
         <PageTransition className="pb-16">
             <section id="contact" style={{ padding: '2rem', position: 'relative', zIndex: 10 }}>
                 <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                    <motion.h2 {...fadeUp} style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, marginBottom: '1rem', color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif' }}>
+                    <motion.h2 {...fadeUp} style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, marginBottom: '1rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>
                         Get in Touch
                     </motion.h2>
-                    <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #d4a847, #b8922e)', borderRadius: 2, margin: '1rem auto' }} />
+                    <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #E6B325, #C99A1E)', borderRadius: 2, margin: '1rem auto' }} />
                     <motion.p {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }} style={{ color: '#6b7280', fontSize: '1.1rem', maxWidth: 600, margin: '0 auto', lineHeight: 1.7 }}>
                         Have questions about our programs, want to donate, or interested in volunteering? We'd love to hear from you.
                     </motion.p>
@@ -31,13 +31,13 @@ export const ContactPage = () => {
                         border: '1px solid rgba(30,58,95,0.08)',
                         boxShadow: '0 4px 24px rgba(30,58,95,0.06)',
                     }}>
-                        <h3 style={{ fontSize: '1.6rem', marginBottom: '2rem', color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif' }}>Contact Information</h3>
+                        <h3 style={{ fontSize: '1.6rem', marginBottom: '2rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>Contact Information</h3>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                             {[
                                 { icon: <MapPin size={22} />, title: 'Location', detail: 'Gwalior, Madhya Pradesh, India', gradient: 'linear-gradient(135deg, #2563eb, #1e3a5f)' },
-                                { icon: <Phone size={22} />, title: 'Phone', detail: '+91 82238 34121', gradient: 'linear-gradient(135deg, #d4a847, #b8922e)' },
+                                { icon: <Phone size={22} />, title: 'Phone', detail: '+91 82238 34121', gradient: 'linear-gradient(135deg, #E6B325, #C99A1E)' },
                                 { icon: <Mail size={22} />, title: 'Email', detail: 'arunya.trust@gmail.com', gradient: 'linear-gradient(135deg, #2563eb, #1e3a5f)' },
-                                { icon: <Clock size={22} />, title: 'Class Timings', detail: 'Sat & Sun: 10 AM – 1 PM', gradient: 'linear-gradient(135deg, #d4a847, #b8922e)' },
+                                { icon: <Clock size={22} />, title: 'Class Timings', detail: 'Sat & Sun: 10 AM – 1 PM', gradient: 'linear-gradient(135deg, #E6B325, #C99A1E)' },
                             ].map((item, idx) => (
                                 <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
                                     <div style={{
@@ -82,7 +82,7 @@ export const ContactPage = () => {
                         border: '1px solid rgba(30,58,95,0.08)',
                         boxShadow: '0 4px 24px rgba(30,58,95,0.06)',
                     }}>
-                        <h3 style={{ fontSize: '1.6rem', marginBottom: '2rem', color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif' }}>Send a Message</h3>
+                        <h3 style={{ fontSize: '1.6rem', marginBottom: '2rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>Send a Message</h3>
                         <form style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                             <div className="form-group" style={{ marginBottom: 0 }}>
                                 <label>Your Name</label>

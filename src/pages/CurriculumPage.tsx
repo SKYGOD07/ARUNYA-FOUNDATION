@@ -36,7 +36,7 @@ const groups = [
         ages: '7 – 11 Years',
         type: 'Primary Learners',
         icon: <Library size={28} />,
-        color: '#d4a847',
+        color: '#E6B325',
         focus: 'Strengthening reading, writing, basic math, phonics, and simple communication skills',
         subjects: [
             { name: 'English', topics: 'Alphabet with usage, Word formation, Simple sentences, Reading small paragraphs, Daily-use words (eat, go, come)', methods: 'Picture reading, word cards, sentence-making games, reading aloud' },
@@ -93,10 +93,10 @@ export const CurriculumPage = () => {
             <section style={{ padding: '2rem', position: 'relative', zIndex: 10 }}>
                 {/* ═══════════════ HEADER ═══════════════ */}
                 <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                    <motion.h2 {...fadeUp} style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, marginBottom: '1rem', color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif' }}>
+                    <motion.h2 {...fadeUp} style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, marginBottom: '1rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>
                         Teaching Syllabus & Learning Framework
                     </motion.h2>
-                    <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #d4a847, #b8922e)', borderRadius: 2, margin: '1rem auto' }} />
+                    <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #E6B325, #C99A1E)', borderRadius: 2, margin: '1rem auto' }} />
                     <motion.p {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }} style={{ color: '#6b7280', fontSize: '1.05rem', maxWidth: 750, margin: '0 auto', lineHeight: 1.8 }}>
                         The Arunya Foundation aims to provide foundational education to children through engaging, inclusive, and activity-based learning methods. The program focuses on basic literacy, numeracy, life skills, and value-based education, ensuring holistic development.
                     </motion.p>
@@ -104,8 +104,8 @@ export const CurriculumPage = () => {
 
                 {/* ═══════════════ LEARNING OBJECTIVES ═══════════════ */}
                 <div style={{ maxWidth: 1200, margin: '0 auto 5rem' }}>
-                    <motion.h3 {...fadeUp} style={{ fontSize: '1.8rem', textAlign: 'center', marginBottom: '0.75rem', color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif' }}>Learning Objectives</motion.h3>
-                    <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #d4a847, #b8922e)', borderRadius: 2, margin: '0 auto 2.5rem' }} />
+                    <motion.h3 {...fadeUp} style={{ fontSize: '1.8rem', textAlign: 'center', marginBottom: '0.75rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>Learning Objectives</motion.h3>
+                    <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #E6B325, #C99A1E)', borderRadius: 2, margin: '0 auto 2.5rem' }} />
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
                         {learningObjectives.map((obj, idx) => (
                             <motion.div key={idx} {...fadeUp} transition={{ ...fadeUp.transition, delay: idx * 0.08 }} style={{
@@ -113,10 +113,10 @@ export const CurriculumPage = () => {
                                 border: '1px solid rgba(30,58,95,0.08)',
                                 boxShadow: '0 4px 24px rgba(30,58,95,0.06)',
                             }}>
-                                <div style={{ width: 48, height: 48, borderRadius: '50%', background: idx % 2 === 0 ? 'linear-gradient(135deg, #2563eb, #1e3a5f)' : 'linear-gradient(135deg, #d4a847, #b8922e)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
+                                <div style={{ width: 48, height: 48, borderRadius: '50%', background: idx % 2 === 0 ? 'linear-gradient(135deg, #2563eb, #1e3a5f)' : 'linear-gradient(135deg, #E6B325, #C99A1E)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
                                     {obj.icon}
                                 </div>
-                                <h4 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#1e3a5f', marginBottom: '0.5rem', fontFamily: 'Outfit, Inter, sans-serif' }}>{obj.title}</h4>
+                                <h4 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#1e3a5f', marginBottom: '0.5rem', fontFamily: 'Poppins, Inter, sans-serif' }}>{obj.title}</h4>
                                 <p style={{ color: '#6b7280', fontSize: '0.9rem', lineHeight: 1.6 }}>{obj.desc}</p>
                             </motion.div>
                         ))}
@@ -125,8 +125,8 @@ export const CurriculumPage = () => {
 
                 {/* ═══════════════ CURRICULUM STRUCTURE ═══════════════ */}
                 <div style={{ maxWidth: 1200, margin: '0 auto 5rem' }}>
-                    <motion.h3 {...fadeUp} style={{ fontSize: '1.8rem', textAlign: 'center', marginBottom: '0.75rem', color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif' }}>Curriculum Structure</motion.h3>
-                    <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #d4a847, #b8922e)', borderRadius: 2, margin: '0 auto 1rem' }} />
+                    <motion.h3 {...fadeUp} style={{ fontSize: '1.8rem', textAlign: 'center', marginBottom: '0.75rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>Curriculum Structure</motion.h3>
+                    <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #E6B325, #C99A1E)', borderRadius: 2, margin: '0 auto 1rem' }} />
                     <motion.p {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.05 }} style={{ textAlign: 'center', color: '#6b7280', fontSize: '0.95rem', maxWidth: 600, margin: '0 auto 3rem', lineHeight: 1.7 }}>
                         The curriculum is designed for three age groups, each with tailored subjects, topics, and teaching methods.
                     </motion.p>
@@ -140,13 +140,13 @@ export const CurriculumPage = () => {
                                 boxShadow: '0 4px 24px rgba(30,58,95,0.06)',
                                 position: 'relative', overflow: 'hidden',
                             }}>
-                                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: group.color === '#d4a847' ? 'linear-gradient(135deg, #d4a847, #b8922e)' : 'linear-gradient(135deg, #2563eb, #1e3a5f)' }} />
+                                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: group.color === '#E6B325' ? 'linear-gradient(135deg, #E6B325, #C99A1E)' : 'linear-gradient(135deg, #2563eb, #1e3a5f)' }} />
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.25rem' }}>
-                                    <div style={{ width: 56, height: 56, borderRadius: '50%', background: group.color === '#d4a847' ? 'linear-gradient(135deg, #d4a847, #b8922e)' : 'linear-gradient(135deg, #2563eb, #1e3a5f)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                                    <div style={{ width: 56, height: 56, borderRadius: '50%', background: group.color === '#E6B325' ? 'linear-gradient(135deg, #E6B325, #C99A1E)' : 'linear-gradient(135deg, #2563eb, #1e3a5f)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                                         {group.icon}
                                     </div>
                                     <div>
-                                        <h4 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif', lineHeight: 1.2 }}>{group.name}</h4>
+                                        <h4 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif', lineHeight: 1.2 }}>{group.name}</h4>
                                         <span style={{ color: group.color, fontWeight: 700, fontSize: '0.85rem' }}>{group.ages} · {group.type}</span>
                                     </div>
                                 </div>
@@ -163,11 +163,11 @@ export const CurriculumPage = () => {
                             boxShadow: '0 4px 24px rgba(30,58,95,0.06)', marginBottom: '2rem',
                         }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
-                                <div style={{ width: 40, height: 40, borderRadius: '50%', background: group.color === '#d4a847' ? 'linear-gradient(135deg, #d4a847, #b8922e)' : 'linear-gradient(135deg, #2563eb, #1e3a5f)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: '1rem' }}>
+                                <div style={{ width: 40, height: 40, borderRadius: '50%', background: group.color === '#E6B325' ? 'linear-gradient(135deg, #E6B325, #C99A1E)' : 'linear-gradient(135deg, #2563eb, #1e3a5f)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: '1rem' }}>
                                     {group.icon}
                                 </div>
                                 <div>
-                                    <h4 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif' }}>{group.name} — {group.type}</h4>
+                                    <h4 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>{group.name} — {group.type}</h4>
                                     <span style={{ color: '#9ca3af', fontSize: '0.85rem' }}>{group.ages}</span>
                                 </div>
                             </div>
@@ -175,7 +175,7 @@ export const CurriculumPage = () => {
                             <div style={{ overflowX: 'auto' }}>
                                 <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
                                     <thead>
-                                        <tr style={{ background: group.color === '#d4a847' ? 'linear-gradient(135deg, rgba(212,168,71,0.1), rgba(184,146,46,0.05))' : 'linear-gradient(135deg, rgba(37,99,235,0.08), rgba(30,58,95,0.04))' }}>
+                                        <tr style={{ background: group.color === '#E6B325' ? 'linear-gradient(135deg, rgba(212,168,71,0.1), rgba(184,146,46,0.05))' : 'linear-gradient(135deg, rgba(37,99,235,0.08), rgba(30,58,95,0.04))' }}>
                                             <th style={{ padding: '0.85rem 1rem', textAlign: 'left', color: '#1e3a5f', fontWeight: 700, borderBottom: '2px solid rgba(30,58,95,0.1)', width: '15%' }}>Subject</th>
                                             <th style={{ padding: '0.85rem 1rem', textAlign: 'left', color: '#1e3a5f', fontWeight: 700, borderBottom: '2px solid rgba(30,58,95,0.1)', width: '45%' }}>Topics Covered</th>
                                             <th style={{ padding: '0.85rem 1rem', textAlign: 'left', color: '#1e3a5f', fontWeight: 700, borderBottom: '2px solid rgba(30,58,95,0.1)', width: '40%' }}>Teaching Methods</th>
@@ -198,8 +198,8 @@ export const CurriculumPage = () => {
 
                 {/* ═══════════════ SESSION STRUCTURE ═══════════════ */}
                 <div style={{ maxWidth: 1000, margin: '0 auto 5rem' }}>
-                    <motion.h3 {...fadeUp} style={{ fontSize: '1.8rem', textAlign: 'center', marginBottom: '0.75rem', color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif' }}>Session Structure</motion.h3>
-                    <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #d4a847, #b8922e)', borderRadius: 2, margin: '0 auto 1rem' }} />
+                    <motion.h3 {...fadeUp} style={{ fontSize: '1.8rem', textAlign: 'center', marginBottom: '0.75rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>Session Structure</motion.h3>
+                    <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #E6B325, #C99A1E)', borderRadius: 2, margin: '0 auto 1rem' }} />
                     <motion.p {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.05 }} style={{ textAlign: 'center', color: '#6b7280', fontSize: '0.95rem', maxWidth: 650, margin: '0 auto 2.5rem', lineHeight: 1.7 }}>
                         Each session follows a structured format with 30 minutes of volunteer preparation before beginning the session with children.
                     </motion.p>
@@ -217,8 +217,8 @@ export const CurriculumPage = () => {
                                         {s.icon}
                                     </div>
                                     <div>
-                                        <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: 1, color: '#d4a847' }}>{s.step}</span>
-                                        <h4 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif', lineHeight: 1.2 }}>{s.title}</h4>
+                                        <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: 1, color: '#E6B325' }}>{s.step}</span>
+                                        <h4 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif', lineHeight: 1.2 }}>{s.title}</h4>
                                     </div>
                                 </div>
                                 <span style={{ display: 'inline-block', background: 'rgba(37,99,235,0.08)', color: '#2563eb', padding: '0.25rem 0.75rem', borderRadius: 99, fontSize: '0.75rem', fontWeight: 700, marginBottom: '0.75rem' }}>{s.duration}</span>
@@ -230,22 +230,22 @@ export const CurriculumPage = () => {
 
                 {/* ═══════════════ TEACHING METHODOLOGY ═══════════════ */}
                 <div style={{ maxWidth: 1000, margin: '0 auto 5rem' }}>
-                    <motion.h3 {...fadeUp} style={{ fontSize: '1.8rem', textAlign: 'center', marginBottom: '0.75rem', color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif' }}>Teaching Methodology</motion.h3>
-                    <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #d4a847, #b8922e)', borderRadius: 2, margin: '0 auto 2.5rem' }} />
+                    <motion.h3 {...fadeUp} style={{ fontSize: '1.8rem', textAlign: 'center', marginBottom: '0.75rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>Teaching Methodology</motion.h3>
+                    <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #E6B325, #C99A1E)', borderRadius: 2, margin: '0 auto 2.5rem' }} />
 
                     <motion.div {...fadeUp} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
                         <div style={{ background: 'white', borderRadius: 20, padding: '2rem', border: '1px solid rgba(30,58,95,0.08)', boxShadow: '0 4px 24px rgba(30,58,95,0.06)' }}>
-                            <h4 style={{ color: '#1e3a5f', marginBottom: '1rem', borderBottom: '2px solid #d4a847', paddingBottom: '0.5rem', display: 'inline-block', fontFamily: 'Outfit, Inter, sans-serif' }}>Key Methods</h4>
+                            <h4 style={{ color: '#1e3a5f', marginBottom: '1rem', borderBottom: '2px solid #E6B325', paddingBottom: '0.5rem', display: 'inline-block', fontFamily: 'Poppins, Inter, sans-serif' }}>Key Methods</h4>
                             <ul style={{ listStyle: 'none', padding: 0, margin: 0, color: '#4b5563', lineHeight: 2 }}>
-                                <li style={{ padding: '0.25rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span style={{ color: '#d4a847' }}>✔</span> Shapes and visual aids to teach numbers and letters</li>
-                                <li style={{ padding: '0.25rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span style={{ color: '#d4a847' }}>✔</span> Chart papers and illustrations</li>
-                                <li style={{ padding: '0.25rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span style={{ color: '#d4a847' }}>✔</span> Real-life examples for better understanding</li>
-                                <li style={{ padding: '0.25rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span style={{ color: '#d4a847' }}>✔</span> Encouraging participation and hands-on learning</li>
+                                <li style={{ padding: '0.25rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span style={{ color: '#E6B325' }}>✔</span> Shapes and visual aids to teach numbers and letters</li>
+                                <li style={{ padding: '0.25rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span style={{ color: '#E6B325' }}>✔</span> Chart papers and illustrations</li>
+                                <li style={{ padding: '0.25rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span style={{ color: '#E6B325' }}>✔</span> Real-life examples for better understanding</li>
+                                <li style={{ padding: '0.25rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span style={{ color: '#E6B325' }}>✔</span> Encouraging participation and hands-on learning</li>
                             </ul>
                         </div>
 
                         <div style={{ background: 'white', borderRadius: 20, padding: '2rem', border: '1px solid rgba(30,58,95,0.08)', boxShadow: '0 4px 24px rgba(30,58,95,0.06)' }}>
-                            <h4 style={{ color: '#1e3a5f', marginBottom: '1rem', borderBottom: '2px solid #2563eb', paddingBottom: '0.5rem', display: 'inline-block', fontFamily: 'Outfit, Inter, sans-serif' }}>Activity-Based Learning</h4>
+                            <h4 style={{ color: '#1e3a5f', marginBottom: '1rem', borderBottom: '2px solid #2563eb', paddingBottom: '0.5rem', display: 'inline-block', fontFamily: 'Poppins, Inter, sans-serif' }}>Activity-Based Learning</h4>
                             <div style={{ marginBottom: '1rem' }}>
                                 <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: 1, color: '#9ca3af' }}>Creative Activities</span>
                                 <p style={{ color: '#4b5563', fontSize: '0.9rem', lineHeight: 1.6, marginTop: '0.25rem' }}>Drawing (House, School, Flag, etc.), Coloring and Craft</p>
@@ -264,8 +264,8 @@ export const CurriculumPage = () => {
 
                 {/* ═══════════════ VALUE EDUCATION ═══════════════ */}
                 <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-                    <motion.h3 {...fadeUp} style={{ fontSize: '1.8rem', textAlign: 'center', marginBottom: '0.75rem', color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif' }}>Value Education & Life Skills</motion.h3>
-                    <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #d4a847, #b8922e)', borderRadius: 2, margin: '0 auto 1rem' }} />
+                    <motion.h3 {...fadeUp} style={{ fontSize: '1.8rem', textAlign: 'center', marginBottom: '0.75rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>Value Education & Life Skills</motion.h3>
+                    <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #E6B325, #C99A1E)', borderRadius: 2, margin: '0 auto 1rem' }} />
                     <motion.p {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.05 }} style={{ textAlign: 'center', color: '#6b7280', fontSize: '0.95rem', maxWidth: 600, margin: '0 auto 2.5rem', lineHeight: 1.7 }}>
                         Students are guided to develop essential life values that support their overall growth and positive behavior.
                     </motion.p>
@@ -277,10 +277,10 @@ export const CurriculumPage = () => {
                                 border: '1px solid rgba(37,99,235,0.08)',
                             }}>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
-                                    <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg, #d4a847, #b8922e)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                                    <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg, #E6B325, #C99A1E)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                                         {v.icon}
                                     </div>
-                                    <h4 style={{ fontSize: '1rem', fontWeight: 700, color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif' }}>{v.title}</h4>
+                                    <h4 style={{ fontSize: '1rem', fontWeight: 700, color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>{v.title}</h4>
                                 </div>
                                 <p style={{ color: '#6b7280', fontSize: '0.85rem', lineHeight: 1.6 }}>{v.desc}</p>
                             </motion.div>

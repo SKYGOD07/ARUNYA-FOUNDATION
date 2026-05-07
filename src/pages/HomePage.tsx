@@ -11,6 +11,8 @@ import { motion } from 'framer-motion';
 import { PageTransition } from '../components/ui/PageTransition';
 import { ModalOverlay } from '../components/ui/ModalOverlay';
 import BounceCards from '../components/BounceCards';
+import { ImpactStats } from '../components/ImpactStats';
+import { Testimonials } from '../components/Testimonials';
 
 /* ── Images ────────────────────────────────────── */
 const HERO_IMG = 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1600&q=80';
@@ -134,6 +136,11 @@ export const HomePage = () => {
                     src={HERO_IMG}
                     alt="Children learning"
                     className="hero-bg-image"
+                    loading="eager"
+                    fetchPriority="high"
+                    decoding="async"
+                    width={1600}
+                    height={900}
                     style={{ transform: `scale(${1 + scrollY * 0.0003})` }}
                 />
                 <div className="hero-overlay" />
@@ -190,10 +197,10 @@ export const HomePage = () => {
 
             {/* ═══════════════════ BOUNCE CARDS 3D ═══════════════════ */}
             <section id="next-section" style={{ background: '#EEF4FB', padding: '5rem 2rem', textAlign: 'center', overflow: 'hidden' }}>
-                <motion.h2 {...fadeUp} style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', fontWeight: 800, color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif', marginBottom: '0.5rem' }}>
+                <motion.h2 {...fadeUp} style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', fontWeight: 800, color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif', marginBottom: '0.5rem' }}>
                     Life Inside Our Classrooms
                 </motion.h2>
-                <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #d4a847, #b8922e)', borderRadius: 2, margin: '0.75rem auto 3rem' }} />
+                <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #E6B325, #C99A1E)', borderRadius: 2, margin: '0.75rem auto 3rem' }} />
                 <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.15 }} style={{ display: 'flex', justifyContent: 'center' }}>
                     <BounceCards
                         images={[
@@ -218,25 +225,8 @@ export const HomePage = () => {
                 </motion.div>
             </section>
 
-            {/* ═══════════════════ IMPACT NUMBERS ═══════════════════ */}
-            {/* 
-            <div ref={statsRef} className="stats-row" style={{ background: 'var(--color-offwhite)' }}>
-                {[
-                    { icon: '👨‍🎓', value: 1250, suffix: '+', label: 'Students Taught' },
-                    { icon: '📖', value: 520, suffix: '+', label: 'Classes Conducted' },
-                    { icon: '🤝', value: 300, suffix: '+', label: 'Active Volunteers' },
-                    { icon: '🏘️', value: 12, suffix: '+', label: 'Villages Reached' },
-                ].map((s, i) => (
-                    <motion.div key={i} className="stat-block" {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.1 }}>
-                        <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>{s.icon}</div>
-                        <div className="number">
-                            <CountUp from={0} to={s.value} separator="," direction="up" duration={2} startWhen={statsVisible} />{s.suffix}
-                        </div>
-                        <div className="label">{s.label}</div>
-                    </motion.div>
-                ))}
-            </div>
-            */}
+            {/* ═══════════════════ IMPACT STATISTICS ═══════════════════ */}
+            <ImpactStats />
 
             {/* ═══════════════════ ABOUT / VISION / MISSION ═══════════════════ */}
             <section className="section-block">
@@ -259,7 +249,7 @@ export const HomePage = () => {
                         { icon: <ClipboardList size={24} />, title: 'Our Goal', text: 'To promote educational equity by providing accessible, high-quality education, foundational learning, and life-direction coaching to children from underserved and minority communities. To empower youth educators by establishing a collaborative platform for pedagogical skills, practical teaching experience, and professional leadership. To facilitate social upliftment by equipping marginalized communities with knowledge, mentorship, and resources for self-reliance.', img: IMAGES.objective },
                     ].map((c, i) => (
                         <motion.div key={i} className="premium-card" {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.12 }}>
-                            <img src={c.img} alt={c.title} className="premium-card-img" />
+                            <img src={c.img} alt={c.title} className="premium-card-img" loading="lazy" decoding="async" width={400} height={240} />
                             <div className="premium-card-body">
                                 <h3>{c.icon} {c.title}</h3>
                                 <p>{c.text}</p>
@@ -293,7 +283,7 @@ export const HomePage = () => {
                             hindi: 'सह-विकास',
                             title: 'Mutual Empowerment',
                             icon: <Handshake size={24} />,
-                            color: '#d4a847',
+                            color: '#E6B325',
                             concept: 'True upliftment happens when both the teacher and the student grow.',
                             action: 'We foster an environment where our youth volunteers develop real-world leadership and professional skills while delivering life-changing education.',
                         },
@@ -309,7 +299,7 @@ export const HomePage = () => {
                             hindi: 'निष्ठा',
                             title: 'Unwavering Integrity',
                             icon: <ShieldCheck size={24} />,
-                            color: '#d4a847',
+                            color: '#E6B325',
                             concept: 'Trust is the currency of a successful foundation. We operate with complete transparency and discipline.',
                             action: 'Whether handling resources, executing programs, or fulfilling our legal obligations as a registered organization, we hold ourselves to the highest ethical standards.',
                         },
@@ -337,13 +327,13 @@ export const HomePage = () => {
                                 overflow: 'hidden',
                             }}
                         >
-                            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: value.color === '#d4a847' ? 'linear-gradient(135deg, #d4a847, #b8922e)' : 'linear-gradient(135deg, #2563eb, #1e3a5f)', borderRadius: '24px 24px 0 0' }} />
+                            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: value.color === '#E6B325' ? 'linear-gradient(135deg, #E6B325, #C99A1E)' : 'linear-gradient(135deg, #2563eb, #1e3a5f)', borderRadius: '24px 24px 0 0' }} />
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
-                                <div style={{ width: 48, height: 48, borderRadius: '50%', background: value.color === '#d4a847' ? 'linear-gradient(135deg, #d4a847, #b8922e)' : 'linear-gradient(135deg, #2563eb, #1e3a5f)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.3rem', flexShrink: 0 }}>
+                                <div style={{ width: 48, height: 48, borderRadius: '50%', background: value.color === '#E6B325' ? 'linear-gradient(135deg, #E6B325, #C99A1E)' : 'linear-gradient(135deg, #2563eb, #1e3a5f)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.3rem', flexShrink: 0 }}>
                                     {value.icon}
                                 </div>
                                 <div>
-                                    <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif', lineHeight: 1.2 }}>{value.title}</h3>
+                                    <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif', lineHeight: 1.2 }}>{value.title}</h3>
                                     <span style={{ fontSize: '0.85rem', color: value.color, fontWeight: 700 }}>({value.hindi})</span>
                                 </div>
                             </div>
@@ -405,7 +395,7 @@ export const HomePage = () => {
 
                 <motion.div {...fadeUp} style={{ display: 'grid', gap: '2rem', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', maxWidth: 1000, margin: '3rem auto 0' }}>
                     <div className="premium-card" style={{ padding: '2rem' }}>
-                        <h3 style={{ color: '#1e3a5f', marginBottom: '1rem', borderBottom: '2px solid #d4a847', paddingBottom: '0.5rem', display: 'inline-block' }}>Common 2-Hour Session Flow</h3>
+                        <h3 style={{ color: '#1e3a5f', marginBottom: '1rem', borderBottom: '2px solid #E6B325', paddingBottom: '0.5rem', display: 'inline-block' }}>Common 2-Hour Session Flow</h3>
                         <ul style={{ listStyle: 'none', padding: 0, margin: 0, color: '#4b5563', lineHeight: 1.8 }}>
                             <li style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(0,0,0,0.05)', padding: '0.75rem 0' }}><strong>First 10 min</strong> <span>Prayer / song / warm-up</span></li>
                             <li style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(0,0,0,0.05)', padding: '0.75rem 0' }}><strong>Next 80 min</strong> <span>Teaching + activities</span></li>
@@ -413,12 +403,12 @@ export const HomePage = () => {
                         </ul>
                     </div>
                     <div className="premium-card" style={{ padding: '2rem' }}>
-                        <h3 style={{ color: '#1e3a5f', marginBottom: '1rem', borderBottom: '2px solid #d4a847', paddingBottom: '0.5rem', display: 'inline-block' }}>Teaching Guidelines</h3>
+                        <h3 style={{ color: '#1e3a5f', marginBottom: '1rem', borderBottom: '2px solid #E6B325', paddingBottom: '0.5rem', display: 'inline-block' }}>Teaching Guidelines</h3>
                         <ul style={{ listStyle: 'none', padding: 0, margin: 0, color: '#4b5563', lineHeight: 2 }}>
-                            <li style={{ padding: '0.25rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span style={{ color: '#d4a847' }}>✔</span> No exams or tests</li>
-                            <li style={{ padding: '0.25rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span style={{ color: '#d4a847' }}>✔</span> Flexible attendance</li>
-                            <li style={{ padding: '0.25rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span style={{ color: '#d4a847' }}>✔</span> Encourage participation</li>
-                            <li style={{ padding: '0.25rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span style={{ color: '#d4a847' }}>✔</span> Use local language + Hindi + English</li>
+                            <li style={{ padding: '0.25rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span style={{ color: '#E6B325' }}>✔</span> No exams or tests</li>
+                            <li style={{ padding: '0.25rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span style={{ color: '#E6B325' }}>✔</span> Flexible attendance</li>
+                            <li style={{ padding: '0.25rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span style={{ color: '#E6B325' }}>✔</span> Encourage participation</li>
+                            <li style={{ padding: '0.25rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span style={{ color: '#E6B325' }}>✔</span> Use local language + Hindi + English</li>
                         </ul>
                     </div>
                 </motion.div>
@@ -429,6 +419,10 @@ export const HomePage = () => {
                 src={IMAGES.fullbleed}
                 alt="Students learning together"
                 className="full-bleed-image"
+                loading="lazy"
+                decoding="async"
+                width={1600}
+                height={600}
                 {...fadeUp}
             />
 
@@ -446,7 +440,7 @@ export const HomePage = () => {
                 <div style={{ display: 'grid', gap: '2rem', maxWidth: 1200, margin: '0 auto', gridTemplateColumns: 'repeat(auto-fill, minmax(280px,1fr))' }}>
                     {programs.map((prog, idx) => (
                         <motion.div key={idx} className="premium-card" {...fadeUp} transition={{ ...fadeUp.transition, delay: idx * 0.1 }}>
-                            <img src={prog.img} alt={prog.title} className="premium-card-img" />
+                            <img src={prog.img} alt={prog.title} className="premium-card-img" loading="lazy" decoding="async" width={400} height={240} />
                             <div className="premium-card-body">
                                 <h3>{prog.icon} {prog.title}</h3>
                                 <p>{prog.desc}</p>
@@ -501,6 +495,9 @@ export const HomePage = () => {
                 </motion.button>
             </section>
 
+            {/* ═══════════════════ TESTIMONIALS ═══════════════════ */}
+            <Testimonials />
+
             {/* ═══════════════════ STORIES / BLOG ═══════════════════ */}
             <section className="section-block">
                 <div className="section-header">
@@ -514,7 +511,7 @@ export const HomePage = () => {
                 <div style={{ display: 'grid', gap: '2rem', maxWidth: 1200, margin: '0 auto', gridTemplateColumns: 'repeat(auto-fit, minmax(320px,1fr))' }}>
                     {blogPosts.map((post, idx) => (
                         <motion.div key={idx} className="premium-card" {...fadeUp} transition={{ ...fadeUp.transition, delay: idx * 0.1 }}>
-                            <img src={post.img} alt={post.title} className="premium-card-img" />
+                            <img src={post.img} alt={post.title} className="premium-card-img" loading="lazy" decoding="async" width={400} height={240} />
                             <div className="premium-card-body">
                                 <span style={{ color: 'var(--color-royal-blue)', fontSize: '0.8rem', fontWeight: 600 }}>{post.date}</span>
                                 <h3>{post.title}</h3>
@@ -547,8 +544,8 @@ export const HomePage = () => {
                                 >×</button>
                             </div>
                             <div style={{ padding: '2rem', overflowY: 'auto', flex: 1 }}>
-                                <span style={{ color: '#d4a847', fontWeight: 600, fontSize: '0.85rem', display: 'block', marginBottom: '0.5rem' }}>{blogPosts[expandedBlog].date}</span>
-                                <h3 style={{ fontSize: '1.6rem', color: '#1e3a5f', marginBottom: '1.25rem', fontFamily: 'Outfit, Inter, sans-serif' }}>{blogPosts[expandedBlog].title}</h3>
+                                <span style={{ color: '#E6B325', fontWeight: 600, fontSize: '0.85rem', display: 'block', marginBottom: '0.5rem' }}>{blogPosts[expandedBlog].date}</span>
+                                <h3 style={{ fontSize: '1.6rem', color: '#1e3a5f', marginBottom: '1.25rem', fontFamily: 'Poppins, Inter, sans-serif' }}>{blogPosts[expandedBlog].title}</h3>
                                 <p style={{ color: '#4b5563', lineHeight: 1.8, fontSize: '1rem', whiteSpace: 'pre-line' }}>{blogPosts[expandedBlog].readMore}</p>
                             </div>
                         </>
@@ -569,10 +566,10 @@ export const HomePage = () => {
                 <div style={{ position: 'absolute', bottom: -60, left: -60, width: 200, height: 200, borderRadius: '50%', background: 'rgba(255,255,255,0.05)', pointerEvents: 'none' }} />
                 <div style={{ position: 'relative', zIndex: 1, maxWidth: 700, margin: '0 auto' }}>
                     <motion.div {...fadeUp} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(212,168,71,0.2)', border: '1px solid rgba(212,168,71,0.35)', borderRadius: 9999, padding: '0.4rem 1.1rem', marginBottom: '1.5rem' }}>
-                        <span style={{ color: '#d4a847', fontWeight: 700, fontSize: '0.8rem', letterSpacing: 1, textTransform: 'uppercase' }}>🙌 Join Our Team</span>
+                        <span style={{ color: '#E6B325', fontWeight: 700, fontSize: '0.8rem', letterSpacing: 1, textTransform: 'uppercase' }}>🙌 Join Our Team</span>
                     </motion.div>
-                    <motion.h2 {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.05 }} style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 900, color: 'white', fontFamily: 'Outfit, Inter, sans-serif', marginBottom: '1.25rem', lineHeight: 1.1 }}>
-                        Explore Our <span style={{ color: '#d4a847' }}>Curriculum</span>
+                    <motion.h2 {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.05 }} style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 900, color: 'white', fontFamily: 'Poppins, Inter, sans-serif', marginBottom: '1.25rem', lineHeight: 1.1 }}>
+                        Explore Our <span style={{ color: '#E6B325' }}>Curriculum</span>
                     </motion.h2>
                     <motion.p {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }} style={{ fontSize: 'clamp(1rem, 2.5vw, 1.15rem)', color: 'rgba(255,255,255,0.8)', lineHeight: 1.75, marginBottom: '2.5rem' }}>
                         Discover our structured teaching framework — covering literacy, math, life skills, and value education across three age groups designed for holistic child development.
@@ -582,7 +579,7 @@ export const HomePage = () => {
                             onClick={() => navigate('/curriculum')}
                             style={{
                                 padding: 'clamp(0.875rem, 2vw, 1rem) clamp(1.75rem, 4vw, 2.5rem)',
-                                borderRadius: 9999, background: '#d4a847', color: 'white',
+                                borderRadius: 9999, background: '#E6B325', color: 'white',
                                 fontWeight: 800, fontSize: 'clamp(0.95rem, 2.5vw, 1.05rem)',
                                 border: 'none', cursor: 'pointer', fontFamily: 'inherit',
                                 boxShadow: '0 6px 24px rgba(212,168,71,0.4)', transition: 'all 0.2s',
