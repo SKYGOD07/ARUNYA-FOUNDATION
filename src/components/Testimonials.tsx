@@ -138,15 +138,20 @@ export const Testimonials = () => {
         setActiveSlide(0);
     }, [activeFilter]);
 
-    /* Scroll carousel card into view on mobile */
+    /* Scroll carousel card into view within the container only (never scroll the page) */
     useEffect(() => {
         if (carouselRef.current) {
-            const cards = carouselRef.current.children;
-            if (cards[activeSlide]) {
-                (cards[activeSlide] as HTMLElement).scrollIntoView({
+            const container = carouselRef.current;
+            const card = container.children[activeSlide] as HTMLElement | undefined;
+            if (card) {
+                // Calculate the scroll position to center the card within the carousel track
+                const cardLeft = card.offsetLeft;
+                const cardWidth = card.offsetWidth;
+                const containerWidth = container.offsetWidth;
+                const targetScroll = cardLeft - (containerWidth / 2) + (cardWidth / 2);
+                container.scrollTo({
+                    left: targetScroll,
                     behavior: 'smooth',
-                    block: 'nearest',
-                    inline: 'center',
                 });
             }
         }
