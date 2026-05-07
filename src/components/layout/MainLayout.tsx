@@ -1,16 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import { JoinCommunity, Footer } from './Footer';
 import { FloatingShapes } from '../ui/FloatingShapes';
+import { Chatbot } from '../Chatbot';
 
 /* ── Nav link data ─────────────────────────────────────────── */
 const NAV_LINKS = [
+    { label: 'Home', path: '/' },
     { label: 'About', path: '/about' },
     { label: 'Programs', path: '/causes' },
+    { label: 'Stories', path: '/blog' },
     { label: 'Gallery', path: '/gallery' },
-    { label: 'Blog', path: '/blog' },
-    { label: 'Curriculum', path: '/curriculum' },
     { label: 'Contact', path: '/contact' },
 ];
 
@@ -18,27 +19,28 @@ const NAV_LINKS = [
 
 export const MainLayout = () => {
     const [scrolled, setScrolled] = useState(false);
-    const [isNarrow, setIsNarrow] = useState(() => window.matchMedia('(max-width: 1024px)').matches);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
     const { scrollY } = useScroll();
+    const menuRef = useRef<HTMLDivElement>(null);
 
     const isHome = location.pathname === '/';
-    const compact = scrolled || isNarrow;
-
-    /* Detect narrow viewport */
-    useEffect(() => {
-        const mql = window.matchMedia('(max-width: 1024px)');
-        const handler = (e: MediaQueryListEvent) => setIsNarrow(e.matches);
-        mql.addEventListener('change', handler);
-        return () => mql.removeEventListener('change', handler);
-    }, []);
 
     /* Scroll threshold */
     useMotionValueEvent(scrollY, 'change', (latest) => {
-        setScrolled(latest > 60);
+        setScrolled(latest > 40);
     });
+
+    /* Lock body scroll when mobile menu is open */
+    useEffect(() => {
+        if (mobileMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => { document.body.style.overflow = ''; };
+    }, [mobileMenuOpen]);
 
     useEffect(() => {
         /* Global scroll-animate observer */
@@ -65,11 +67,16 @@ export const MainLayout = () => {
         };
     }, [location.pathname]);
 
-    // Scroll to top on route change
+    // Scroll to top on route change & close mobile menu
     useEffect(() => {
         window.scrollTo(0, 0);
         setMobileMenuOpen(false);
     }, [location.pathname]);
+
+    const handleNavigate = useCallback((path: string) => {
+        navigate(path);
+        setMobileMenuOpen(false);
+    }, [navigate]);
 
     return (
         <div className="site-root">
@@ -77,163 +84,128 @@ export const MainLayout = () => {
             <FloatingShapes />
 
             {/* ═══════════════════ NAVBAR ═══════════════════ */}
-            <motion.header
-                className="main-navbar"
-                animate={compact ? 'compact' : 'full'}
-                initial="full"
-                variants={{
-                    full: { top: 0, padding: '0px' },
-                    compact: { top: 16, padding: '0px 24px' },
-                }}
-                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            >
-                <motion.div
-                    className="navbar-inner"
-                    animate={compact ? 'compact' : 'full'}
-                    variants={{
-                        full: {
-                            maxWidth: '100vw',
-                            borderRadius: '0px',
-                            backgroundColor: isHome ? 'rgba(0,0,0,0)' : 'rgba(18,35,58,0.97)',
-                            backdropFilter: isHome ? 'blur(0px)' : 'blur(12px)',
-                            boxShadow: isHome ? 'none' : '0 2px 24px rgba(0,0,0,0.2)',
-                            padding: '1.25rem 3rem',
-                        },
-                        compact: {
-                            maxWidth: '1100px',
-                            borderRadius: '9999px',
-                            backgroundColor: 'rgba(15,30,50,0.82)',
-                            backdropFilter: 'blur(24px)',
-                            boxShadow: '0 8px 32px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.1)',
-                            padding: '0.6rem 2rem',
-                            border: '1px solid rgba(255,255,255,0.12)',
-                        }
-                    }}
-                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                >
+            <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''} ${!isHome && !scrolled ? 'navbar--solid' : ''}`}>
+                <div className="navbar__container">
+
                     {/* ── Logo ── */}
-                    <div className="nav-brand" onClick={() => navigate('/')}>
+                    <div className="navbar__brand" onClick={() => handleNavigate('/')}>
                         <img
                             src="/logo.png"
                             alt="Arunya Foundation"
-                            className="nav-logo-img"
-                            style={compact ? { width: 70, height: 70 } : {}}
+                            className="navbar__logo"
                             onError={(e) => { e.currentTarget.style.display = 'none'; }}
                         />
-                        <motion.span
-                            className="nav-brand-text"
-                            style={{
-                                marginLeft: '0.2rem',
-                                color: compact ? '#ffffff' : '#ffffff',
-                                textTransform: 'uppercase',
-                                fontSize: compact ? '1.1rem' : undefined,
-                            }}
-                        >
-                            ARUNYA
-                        </motion.span>
+                        <span className="navbar__brand-name">ARUNYA</span>
                     </div>
 
-                    {/* ── Center Nav Links (always visible) ── */}
-                    <motion.nav
-                        className="nav-links"
-                        initial={{ opacity: 0, y: -8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.2 }}
-                    >
+                    {/* ── Center Nav Links (desktop) ── */}
+                    <nav className="navbar__links">
                         {NAV_LINKS.map((link) => (
                             <button
                                 key={link.path}
-                                className={`nav-link-btn ${location.pathname === link.path ? 'active' : ''}`}
-                                onClick={() => navigate(link.path)}
-                                style={{
-                                    color: compact ? '#ffffff' : '#ffffff',
-                                    borderColor: compact ? 'rgba(30,58,95,0.15)' : undefined,
-                                    textShadow: compact ? 'none' : undefined,
-                                    padding: compact ? '0.45rem 1rem' : undefined,
-                                    fontSize: compact ? '0.85rem' : undefined,
-                                }}
+                                className={`navbar__link ${location.pathname === link.path ? 'navbar__link--active' : ''}`}
+                                onClick={() => handleNavigate(link.path)}
                             >
                                 {link.label}
                             </button>
                         ))}
-                    </motion.nav>
+                    </nav>
 
-                    {/* ── CTA Button ── */}
-                    <motion.button
-                        className="nav-cta-btn"
-                        onClick={() => navigate('/login')}
-                        style={{ padding: '0.75rem 1.75rem', fontSize: '0.9rem' }}
-                    >
-                        <span>Sign In</span>
-                        <span className="nav-cta-arrow">→</span>
-                    </motion.button>
+                    {/* ── Right Section ── */}
+                    <div className="navbar__actions">
+                        {/* Donate CTA — always visible */}
+                        <button
+                            className="navbar__donate-btn"
+                            onClick={() => handleNavigate('/login')}
+                        >
+                            Donate <span className="navbar__donate-heart">❤️</span>
+                        </button>
 
-                    {/* ── Hamburger (mobile only) ── */}
-                    <button
-                        className="mobile-hamburger"
-                        onClick={() => setMobileMenuOpen(v => !v)}
-                        aria-label="Open menu"
-                        style={{
-                            display: 'none', /* shown via CSS on mobile */
-                            background: 'rgba(30,58,95,0.08)',
-                            border: '1px solid rgba(30,58,95,0.12)',
-                            borderRadius: 999,
-                            width: 48, height: 48,
-                            alignItems: 'center', justifyContent: 'center',
-                            cursor: 'pointer', flexShrink: 0,
-                            transition: 'background 0.2s',
-                        }}
-                    >
-                        {mobileMenuOpen ? (
-                            <span style={{ fontSize: '1.5rem', color: '#1e3a5f' }}>✕</span>
-                        ) : (
-                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="7" cy="7" r="2.5" fill="#d4a847" />
-                                <circle cx="17" cy="7" r="2.5" fill="#d4a847" />
-                                <circle cx="7" cy="17" r="2.5" fill="#d4a847" />
-                                <circle cx="17" cy="17" r="2.5" fill="#d4a847" />
-                            </svg>
-                        )}
-                    </button>
-                </motion.div>
-            </motion.header>
+                        {/* Hamburger — mobile only */}
+                        <button
+                            className="navbar__hamburger"
+                            onClick={() => setMobileMenuOpen(v => !v)}
+                            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+                        >
+                            <span className={`navbar__hamburger-line ${mobileMenuOpen ? 'navbar__hamburger-line--open' : ''}`} />
+                        </button>
+                    </div>
+                </div>
+            </header>
 
             {/* ═══════════════════ MOBILE MENU ═══════════════════ */}
             <AnimatePresence>
                 {mobileMenuOpen && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        style={{
-                            position: 'fixed', inset: 0, zIndex: 199,
-                            background: 'rgba(255,255,255,0.95)',
-                            backdropFilter: 'blur(20px)',
-                            display: 'flex', flexDirection: 'column',
-                            alignItems: 'center', justifyContent: 'center', gap: '1.5rem',
-                        }}
-                    >
-                        {NAV_LINKS.map((link) => (
-                            <motion.button
-                                key={link.path}
-                                onClick={() => { navigate(link.path); setMobileMenuOpen(false); }}
-                                style={{
-                                    background: 'none', border: 'none',
-                                    fontSize: '1.5rem', fontWeight: 700,
-                                    color: location.pathname === link.path ? '#2563eb' : '#1e3a5f',
-                                    cursor: 'pointer', fontFamily: 'Outfit, Inter, sans-serif',
-                                }}
-                                whileHover={{ scale: 1.05 }}
+                    <>
+                        {/* Backdrop overlay — click to close */}
+                        <motion.div
+                            className="mobile-menu__backdrop"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                            onClick={() => setMobileMenuOpen(false)}
+                        />
+
+                        {/* Slide-in drawer */}
+                        <motion.div
+                            ref={menuRef}
+                            className="mobile-menu__drawer"
+                            initial={{ x: '100%' }}
+                            animate={{ x: 0 }}
+                            exit={{ x: '100%' }}
+                            transition={{ type: 'spring', damping: 28, stiffness: 300 }}
+                        >
+                            {/* Drawer header */}
+                            <div className="mobile-menu__header">
+                                <span className="mobile-menu__title">Menu</span>
+                                <button
+                                    className="mobile-menu__close"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    aria-label="Close menu"
+                                >
+                                    ✕
+                                </button>
+                            </div>
+
+                            {/* Nav links */}
+                            <nav className="mobile-menu__nav">
+                                {NAV_LINKS.map((link, idx) => (
+                                    <motion.button
+                                        key={link.path}
+                                        className={`mobile-menu__link ${location.pathname === link.path ? 'mobile-menu__link--active' : ''}`}
+                                        onClick={() => handleNavigate(link.path)}
+                                        initial={{ opacity: 0, x: 30 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 0.05 + idx * 0.05, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                                    >
+                                        {link.label}
+                                    </motion.button>
+                                ))}
+                            </nav>
+
+                            {/* Donate CTA in drawer */}
+                            <motion.div
+                                className="mobile-menu__footer"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.35, duration: 0.4 }}
                             >
-                                {link.label}
-                            </motion.button>
-                        ))}
-                    </motion.div>
+                                <button
+                                    className="mobile-menu__donate"
+                                    onClick={() => handleNavigate('/login')}
+                                >
+                                    Donate ❤️
+                                </button>
+                                <p className="mobile-menu__tagline">Every contribution changes a life.</p>
+                            </motion.div>
+                        </motion.div>
+                    </>
                 )}
             </AnimatePresence>
 
             {/* ═══════════════════ MAIN CONTENT ═══════════════════ */}
-            <main className="w-full" style={{ paddingTop: location.pathname === '/' ? '0px' : '210px' }}>
+            <main className="w-full" style={{ paddingTop: isHome ? '0px' : '80px' }}>
                 <AnimatePresence mode="wait">
                     <Outlet key={location.pathname} />
                 </AnimatePresence>
@@ -242,6 +214,10 @@ export const MainLayout = () => {
             {/* ═══════════════════ FOOTER ═══════════════════ */}
             <JoinCommunity />
             <Footer />
+
+            {/* ═══════════════════ CHATBOT ═══════════════════ */}
+            <Chatbot />
         </div>
     );
 };
+

@@ -36,10 +36,10 @@ export const BlogPage = () => {
         <PageTransition className="pt-[140px] pb-16">
             <section id="blog" style={{ padding: '2rem', position: 'relative', zIndex: 10 }}>
                 <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                    <motion.h2 {...fadeUp} style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, marginBottom: '1rem', color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif' }}>
+                    <motion.h2 {...fadeUp} style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, marginBottom: '1rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>
                         Stories of Impact
                     </motion.h2>
-                    <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #d4a847, #b8922e)', borderRadius: 2, margin: '1rem auto' }} />
+                    <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #E6B325, #C99A1E)', borderRadius: 2, margin: '1rem auto' }} />
                     <motion.p {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }} style={{ color: '#6b7280', fontSize: '1.1rem', maxWidth: 600, margin: '0 auto', lineHeight: 1.7 }}>
                         Real stories from our classrooms showing how education transforms lives, one child at a time.
                     </motion.p>
@@ -76,8 +76,8 @@ export const BlogPage = () => {
                                 </span>
                             </div>
                             <div style={{ padding: '1.75rem' }}>
-                                <span style={{ color: '#d4a847', fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '0.5rem' }}>{post.date}</span>
-                                <h3 style={{ fontSize: '1.2rem', marginBottom: '0.75rem', fontWeight: 700, color: '#1e3a5f', fontFamily: 'Outfit, Inter, sans-serif' }}>{post.title}</h3>
+                                <span style={{ color: '#E6B325', fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '0.5rem' }}>{post.date}</span>
+                                <h3 style={{ fontSize: '1.2rem', marginBottom: '0.75rem', fontWeight: 700, color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>{post.title}</h3>
                                 <p style={{ color: '#6b7280', marginBottom: '1rem', lineHeight: 1.6, fontSize: '0.9rem' }}>{post.excerpt}</p>
                                 <span style={{ color: '#2563eb', fontWeight: 600, fontSize: '0.9rem' }}>Read Full Story →</span>
                             </div>
@@ -94,12 +94,12 @@ export const BlogPage = () => {
                             <img src={selectedPost.img} alt={selectedPost.title} style={{ width: '100%', height: 220, objectFit: 'cover', display: 'block' }} />
                             <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(to top, rgba(30,58,95,0.85) 0%, transparent 100%)', padding: '2.5rem 1.5rem 1.25rem', color: 'white' }}>
                                 <span style={{ display: 'inline-block', background: 'rgba(255,255,255,0.2)', backdropFilter: 'blur(6px)', padding: '0.2rem 0.7rem', borderRadius: 99, fontSize: '0.7rem', fontWeight: 700, marginBottom: '0.4rem' }}>{selectedPost.category}</span>
-                                <h2 style={{ fontSize: 'clamp(1.1rem, 3vw, 1.4rem)', fontFamily: 'Outfit, Inter, sans-serif', fontWeight: 800, margin: 0, lineHeight: 1.3 }}>{selectedPost.title}</h2>
+                                <h2 style={{ fontSize: 'clamp(1.1rem, 3vw, 1.4rem)', fontFamily: 'Poppins, Inter, sans-serif', fontWeight: 800, margin: 0, lineHeight: 1.3 }}>{selectedPost.title}</h2>
                             </div>
                             <button onClick={() => setSelectedPost(null)} style={{ position: 'absolute', top: 12, right: 12, background: 'rgba(255,255,255,0.9)', border: 'none', borderRadius: '50%', width: 36, height: 36, fontSize: '1.2rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, color: '#1e3a5f', boxShadow: '0 4px 12px rgba(0,0,0,0.15)' }}>×</button>
                         </div>
                         <div style={{ padding: '1.5rem', overflowY: 'auto', flex: 1 }}>
-                            <span style={{ color: '#d4a847', fontSize: '0.85rem', fontWeight: 700, marginBottom: '1rem', display: 'block' }}>{selectedPost.date}</span>
+                            <span style={{ color: '#E6B325', fontSize: '0.85rem', fontWeight: 700, marginBottom: '1rem', display: 'block' }}>{selectedPost.date}</span>
                             <p style={{ color: '#374151', lineHeight: 1.85, fontSize: '0.95rem', whiteSpace: 'pre-line' }}>{selectedPost.fullContent}</p>
                         </div>
                     </>

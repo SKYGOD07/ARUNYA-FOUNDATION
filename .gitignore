@@ -32,6 +32,11 @@ OUR WORK IMAGES/
 loading screen Images/
 *.enc
 
+# Environment variables
+.env
+.env.local
+.env.production
+
 .vercel
 
 .agent/

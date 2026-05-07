@@ -23,9 +23,9 @@ export const JoinCommunity = () => {
                 <div style={{ textAlign: 'center', marginBottom: 'clamp(2rem, 4vw, 3.5rem)' }}>
                     <h2 style={{
                         fontSize: 'clamp(1.75rem, 4.5vw, 3rem)', fontWeight: 900, color: 'white',
-                        fontFamily: 'Outfit, Inter, sans-serif', marginBottom: '0.75rem', lineHeight: 1.1,
+                        fontFamily: 'Poppins, Inter, sans-serif', marginBottom: '0.75rem', lineHeight: 1.1,
                     }}>
-                        Every Rupee Lights<br /><span style={{ color: '#d4a847' }}>a Child's Future</span>
+                        Every Rupee Lights<br /><span style={{ color: '#E6B325' }}>a Child's Future</span>
                     </h2>
                     <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: 'clamp(0.95rem, 2.5vw, 1.1rem)', maxWidth: 520, margin: '0 auto', lineHeight: 1.75 }}>
                         Your donation directly funds free study kits, classroom materials, and weekend classes for children who cannot afford education.
@@ -40,7 +40,7 @@ export const JoinCommunity = () => {
                         onClick={() => navigate('/login')}
                         style={{
                             padding: 'clamp(0.875rem, 2vw, 1.1rem) clamp(2rem, 5vw, 3rem)',
-                            borderRadius: 9999, background: '#d4a847', color: 'white',
+                            borderRadius: 9999, background: '#E6B325', color: 'white',
                             fontWeight: 800, fontSize: 'clamp(1rem, 2.5vw, 1.1rem)',
                             border: 'none', cursor: 'pointer', fontFamily: 'inherit',
                             boxShadow: '0 8px 28px rgba(212,168,71,0.45)', transition: 'all 0.2s',
@@ -76,13 +76,13 @@ export const Footer = () => {
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
                             <div style={{
                                 width: 44, height: 44, borderRadius: '50%',
-                                background: 'linear-gradient(135deg, #d4a847, #b8922e)',
+                                background: 'linear-gradient(135deg, #E6B325, #C99A1E)',
                                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                                 fontSize: '1.4rem', flexShrink: 0, color: 'white'
                             }}><Leaf size={24} /></div>
                             <div>
-                                <div style={{ color: 'white', fontWeight: 800, fontSize: '1.15rem', fontFamily: 'Outfit, Inter, sans-serif', lineHeight: 1 }}>ARUNYA</div>
-                                <div style={{ color: '#d4a847', fontWeight: 500, fontSize: '0.7rem', letterSpacing: 2 }}>FOUNDATION</div>
+                                <div style={{ color: 'white', fontWeight: 800, fontSize: '1.15rem', fontFamily: 'Poppins, Inter, sans-serif', lineHeight: 1 }}>ARUNYA</div>
+                                <div style={{ color: '#E6B325', fontWeight: 500, fontSize: '0.7rem', letterSpacing: 2 }}>FOUNDATION</div>
                             </div>
                         </div>
                         <p style={{ color: 'rgba(255,255,255,0.55)', lineHeight: 1.75, fontSize: '0.9rem', maxWidth: 260 }}>
@@ -106,7 +106,7 @@ export const Footer = () => {
                                         fontSize: '1.1rem', textDecoration: 'none',
                                         transition: 'all 0.2s',
                                     }}
-                                    onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(212,168,71,0.2)'; (e.currentTarget as HTMLAnchorElement).style.borderColor = '#d4a847'; }}
+                                    onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(212,168,71,0.2)'; (e.currentTarget as HTMLAnchorElement).style.borderColor = '#E6B325'; }}
                                     onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(255,255,255,0.07)'; (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(255,255,255,0.1)'; }}
                                 >{s.icon}</a>
                             ))}
@@ -115,7 +115,7 @@ export const Footer = () => {
 
                     {/* Quick Links */}
                     <div>
-                        <h4 style={{ color: '#d4a847', fontWeight: 700, fontSize: '0.8rem', letterSpacing: 2, textTransform: 'uppercase', marginBottom: '1.25rem' }}>Quick Links</h4>
+                        <h4 style={{ color: '#E6B325', fontWeight: 700, fontSize: '0.8rem', letterSpacing: 2, textTransform: 'uppercase', marginBottom: '1.25rem' }}>Quick Links</h4>
                         {[
                             { label: 'Home', path: '/' },
                             { label: 'About Us', path: '/about' },
@@ -134,7 +134,7 @@ export const Footer = () => {
                                     padding: '0.35rem 0', fontSize: '0.95rem', cursor: 'pointer',
                                     fontFamily: 'inherit', transition: 'color 0.2s', width: '100%',
                                 }}
-                                onMouseEnter={e => (e.currentTarget.style.color = '#d4a847')}
+                                onMouseEnter={e => (e.currentTarget.style.color = '#E6B325')}
                                 onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
                             >→ {l.label}</button>
                         ))}
@@ -142,7 +142,7 @@ export const Footer = () => {
 
                     {/* Our Programs */}
                     <div>
-                        <h4 style={{ color: '#d4a847', fontWeight: 700, fontSize: '0.8rem', letterSpacing: 2, textTransform: 'uppercase', marginBottom: '1.25rem' }}>Our Programs</h4>
+                        <h4 style={{ color: '#E6B325', fontWeight: 700, fontSize: '0.8rem', letterSpacing: 2, textTransform: 'uppercase', marginBottom: '1.25rem' }}>Our Programs</h4>
                         {[
                             'Weekend Basic Classes',
                             'Project DISHA (Upcoming)',
@@ -156,7 +156,7 @@ export const Footer = () => {
                                     padding: '0.35rem 0', fontSize: '0.9rem', cursor: 'pointer',
                                     fontFamily: 'inherit', transition: 'color 0.2s', width: '100%',
                                 }}
-                                onMouseEnter={e => (e.currentTarget.style.color = '#d4a847')}
+                                onMouseEnter={e => (e.currentTarget.style.color = '#E6B325')}
                                 onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
                             >• {c}</button>
                         ))}
@@ -164,7 +164,7 @@ export const Footer = () => {
 
                     {/* Contact */}
                     <div>
-                        <h4 style={{ color: '#d4a847', fontWeight: 700, fontSize: '0.8rem', letterSpacing: 2, textTransform: 'uppercase', marginBottom: '1.25rem' }}>Get in Touch</h4>
+                        <h4 style={{ color: '#E6B325', fontWeight: 700, fontSize: '0.8rem', letterSpacing: 2, textTransform: 'uppercase', marginBottom: '1.25rem' }}>Get in Touch</h4>
                         {[
                             { icon: <Mail size={18} />, text: 'arunya.trust@gmail.com' },
                             { icon: <Phone size={18} />, text: '+91 82238 34121' },
@@ -181,7 +181,7 @@ export const Footer = () => {
                             style={{
                                 marginTop: '1rem',
                                 padding: '0.7rem 1.75rem', borderRadius: 9999,
-                                background: 'linear-gradient(135deg, #d4a847, #b8922e)',
+                                background: 'linear-gradient(135deg, #E6B325, #C99A1E)',
                                 color: 'white', border: 'none', fontWeight: 700,
                                 fontSize: '0.9rem', cursor: 'pointer', fontFamily: 'inherit',
                             }}
@@ -203,7 +203,7 @@ export const Footer = () => {
                     <div style={{ display: 'flex', gap: '1.5rem' }}>
                         {['Privacy Policy', 'Terms of Service'].map(t => (
                             <a key={t} href="#" style={{ color: 'rgba(255,255,255,0.35)', textDecoration: 'none', fontSize: '0.85rem', transition: 'color 0.2s' }}
-                                onMouseEnter={e => (e.currentTarget.style.color = '#d4a847')}
+                                onMouseEnter={e => (e.currentTarget.style.color = '#E6B325')}
                                 onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.35)')}
                             >{t}</a>
                         ))}
