@@ -50,11 +50,11 @@ export const BlogPage = () => {
                         <motion.div key={idx} {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.08 * idx }}
                             onClick={() => setSelectedPost(post)}
                             style={{
-                                borderRadius: 24, overflow: 'hidden', background: 'white',
-                                border: '1px solid rgba(30,58,95,0.08)',
-                                boxShadow: '0 4px 24px rgba(30,58,95,0.06)',
+                                borderRadius: 20, overflow: 'hidden', background: 'white',
+                                border: '1px solid rgba(30,58,95,0.06)',
+                                boxShadow: '0 2px 8px rgba(30,58,95,0.04), 0 8px 24px rgba(30,58,95,0.06)',
                                 cursor: 'pointer',
-                                transition: 'transform 0.3s, box-shadow 0.3s',
+                                transition: 'transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1)',
                             }}
                             onMouseEnter={e => {
                                 (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-6px)';

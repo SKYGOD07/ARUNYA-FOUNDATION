@@ -1,0 +1,13 @@
+# Arunya Foundation — Robots.txt
+# https://arunyafoundation.org
+
+User-agent: *
+Allow: /
+Disallow: /login
+Disallow: /api/
+
+# Sitemaps
+Sitemap: https://arunyafoundation.org/sitemap.xml
+
+# Crawl-delay (optional, for polite bots)
+Crawl-delay: 1
