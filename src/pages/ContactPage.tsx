@@ -26,10 +26,10 @@ export const ContactPage = () => {
 
                 <div style={{ maxWidth: 1000, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem' }}>
                     {/* Contact Info */}
-                    <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.15 }} style={{
-                        padding: '3rem', borderRadius: 24, background: 'white',
-                        border: '1px solid rgba(30,58,95,0.08)',
-                        boxShadow: '0 4px 24px rgba(30,58,95,0.06)',
+                    <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.15 }} whileHover={{ y: -5, boxShadow: '0 8px 24px rgba(30,58,95,0.08), 0 20px 48px rgba(30,58,95,0.12)' }} style={{
+                        padding: '3rem', borderRadius: 20, background: 'white',
+                        border: '1px solid rgba(30,58,95,0.06)',
+                        boxShadow: '0 2px 8px rgba(30,58,95,0.04), 0 8px 24px rgba(30,58,95,0.06)',
                     }}>
                         <h3 style={{ fontSize: '1.6rem', marginBottom: '2rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>Contact Information</h3>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
@@ -77,10 +77,10 @@ export const ContactPage = () => {
                     </motion.div>
 
                     {/* Contact Form */}
-                    <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.2 }} style={{
-                        padding: '3rem', borderRadius: 24, background: 'white',
-                        border: '1px solid rgba(30,58,95,0.08)',
-                        boxShadow: '0 4px 24px rgba(30,58,95,0.06)',
+                    <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.2 }} whileHover={{ y: -5, boxShadow: '0 8px 24px rgba(30,58,95,0.08), 0 20px 48px rgba(30,58,95,0.12)' }} style={{
+                        padding: '3rem', borderRadius: 20, background: 'white',
+                        border: '1px solid rgba(30,58,95,0.06)',
+                        boxShadow: '0 2px 8px rgba(30,58,95,0.04), 0 8px 24px rgba(30,58,95,0.06)',
                     }}>
                         <h3 style={{ fontSize: '1.6rem', marginBottom: '2rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>Send a Message</h3>
                         <form style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>

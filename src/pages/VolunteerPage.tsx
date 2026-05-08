@@ -94,7 +94,11 @@ export const VolunteerPage = () => {
                                 padding: '1.25rem', borderRadius: 16,
                                 background: 'var(--color-offwhite)',
                                 border: '1px solid rgba(30,58,95,0.06)',
-                            }}>
+                                transition: 'transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease',
+                            }}
+                            onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-3px)'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 8px 24px rgba(30,58,95,0.08)'; }}
+                            onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)'; (e.currentTarget as HTMLDivElement).style.boxShadow = 'none'; }}
+                            >
                                 <span style={{ fontSize: '1.5rem', flexShrink: 0 }}>{item.icon}</span>
                                 <div>
                                     <h4 style={{ color: '#1e3a5f', fontWeight: 700, marginBottom: '0.25rem', fontSize: '1rem' }}>{item.title}</h4>
@@ -144,8 +148,8 @@ export const VolunteerPage = () => {
                             </div>
                         ) : (
                             <form onSubmit={handleSubmit} style={{
-                                background: 'var(--color-white)', border: '1px solid rgba(30,58,95,0.08)',
-                                borderRadius: 24, padding: '2.5rem', boxShadow: 'var(--card-shadow)',
+                                background: 'var(--color-white)', border: '1px solid rgba(30,58,95,0.06)',
+                                borderRadius: 20, padding: '2.5rem', boxShadow: '0 2px 8px rgba(30,58,95,0.04), 0 8px 24px rgba(30,58,95,0.06)',
                             }}>
                                 <h3 style={{ color: '#1e3a5f', fontSize: '1.4rem', fontWeight: 700, marginBottom: '2rem', fontFamily: 'Poppins, Inter, sans-serif' }}>
                                     Volunteer Application Form

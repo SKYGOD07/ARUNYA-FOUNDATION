@@ -5,7 +5,7 @@
    Palette: White, Blue (#1e3a5f / #2563eb), Golden (#E6B325), Silver/Grey
    Typography: Poppins (headings) + Inter (body)
    ============================================================ */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800;900&display=swap');
 
 :root {
   /* — Core Colors — */
@@ -908,31 +908,43 @@ h1, h2, h3, h4, h5, h6 {
 
 .premium-card {
   background: var(--color-white);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
+  border: 1px solid rgba(30, 58, 95, 0.06);
+  border-radius: 20px;
   overflow: hidden;
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
+  box-shadow: 0 2px 8px rgba(30, 58, 95, 0.04),
+              0 8px 24px rgba(30, 58, 95, 0.06);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
 }
 
 .premium-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(30, 58, 95, 0.08),
+              0 20px 48px rgba(30, 58, 95, 0.12);
+  border-color: rgba(230, 179, 37, 0.15);
 }
 
 .premium-card-img {
   width: 100%;
   height: 240px;
   object-fit: cover;
+  border-radius: 0;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.premium-card:hover .premium-card-img {
+  transform: scale(1.04);
 }
 
 .premium-card-body {
-  padding: 2rem;
+  padding: 1.75rem 2rem 2rem;
 }
 
 .premium-card-body h3 {
   font-family: 'Poppins', 'Inter', sans-serif;
   font-size: 1.3rem;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 0.75rem;
   color: var(--color-deep-blue);
   line-height: 1.3;
@@ -941,7 +953,7 @@ h1, h2, h3, h4, h5, h6 {
 .premium-card-body p {
   font-size: 0.93rem;
   color: #6b7280;
-  line-height: 1.7;
+  line-height: 1.75;
 }
 
 /* Full-bleed image*/
@@ -993,12 +1005,16 @@ h1, h2, h3, h4, h5, h6 {
 
 .syllabus-card {
   background: var(--color-white);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-xl);
+  border: 1px solid rgba(30, 58, 95, 0.06);
+  border-radius: 20px;
   padding: 2.5rem 2rem;
   position: relative;
   overflow: hidden;
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
+  box-shadow: 0 2px 8px rgba(30, 58, 95, 0.04),
+              0 8px 24px rgba(30, 58, 95, 0.06);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
 }
 
 .syllabus-card::before {
@@ -1016,8 +1032,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .syllabus-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(30, 58, 95, 0.08),
+              0 20px 48px rgba(30, 58, 95, 0.12);
+  border-color: rgba(230, 179, 37, 0.15);
 }
 
 .syllabus-card .age-badge {
@@ -1118,29 +1136,34 @@ h1, h2, h3, h4, h5, h6 {
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-lg);
-  padding: 2rem;
+  border-radius: 20px;
+  padding: 2.25rem 2rem;
   text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
   cursor: pointer;
 }
 
 .donation-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.2);
-  border-color: var(--accent-golden);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.2),
+              0 0 20px rgba(230, 179, 37, 0.15);
+  border-color: rgba(230, 179, 37, 0.5);
 }
 
 .donation-card .amount {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 800;
   color: var(--color-golden);
   margin-bottom: 0.5rem;
+  font-family: 'Poppins', 'Inter', sans-serif;
 }
 
 .donation-card .desc {
-  color: rgba(255,255,255,0.7);
-  font-size: 0.9rem;
+  color: rgba(255,255,255,0.75);
+  font-size: 0.92rem;
+  line-height: 1.5;
 }
 
 /* ============================================================
@@ -1625,23 +1648,27 @@ select.form-input {
 /* ── Stat Card ── */
 .impact-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(30, 58, 95, 0.06);
-  border-radius: var(--radius-lg);
+  border-radius: 20px;
   padding: clamp(1.75rem, 3vw, 2.5rem) clamp(1rem, 2vw, 1.5rem);
   text-align: center;
   overflow: hidden;
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 24px rgba(30, 58, 95, 0.05);
+  box-shadow: 0 2px 8px rgba(30, 58, 95, 0.04),
+              0 8px 24px rgba(30, 58, 95, 0.06);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
 }
 
 .impact-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 60px rgba(30, 58, 95, 0.12),
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(30, 58, 95, 0.08),
+              0 20px 48px rgba(30, 58, 95, 0.12),
               0 0 0 1px rgba(230, 179, 37, 0.1);
+  border-color: rgba(230, 179, 37, 0.15);
 }
 
 /* Top accent bar */
@@ -1951,14 +1978,16 @@ select.form-input {
   position: relative;
   background: white;
   border: 1px solid rgba(30, 58, 95, 0.06);
-  border-radius: var(--radius-lg);
+  border-radius: 20px;
   padding: 2rem 1.75rem 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 24px rgba(30, 58, 95, 0.04);
+  box-shadow: 0 2px 8px rgba(30, 58, 95, 0.04),
+              0 8px 24px rgba(30, 58, 95, 0.05);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
   overflow: hidden;
 }
 
@@ -1970,15 +1999,16 @@ select.form-input {
   right: 0;
   height: 4px;
   background: linear-gradient(135deg, var(--color-royal-blue), var(--color-deep-blue));
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border-radius: 20px 20px 0 0;
   opacity: 0;
   transition: opacity 0.35s ease;
 }
 
 .testimonial-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 60px rgba(30, 58, 95, 0.1),
-              0 0 0 1px rgba(230, 179, 37, 0.08);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(30, 58, 95, 0.08),
+              0 20px 48px rgba(30, 58, 95, 0.1);
+  border-color: rgba(230, 179, 37, 0.15);
 }
 
 .testimonial-card:hover::before {
@@ -1987,7 +2017,8 @@ select.form-input {
 
 /* Active highlight on mobile carousel */
 .testimonial-card--active {
-  box-shadow: 0 8px 32px rgba(30, 58, 95, 0.08);
+  box-shadow: 0 4px 16px rgba(30, 58, 95, 0.06),
+              0 12px 32px rgba(30, 58, 95, 0.08);
 }
 
 /* ── Quote Icon ── */
@@ -2660,7 +2691,16 @@ select.form-input {
    ============================================================ */
 @media (hover: none) and (pointer: coarse) {
   /* Disable hover-only effects on touch devices */
-  .premium-card:hover { transform: none !important; box-shadow: var(--card-shadow) !important; }
+  .premium-card:hover,
+  .syllabus-card:hover,
+  .impact-card:hover,
+  .testimonial-card:hover,
+  .blog-card:hover,
+  .donation-card:hover { 
+    transform: none !important; 
+    box-shadow: 0 2px 8px rgba(30,58,95,0.04), 0 8px 24px rgba(30,58,95,0.06) !important;
+    border-color: rgba(30,58,95,0.06) !important;
+  }
   .cause-card:hover { transform: none !important; }
 
   /* Smoother touch scrolling */
@@ -2678,6 +2718,18 @@ select.form-input {
   .gallery-card:active { opacity: 0.85; transform: scale(0.98); }
 }
 
+/* ============================================================
+   ACCESSIBILITY — Reduced Motion Preference
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 
 /* Media hover effects */
 .hover-scale {
@@ -2691,16 +2743,24 @@ select.form-input {
 }
 
 .blog-card {
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(30, 58, 95, 0.04),
+              0 8px 24px rgba(30, 58, 95, 0.06);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
+  border: 1px solid rgba(30, 58, 95, 0.06);
 }
 
 .blog-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(30, 58, 95, 0.08),
+              0 20px 48px rgba(30, 58, 95, 0.12);
+  border-color: rgba(230, 179, 37, 0.15);
 }
 
 .blog-card:hover .blog-image {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 /* ============================================================
