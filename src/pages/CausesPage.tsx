@@ -73,11 +73,11 @@ export const CausesPage = () => {
                             {...fadeUp}
                             transition={{ ...fadeUp.transition, delay: 0.05 + idx * 0.07 }}
                             style={{
-                                background: 'white', borderRadius: 24,
-                                boxShadow: '0 4px 24px rgba(30,58,95,0.07)',
+                                background: 'white', borderRadius: 20,
+                                boxShadow: '0 2px 8px rgba(30,58,95,0.04), 0 8px 24px rgba(30,58,95,0.06)',
                                 overflow: 'hidden', border: '1px solid rgba(30,58,95,0.06)',
                                 display: 'flex', flexDirection: 'column',
-                                cursor: 'pointer', transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                                cursor: 'pointer', transition: 'transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease',
                             }}
                             onMouseEnter={e => {
                                 (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-6px)';
@@ -90,7 +90,7 @@ export const CausesPage = () => {
                         >
                             {/* Image */}
                             <div style={{ position: 'relative', height: 220, overflow: 'hidden' }}>
-                                <img src={prog.img} alt={prog.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} />
+                                <img src={prog.img} alt={prog.title} loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} />
                                 <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(30,58,95,0.5) 0%, transparent 60%)' }} />
                                 <div style={{ position: 'absolute', bottom: 14, left: 16, padding: '4px 14px', borderRadius: 999, background: categoryColors[prog.category] || '#2563eb', color: 'white', fontWeight: 700, fontSize: '0.78rem' }}>{prog.category}</div>
                             </div>

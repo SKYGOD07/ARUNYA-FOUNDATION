@@ -4,6 +4,9 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-
 import { JoinCommunity, Footer } from './Footer';
 import { FloatingShapes } from '../ui/FloatingShapes';
 import { Chatbot } from '../Chatbot';
+import { DonationProgress } from '../DonationProgress';
+import { SponsorChild } from '../SponsorChild';
+import { SEOHead } from '../SEOHead';
 
 /* ── Nav link data ─────────────────────────────────────────── */
 const NAV_LINKS = [
@@ -80,15 +83,18 @@ export const MainLayout = () => {
 
     return (
         <div className="site-root">
+            {/* ═══════════════════ SEO ═══════════════════ */}
+            <SEOHead />
+
             {/* Ambient Background layer */}
             <FloatingShapes />
 
             {/* ═══════════════════ NAVBAR ═══════════════════ */}
-            <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''} ${!isHome && !scrolled ? 'navbar--solid' : ''}`}>
+            <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''} ${!isHome && !scrolled ? 'navbar--solid' : ''}`} role="banner">
                 <div className="navbar__container">
 
                     {/* ── Logo ── */}
-                    <div className="navbar__brand" onClick={() => handleNavigate('/')}>
+                    <div className="navbar__brand" onClick={() => handleNavigate('/')} role="link" aria-label="Arunya Foundation — Go to homepage" tabIndex={0} onKeyDown={e => e.key === 'Enter' && handleNavigate('/')}>
                         <img
                             src="/logo.png"
                             alt="Arunya Foundation"
@@ -99,7 +105,7 @@ export const MainLayout = () => {
                     </div>
 
                     {/* ── Center Nav Links (desktop) ── */}
-                    <nav className="navbar__links">
+                    <nav className="navbar__links" aria-label="Main navigation">
                         {NAV_LINKS.map((link) => (
                             <button
                                 key={link.path}
@@ -117,6 +123,7 @@ export const MainLayout = () => {
                         <button
                             className="navbar__donate-btn"
                             onClick={() => handleNavigate('/login')}
+                            aria-label="Donate to Arunya Foundation"
                         >
                             Donate <span className="navbar__donate-heart">❤️</span>
                         </button>
@@ -210,6 +217,10 @@ export const MainLayout = () => {
                     <Outlet key={location.pathname} />
                 </AnimatePresence>
             </main>
+
+            {/* ═══════════════════ DONATION & SPONSOR ═══════════════════ */}
+            <DonationProgress />
+            <SponsorChild />
 
             {/* ═══════════════════ FOOTER ═══════════════════ */}
             <JoinCommunity />

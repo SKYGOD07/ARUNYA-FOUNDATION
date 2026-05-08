@@ -38,6 +38,20 @@ const fadeUp = {
     transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const },
 };
 
+const slideInLeft = {
+    initial: { opacity: 0, x: -50 },
+    whileInView: { opacity: 1, x: 0 },
+    viewport: { once: true, margin: '-60px' },
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const },
+};
+
+const slideInRight = {
+    initial: { opacity: 0, x: 50 },
+    whileInView: { opacity: 1, x: 0 },
+    viewport: { once: true, margin: '-60px' },
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const },
+};
+
 const staggerContainer = {
     initial: {},
     whileInView: { transition: { staggerChildren: 0.12 } },
@@ -316,18 +330,19 @@ export const HomePage = () => {
                             key={idx}
                             {...fadeUp}
                             transition={{ ...fadeUp.transition, delay: idx * 0.08 }}
+                            whileHover={{ y: -5, boxShadow: '0 8px 24px rgba(30,58,95,0.08), 0 20px 48px rgba(30,58,95,0.12)' }}
                             style={{
                                 background: 'white',
-                                borderRadius: 24,
+                                borderRadius: 20,
                                 padding: '2rem',
-                                border: '1px solid rgba(30,58,95,0.08)',
-                                boxShadow: '0 4px 24px rgba(30,58,95,0.06)',
-                                transition: 'transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s',
+                                border: '1px solid rgba(30,58,95,0.06)',
+                                boxShadow: '0 2px 8px rgba(30,58,95,0.04), 0 8px 24px rgba(30,58,95,0.06)',
                                 position: 'relative',
                                 overflow: 'hidden',
+                                cursor: 'default',
                             }}
                         >
-                            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: value.color === '#E6B325' ? 'linear-gradient(135deg, #E6B325, #C99A1E)' : 'linear-gradient(135deg, #2563eb, #1e3a5f)', borderRadius: '24px 24px 0 0' }} />
+                            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: value.color === '#E6B325' ? 'linear-gradient(135deg, #E6B325, #C99A1E)' : 'linear-gradient(135deg, #2563eb, #1e3a5f)', borderRadius: '20px 20px 0 0' }} />
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
                                 <div style={{ width: 48, height: 48, borderRadius: '50%', background: value.color === '#E6B325' ? 'linear-gradient(135deg, #E6B325, #C99A1E)' : 'linear-gradient(135deg, #2563eb, #1e3a5f)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.3rem', flexShrink: 0 }}>
                                     {value.icon}
@@ -510,7 +525,7 @@ export const HomePage = () => {
 
                 <div style={{ display: 'grid', gap: '2rem', maxWidth: 1200, margin: '0 auto', gridTemplateColumns: 'repeat(auto-fit, minmax(320px,1fr))' }}>
                     {blogPosts.map((post, idx) => (
-                        <motion.div key={idx} className="premium-card" {...fadeUp} transition={{ ...fadeUp.transition, delay: idx * 0.1 }}>
+                        <motion.div key={idx} className="premium-card" {...(idx % 2 === 0 ? slideInLeft : slideInRight)} transition={{ ...(idx % 2 === 0 ? slideInLeft : slideInRight).transition, delay: idx * 0.12 }}>
                             <img src={post.img} alt={post.title} className="premium-card-img" loading="lazy" decoding="async" width={400} height={240} />
                             <div className="premium-card-body">
                                 <span style={{ color: 'var(--color-royal-blue)', fontSize: '0.8rem', fontWeight: 600 }}>{post.date}</span>

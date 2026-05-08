@@ -122,38 +122,38 @@ export const AboutPage = () => {
                 {/* Vision / Mission / Goal Grid */}
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', maxWidth: 1200, margin: '0 auto' }}>
                     {/* Vision Card */}
-                    <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.15 }} style={{
-                        padding: '2rem', borderRadius: 24, background: 'white',
-                        border: '1px solid rgba(30,58,95,0.08)',
-                        boxShadow: '0 4px 24px rgba(30,58,95,0.06)',
+                    <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.15 }} whileHover={{ y: -5, boxShadow: '0 8px 24px rgba(30,58,95,0.08), 0 20px 48px rgba(30,58,95,0.12)' }} style={{
+                        padding: '2rem', borderRadius: 20, background: 'white',
+                        border: '1px solid rgba(30,58,95,0.06)',
+                        boxShadow: '0 2px 8px rgba(30,58,95,0.04), 0 8px 24px rgba(30,58,95,0.06)',
                     }}>
                         <div style={{ width: 60, height: 60, borderRadius: '50%', background: 'linear-gradient(135deg, #2563eb, #1e3a5f)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', marginBottom: '1.5rem' }}>
                             <Eye size={28} />
                         </div>
                         <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>Our Vision</h3>
                         <p style={{ color: '#6b7280', lineHeight: 1.6 }}>To achieve the social and economic upliftment of underserved and minority communities by ensuring every individual has the direction, goals, and educational foundation needed to thrive.</p>
-                        <img src="/assets/work/63624.jpg.jpeg" alt="Vision" style={{ width: '100%', height: 200, objectFit: 'cover', borderRadius: 16, marginTop: '1.5rem' }} />
+                        <img src="/assets/work/63624.jpg.jpeg" alt="Arunya Foundation vision — children learning in a classroom" loading="lazy" decoding="async" width={400} height={200} style={{ width: '100%', height: 200, objectFit: 'cover', borderRadius: 16, marginTop: '1.5rem' }} />
                     </motion.div>
 
                     {/* Mission Card */}
-                    <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.2 }} style={{
-                        padding: '2rem', borderRadius: 24, background: 'white',
-                        border: '1px solid rgba(30,58,95,0.08)',
-                        boxShadow: '0 4px 24px rgba(30,58,95,0.06)',
+                    <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.2 }} whileHover={{ y: -5, boxShadow: '0 8px 24px rgba(30,58,95,0.08), 0 20px 48px rgba(30,58,95,0.12)' }} style={{
+                        padding: '2rem', borderRadius: 20, background: 'white',
+                        border: '1px solid rgba(30,58,95,0.06)',
+                        boxShadow: '0 2px 8px rgba(30,58,95,0.04), 0 8px 24px rgba(30,58,95,0.06)',
                     }}>
                         <div style={{ width: 60, height: 60, borderRadius: '50%', background: 'linear-gradient(135deg, #E6B325, #C99A1E)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', marginBottom: '1.5rem' }}>
                             <Target size={28} />
                         </div>
                         <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>Our Mission</h3>
                         <p style={{ color: '#6b7280', lineHeight: 1.6 }}>To provide transformative education and mentorship to underserved communities by creating a premier platform where young educators and youth can showcase their skills, grow professionally, and serve as catalysts for social change.</p>
-                        <img src="/assets/work/63626.jpg.jpeg" alt="Mission" style={{ width: '100%', height: 200, objectFit: 'cover', borderRadius: 16, marginTop: '1.5rem' }} />
+                        <img src="/assets/work/63626.jpg.jpeg" alt="Arunya Foundation mission — volunteer teaching underprivileged children" loading="lazy" decoding="async" width={400} height={200} style={{ width: '100%', height: 200, objectFit: 'cover', borderRadius: 16, marginTop: '1.5rem' }} />
                     </motion.div>
 
                     {/* Objective Card */}
-                    <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.25 }} style={{
-                        padding: '2rem', borderRadius: 24, background: 'white',
-                        border: '1px solid rgba(30,58,95,0.08)',
-                        boxShadow: '0 4px 24px rgba(30,58,95,0.06)',
+                    <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.25 }} whileHover={{ y: -5, boxShadow: '0 8px 24px rgba(30,58,95,0.08), 0 20px 48px rgba(30,58,95,0.12)' }} style={{
+                        padding: '2rem', borderRadius: 20, background: 'white',
+                        border: '1px solid rgba(30,58,95,0.06)',
+                        boxShadow: '0 2px 8px rgba(30,58,95,0.04), 0 8px 24px rgba(30,58,95,0.06)',
                     }}>
                         <div style={{ width: 60, height: 60, borderRadius: '50%', background: 'linear-gradient(135deg, #2563eb, #1e3a5f)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', marginBottom: '1.5rem' }}>
                             <ClipboardList size={28} />
@@ -167,7 +167,7 @@ export const AboutPage = () => {
                             <li style={{ marginBottom: '0.4rem' }}>Create structured mentorship programs for career and personal growth</li>
                             <li style={{ marginBottom: '0.4rem' }}>Organize community integration campaigns promoting "विद्या अरुणोदयः"</li>
                         </ul>
-                        <img src="/assets/work/63627.jpg.jpeg" alt="Objectives" style={{ width: '100%', height: 200, objectFit: 'cover', borderRadius: 16, marginTop: '1.5rem' }} />
+                        <img src="/assets/work/63627.jpg.jpeg" alt="Arunya Foundation objectives — educational materials and study kits" loading="lazy" decoding="async" width={400} height={200} style={{ width: '100%', height: 200, objectFit: 'cover', borderRadius: 16, marginTop: '1.5rem' }} />
                     </motion.div>
                 </div>
 
@@ -184,12 +184,13 @@ export const AboutPage = () => {
                                 key={idx}
                                 {...fadeUp}
                                 transition={{ ...fadeUp.transition, delay: idx * 0.1 }}
+                                whileHover={{ y: -5, boxShadow: '0 8px 24px rgba(30,58,95,0.08), 0 20px 48px rgba(30,58,95,0.12)' }}
                                 style={{
                                     background: 'white',
                                     borderRadius: 20,
                                     padding: '2rem',
-                                    border: '1px solid rgba(30,58,95,0.08)',
-                                    boxShadow: '0 4px 24px rgba(30,58,95,0.06)',
+                                    border: '1px solid rgba(30,58,95,0.06)',
+                                    boxShadow: '0 2px 8px rgba(30,58,95,0.04), 0 8px 24px rgba(30,58,95,0.06)',
                                 }}
                             >
                                 <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>{obj.icon}</div>
@@ -239,17 +240,18 @@ export const AboutPage = () => {
                                 key={idx}
                                 {...fadeUp}
                                 transition={{ ...fadeUp.transition, delay: idx * 0.08 }}
+                                whileHover={{ y: -5, boxShadow: '0 8px 24px rgba(30,58,95,0.08), 0 20px 48px rgba(30,58,95,0.12)' }}
                                 style={{
                                     background: 'white',
-                                    borderRadius: 24,
+                                    borderRadius: 20,
                                     padding: '2rem',
-                                    border: '1px solid rgba(30,58,95,0.08)',
-                                    boxShadow: '0 4px 24px rgba(30,58,95,0.06)',
+                                    border: '1px solid rgba(30,58,95,0.06)',
+                                    boxShadow: '0 2px 8px rgba(30,58,95,0.04), 0 8px 24px rgba(30,58,95,0.06)',
                                     position: 'relative',
                                     overflow: 'hidden',
                                 }}
                             >
-                                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: value.color === '#E6B325' ? 'linear-gradient(135deg, #E6B325, #C99A1E)' : 'linear-gradient(135deg, #2563eb, #1e3a5f)', borderRadius: '24px 24px 0 0' }} />
+                                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: value.color === '#E6B325' ? 'linear-gradient(135deg, #E6B325, #C99A1E)' : 'linear-gradient(135deg, #2563eb, #1e3a5f)', borderRadius: '20px 20px 0 0' }} />
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
                                     <div style={{ width: 48, height: 48, borderRadius: '50%', background: value.color === '#E6B325' ? 'linear-gradient(135deg, #E6B325, #C99A1E)' : 'linear-gradient(135deg, #2563eb, #1e3a5f)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.3rem', flexShrink: 0 }}>
                                         {value.icon}
