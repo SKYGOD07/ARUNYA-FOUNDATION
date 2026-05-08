@@ -4,13 +4,6 @@ import { Heart, Mail, Phone, MapPin, Clock, Leaf, ArrowUp, Send, BookOpen, Users
 import { FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
-const fadeUp = {
-    initial: { opacity: 0, y: 30 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, margin: '-40px' },
-    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const },
-};
-
 /* ═══════════════════════════════════════════════════════════════
    JOIN COMMUNITY / PRE-FOOTER CTA
    ═══════════════════════════════════════════════════════════════ */
