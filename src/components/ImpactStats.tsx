@@ -14,8 +14,8 @@ const STATS = [
                 <path d="M6 12v5c0 1.657 2.686 3 6 3s6-1.343 6-3v-5" />
             </svg>
         ),
-        color: '#2563eb',
-        bgLight: 'rgba(37, 99, 235, 0.08)',
+        color: '#123C73',
+        bgLight: 'rgba(18, 60, 115, 0.08)',
     },
     {
         value: 30,
@@ -44,8 +44,8 @@ const STATS = [
                 <path d="M12 7v3l2 1" />
             </svg>
         ),
-        color: '#2563eb',
-        bgLight: 'rgba(37, 99, 235, 0.08)',
+        color: '#123C73',
+        bgLight: 'rgba(18, 60, 115, 0.08)',
     },
     {
         value: 5,
@@ -134,7 +134,7 @@ export const ImpactStats = () => {
                                     background:
                                         stat.color === '#E6B325'
                                             ? 'linear-gradient(135deg, #E6B325, #F4C542)'
-                                            : 'linear-gradient(135deg, #2563eb, #1e3a5f)',
+                                            : 'linear-gradient(135deg, #123C73, #0B1F3A)',
                                 }}
                             />
 
@@ -174,7 +174,7 @@ export const ImpactStats = () => {
                                     borderColor:
                                         stat.color === '#E6B325'
                                             ? 'rgba(230,179,37,0.08)'
-                                            : 'rgba(37,99,235,0.06)',
+                                            : 'rgba(18,60,115,0.06)',
                                 }}
                             />
                         </motion.div>

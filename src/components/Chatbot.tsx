@@ -1,6 +1,41 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence, useDragControls } from 'framer-motion';
-import { sendMessage, resetChat, isConfigured } from '../lib/gemini';
+import { motion, AnimatePresence } from 'framer-motion';
+
+/* ── Static FAQ Data ───────────────────────────────────────── */
+const FAQ_DATA = [
+    {
+        question: 'How can I join as a volunteer?',
+        answer: 'You can join as a volunteer by contacting us through the Contact page or emailing us at connect@arunyaedu.org.',
+    },
+    {
+        question: 'How can I contact the foundation?',
+        answer: 'You can contact us through our Contact page or email us at connect@arunyaedu.org.',
+    },
+    {
+        question: 'What does Arunya Foundation do?',
+        answer: 'Arunya Foundation works toward spreading education and creating opportunities for underprivileged communities.',
+    },
+    {
+        question: 'Who can become a volunteer?',
+        answer: 'Anyone passionate about education, social impact, and helping communities can join as a volunteer.',
+    },
+    {
+        question: 'Is there any registration fee for volunteering?',
+        answer: 'No, volunteering with Arunya Foundation is completely free.',
+    },
+    {
+        question: 'What programs does the foundation run?',
+        answer: 'Arunya Foundation organizes educational and community support initiatives for underprivileged children and communities.',
+    },
+    {
+        question: 'How can I support the foundation?',
+        answer: 'You can support the foundation by volunteering, spreading awareness, and participating in community initiatives.',
+    },
+    {
+        question: 'Where is the foundation located?',
+        answer: 'Please contact us through email or the Contact page for location and collaboration details.',
+    },
+];
 
 /* ── Types ──────────────────────────────────────────────────── */
 interface ChatMessage {
@@ -10,32 +45,69 @@ interface ChatMessage {
     timestamp: Date;
 }
 
-/* ── Quick suggestion chips ─────────────────────────────────── */
-const QUICK_ACTIONS = [
-    { label: '💖 How can I donate?', message: 'How can I donate to Arunya Foundation?' },
-    { label: '🤝 Become a volunteer', message: 'I want to volunteer with Arunya Foundation' },
-    { label: '📚 Our programs', message: 'What programs does Arunya Foundation offer?' },
-    { label: '📞 Contact us', message: 'How can I contact Arunya Foundation?' },
-    { label: '👶 Sponsor a child', message: 'How can I sponsor a child through Arunya Foundation?' },
-    { label: '🎯 NGO mission', message: 'What is the mission of Arunya Foundation?' },
-];
+/* ── Static FAQ matcher ────────────────────────────────────── */
+function findAnswer(query: string): string {
+    const q = query.toLowerCase().trim();
 
-/* ── Markdown-lite renderer ─────────────────────────────────── */
-function renderMarkdown(text: string): string {
-    return text
-        // Bold
-        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        // Italic
-        .replace(/\*(.*?)\*/g, '<em>$1</em>')
-        // Bullet points
-        .replace(/^[•\-\*]\s+(.+)/gm, '<li>$1</li>')
-        // Wrap consecutive <li> in <ul>
-        .replace(/(<li>.*?<\/li>\n?)+/gs, (match) => `<ul>${match}</ul>`)
-        // Headings
-        .replace(/^###\s+(.+)/gm, '<h4>$1</h4>')
-        .replace(/^##\s+(.+)/gm, '<h3>$1</h3>')
-        // Line breaks
-        .replace(/\n/g, '<br/>');
+    // Direct keyword matching with scoring
+    let bestMatch: typeof FAQ_DATA[0] | null = null;
+    let bestScore = 0;
+
+    for (const faq of FAQ_DATA) {
+        const faqQ = faq.question.toLowerCase();
+        const faqWords = faqQ.split(/\s+/);
+        const queryWords = q.split(/\s+/);
+
+        // Check for exact question match
+        if (q === faqQ || q === faqQ.replace('?', '')) {
+            return faq.answer;
+        }
+
+        // Score based on matching words
+        let score = 0;
+        for (const word of queryWords) {
+            if (word.length > 2 && faqWords.some(fw => fw.includes(word) || word.includes(fw))) {
+                score++;
+            }
+        }
+
+        if (score > bestScore) {
+            bestScore = score;
+            bestMatch = faq;
+        }
+    }
+
+    if (bestMatch && bestScore >= 2) {
+        return bestMatch.answer;
+    }
+
+    // Keyword-based fallback
+    if (q.includes('volunteer') || q.includes('join')) {
+        return FAQ_DATA[0].answer;
+    }
+    if (q.includes('contact') || q.includes('email') || q.includes('reach')) {
+        return FAQ_DATA[1].answer;
+    }
+    if (q.includes('what') && (q.includes('do') || q.includes('about') || q.includes('arunya'))) {
+        return FAQ_DATA[2].answer;
+    }
+    if (q.includes('who') && q.includes('volunteer')) {
+        return FAQ_DATA[3].answer;
+    }
+    if (q.includes('fee') || q.includes('cost') || q.includes('free') || q.includes('charge')) {
+        return FAQ_DATA[4].answer;
+    }
+    if (q.includes('program') || q.includes('initiative') || q.includes('class')) {
+        return FAQ_DATA[5].answer;
+    }
+    if (q.includes('support') || q.includes('help') || q.includes('contribute')) {
+        return FAQ_DATA[6].answer;
+    }
+    if (q.includes('where') || q.includes('location') || q.includes('address')) {
+        return FAQ_DATA[7].answer;
+    }
+
+    return "I'm sorry, I don't have information about that. You can reach us at connect@arunyaedu.org or visit our Contact page for more help. 🙏";
 }
 
 /* ── Component ──────────────────────────────────────────────── */
@@ -43,13 +115,10 @@ export const Chatbot = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState<ChatMessage[]>([]);
     const [input, setInput] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
     const [showWelcome, setShowWelcome] = useState(true);
     const [hasBeenOpened, setHasBeenOpened] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
-    const chatBodyRef = useRef<HTMLDivElement>(null);
-    const dragControls = useDragControls();
 
     /* Auto-scroll */
     const scrollToBottom = useCallback(() => {
@@ -58,7 +127,7 @@ export const Chatbot = () => {
 
     useEffect(() => {
         scrollToBottom();
-    }, [messages, isLoading, scrollToBottom]);
+    }, [messages, scrollToBottom]);
 
     /* Focus input when opened */
     useEffect(() => {
@@ -69,9 +138,9 @@ export const Chatbot = () => {
     }, [isOpen]);
 
     /* ── Send handler ─────────────────────────────────────────── */
-    const handleSend = async (text?: string) => {
+    const handleSend = (text?: string) => {
         const msg = (text || input).trim();
-        if (!msg || isLoading) return;
+        if (!msg) return;
 
         setShowWelcome(false);
         setInput('');
@@ -82,29 +151,17 @@ export const Chatbot = () => {
             text: msg,
             timestamp: new Date(),
         };
-        setMessages(prev => [...prev, userMsg]);
-        setIsLoading(true);
 
-        try {
-            const response = await sendMessage(msg);
-            const botMsg: ChatMessage = {
-                id: `bot-${Date.now()}`,
-                role: 'bot',
-                text: response,
-                timestamp: new Date(),
-            };
-            setMessages(prev => [...prev, botMsg]);
-        } catch {
-            const errorMsg: ChatMessage = {
-                id: `err-${Date.now()}`,
-                role: 'bot',
-                text: "Sorry, I couldn't process your request. Please try again! 🙏",
-                timestamp: new Date(),
-            };
-            setMessages(prev => [...prev, errorMsg]);
-        } finally {
-            setIsLoading(false);
-        }
+        const answer = findAnswer(msg);
+
+        const botMsg: ChatMessage = {
+            id: `bot-${Date.now()}`,
+            role: 'bot',
+            text: answer,
+            timestamp: new Date(),
+        };
+
+        setMessages(prev => [...prev, userMsg, botMsg]);
     };
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -115,12 +172,9 @@ export const Chatbot = () => {
     };
 
     const handleNewChat = () => {
-        resetChat();
         setMessages([]);
         setShowWelcome(true);
     };
-
-    const configured = isConfigured();
 
     /* ── Render ────────────────────────────────────────────────── */
     return (
@@ -181,39 +235,18 @@ export const Chatbot = () => {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 30, scale: 0.92 }}
                         transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-                        drag
-                        dragControls={dragControls}
-                        dragMomentum={false}
-                        dragElastic={0.1}
-                        dragConstraints={{
-                            top: -300,
-                            left: -600,
-                            right: 100,
-                            bottom: 100,
-                        }}
                     >
-                        {/* ── Header (drag handle) ── */}
-                        <div
-                            className="chatbot-header"
-                            onPointerDown={(e) => dragControls.start(e)}
-                            style={{ cursor: 'grab' }}
-                        >
+                        {/* ── Header ── */}
+                        <div className="chatbot-header">
                             <div className="chatbot-header-left">
                                 <div className="chatbot-avatar">
                                     <img src="/logo.png" alt="Arunya" className="chatbot-avatar-img" />
                                     <span className="chatbot-status-dot" />
                                 </div>
                                 <div>
-                                    <h3 className="chatbot-title">Arunya Assistant</h3>
+                                    <h3 className="chatbot-title">Arunya FAQ</h3>
                                     <span className="chatbot-subtitle">
-                                        {isLoading ? (
-                                            <span className="chatbot-typing-label">
-                                                <span className="chatbot-typing-dot-inline" />
-                                                <span className="chatbot-typing-dot-inline" />
-                                                <span className="chatbot-typing-dot-inline" />
-                                                <span style={{ marginLeft: 4 }}>Typing</span>
-                                            </span>
-                                        ) : 'Online • Ask me anything'}
+                                        Ask us anything
                                     </span>
                                 </div>
                             </div>
@@ -241,7 +274,7 @@ export const Chatbot = () => {
                         </div>
 
                         {/* ── Body ── */}
-                        <div className="chatbot-body" ref={chatBodyRef}>
+                        <div className="chatbot-body">
                             {/* Welcome screen */}
                             {showWelcome && messages.length === 0 && (
                                 <motion.div
@@ -252,23 +285,16 @@ export const Chatbot = () => {
                                 >
                                     <div className="chatbot-welcome-icon">🌟</div>
                                     <h4>Welcome to Arunya Foundation!</h4>
-                                    <p>I'm here to help you learn about our mission, programs, and how you can make a difference.</p>
-
-                                    {!configured && (
-                                        <div className="chatbot-config-notice">
-                                            <span>⚙️</span>
-                                            <span>Gemini API key needed. Add <code>VITE_GEMINI_API_KEY</code> to your <code>.env</code> file.</span>
-                                        </div>
-                                    )}
+                                    <p>Tap a question below or type your own to get started.</p>
 
                                     <div className="chatbot-quick-actions">
-                                        {QUICK_ACTIONS.map((action) => (
+                                        {FAQ_DATA.slice(0, 4).map((faq, i) => (
                                             <button
-                                                key={action.label}
+                                                key={i}
                                                 className="chatbot-chip"
-                                                onClick={() => handleSend(action.message)}
+                                                onClick={() => handleSend(faq.question)}
                                             >
-                                                {action.label}
+                                                {faq.question}
                                             </button>
                                         ))}
                                     </div>
@@ -290,14 +316,7 @@ export const Chatbot = () => {
                                         </div>
                                     )}
                                     <div className={`chatbot-bubble ${msg.role}`}>
-                                        {msg.role === 'bot' ? (
-                                            <div
-                                                className="chatbot-md"
-                                                dangerouslySetInnerHTML={{ __html: renderMarkdown(msg.text) }}
-                                            />
-                                        ) : (
-                                            <span>{msg.text}</span>
-                                        )}
+                                        <span>{msg.text}</span>
                                         <span className="chatbot-time">
                                             {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                         </span>
@@ -305,41 +324,21 @@ export const Chatbot = () => {
                                 </motion.div>
                             ))}
 
-                            {/* Typing indicator */}
-                            {isLoading && (
-                                <motion.div
-                                    className="chatbot-msg bot"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                >
-                                    <div className="chatbot-msg-avatar">
-                                        <img src="/logo.png" alt="A" />
-                                    </div>
-                                    <div className="chatbot-bubble bot">
-                                        <div className="chatbot-typing">
-                                            <span className="typing-dot" />
-                                            <span className="typing-dot" />
-                                            <span className="typing-dot" />
-                                        </div>
-                                    </div>
-                                </motion.div>
-                            )}
-
                             {/* Quick reply suggestions after a bot response */}
-                            {messages.length > 0 && !isLoading && messages[messages.length - 1]?.role === 'bot' && (
+                            {messages.length > 0 && messages[messages.length - 1]?.role === 'bot' && (
                                 <motion.div
                                     className="chatbot-quick-reply-row"
                                     initial={{ opacity: 0, y: 6 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.25 }}
                                 >
-                                    {QUICK_ACTIONS.slice(0, 3).map((action) => (
+                                    {FAQ_DATA.slice(4, 7).map((faq, i) => (
                                         <button
-                                            key={action.label}
+                                            key={i}
                                             className="chatbot-chip chatbot-chip--small"
-                                            onClick={() => handleSend(action.message)}
+                                            onClick={() => handleSend(faq.question)}
                                         >
-                                            {action.label}
+                                            {faq.question}
                                         </button>
                                     ))}
                                 </motion.div>
@@ -355,17 +354,16 @@ export const Chatbot = () => {
                                     ref={inputRef}
                                     type="text"
                                     className="chatbot-input"
-                                    placeholder="Type your message..."
+                                    placeholder="Type your question..."
                                     value={input}
                                     onChange={(e) => setInput(e.target.value)}
                                     onKeyDown={handleKeyDown}
-                                    disabled={isLoading}
                                     autoComplete="off"
                                 />
                                 <motion.button
                                     className="chatbot-send-btn"
                                     onClick={() => handleSend()}
-                                    disabled={!input.trim() || isLoading}
+                                    disabled={!input.trim()}
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.9 }}
                                 >
@@ -376,7 +374,7 @@ export const Chatbot = () => {
                                 </motion.button>
                             </div>
                             <div className="chatbot-powered-by">
-                                Powered by Arunya Foundation AI
+                                Arunya Foundation FAQ
                             </div>
                         </div>
                     </motion.div>

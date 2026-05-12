@@ -15,7 +15,7 @@ export const ContactPage = () => {
         <PageTransition className="pb-16">
             <section id="contact" style={{ padding: '2rem', position: 'relative', zIndex: 10 }}>
                 <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                    <motion.h2 {...fadeUp} style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, marginBottom: '1rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>
+                    <motion.h2 {...fadeUp} style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, marginBottom: '1rem', color: '#0B1F3A', fontFamily: 'Poppins, Inter, sans-serif' }}>
                         Get in Touch
                     </motion.h2>
                     <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #E6B325, #C99A1E)', borderRadius: 2, margin: '1rem auto' }} />
@@ -26,17 +26,17 @@ export const ContactPage = () => {
 
                 <div style={{ maxWidth: 1000, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem' }}>
                     {/* Contact Info */}
-                    <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.15 }} whileHover={{ y: -5, boxShadow: '0 8px 24px rgba(30,58,95,0.08), 0 20px 48px rgba(30,58,95,0.12)' }} style={{
+                    <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.15 }} whileHover={{ y: -5, boxShadow: '0 8px 24px rgba(11,31,58,0.08), 0 20px 48px rgba(11,31,58,0.12)' }} style={{
                         padding: '3rem', borderRadius: 20, background: 'white',
-                        border: '1px solid rgba(30,58,95,0.06)',
-                        boxShadow: '0 2px 8px rgba(30,58,95,0.04), 0 8px 24px rgba(30,58,95,0.06)',
+                        border: '1px solid rgba(11,31,58,0.06)',
+                        boxShadow: '0 2px 8px rgba(11,31,58,0.04), 0 8px 24px rgba(11,31,58,0.06)',
                     }}>
-                        <h3 style={{ fontSize: '1.6rem', marginBottom: '2rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>Contact Information</h3>
+                        <h3 style={{ fontSize: '1.6rem', marginBottom: '2rem', color: '#0B1F3A', fontFamily: 'Poppins, Inter, sans-serif' }}>Contact Information</h3>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                             {[
-                                { icon: <MapPin size={22} />, title: 'Location', detail: 'Gwalior, Madhya Pradesh, India', gradient: 'linear-gradient(135deg, #2563eb, #1e3a5f)' },
+                                { icon: <MapPin size={22} />, title: 'Location', detail: 'Gwalior, Madhya Pradesh, India', gradient: 'linear-gradient(135deg, #123C73, #0B1F3A)' },
                                 { icon: <Phone size={22} />, title: 'Phone', detail: '+91 82238 34121', gradient: 'linear-gradient(135deg, #E6B325, #C99A1E)' },
-                                { icon: <Mail size={22} />, title: 'Email', detail: 'arunya.trust@gmail.com', gradient: 'linear-gradient(135deg, #2563eb, #1e3a5f)' },
+                                { icon: <Mail size={22} />, title: 'Email', detail: 'arunya.trust@gmail.com', gradient: 'linear-gradient(135deg, #123C73, #0B1F3A)' },
                                 { icon: <Clock size={22} />, title: 'Class Timings', detail: 'Sat & Sun: 10 AM – 1 PM', gradient: 'linear-gradient(135deg, #E6B325, #C99A1E)' },
                             ].map((item, idx) => (
                                 <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
@@ -47,7 +47,7 @@ export const ContactPage = () => {
                                         fontSize: '1.1rem',
                                     }}>{item.icon}</div>
                                     <div>
-                                        <h4 style={{ margin: '0 0 0.25rem', fontSize: '1rem', color: '#1e3a5f' }}>{item.title}</h4>
+                                        <h4 style={{ margin: '0 0 0.25rem', fontSize: '1rem', color: '#0B1F3A' }}>{item.title}</h4>
                                         <p style={{ margin: 0, color: '#6b7280', lineHeight: 1.5, fontSize: '0.95rem' }}>{item.detail}</p>
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@ export const ContactPage = () => {
                         </div>
 
                         <div style={{ marginTop: '2.5rem' }}>
-                            <h4 style={{ fontSize: '1rem', marginBottom: '1rem', color: '#1e3a5f' }}>Follow Us</h4>
+                            <h4 style={{ fontSize: '1rem', marginBottom: '1rem', color: '#0B1F3A' }}>Follow Us</h4>
                             <div style={{ display: 'flex', gap: '0.75rem' }}>
                                 {[
                                     { label: <FaInstagram size={20} />, name: 'Instagram', color: '#E1306C', url: 'https://www.instagram.com/arunya_foundation/' },
@@ -63,13 +63,13 @@ export const ContactPage = () => {
                                 ].map((s, i) => (
                                     <a key={i} href={s.url || '#'} title={s.name} target={s.url !== '#' ? '_blank' : undefined} rel="noopener noreferrer" style={{
                                         width: 44, height: 44, borderRadius: '50%', color: s.color,
-                                        background: 'rgba(30,58,95,0.04)', border: '1px solid rgba(30,58,95,0.06)',
+                                        background: 'rgba(11,31,58,0.04)', border: '1px solid rgba(11,31,58,0.06)',
                                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                                         textDecoration: 'none',
                                         transition: 'all 0.2s',
                                     }}
-                                        onMouseEnter={e => { (e.currentTarget.style.background = 'rgba(30,58,95,0.08)') }}
-                                        onMouseLeave={e => { (e.currentTarget.style.background = 'rgba(30,58,95,0.04)') }}
+                                        onMouseEnter={e => { (e.currentTarget.style.background = 'rgba(11,31,58,0.08)') }}
+                                        onMouseLeave={e => { (e.currentTarget.style.background = 'rgba(11,31,58,0.04)') }}
                                     >{s.label}</a>
                                 ))}
                             </div>
@@ -77,12 +77,12 @@ export const ContactPage = () => {
                     </motion.div>
 
                     {/* Contact Form */}
-                    <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.2 }} whileHover={{ y: -5, boxShadow: '0 8px 24px rgba(30,58,95,0.08), 0 20px 48px rgba(30,58,95,0.12)' }} style={{
+                    <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.2 }} whileHover={{ y: -5, boxShadow: '0 8px 24px rgba(11,31,58,0.08), 0 20px 48px rgba(11,31,58,0.12)' }} style={{
                         padding: '3rem', borderRadius: 20, background: 'white',
-                        border: '1px solid rgba(30,58,95,0.06)',
-                        boxShadow: '0 2px 8px rgba(30,58,95,0.04), 0 8px 24px rgba(30,58,95,0.06)',
+                        border: '1px solid rgba(11,31,58,0.06)',
+                        boxShadow: '0 2px 8px rgba(11,31,58,0.04), 0 8px 24px rgba(11,31,58,0.06)',
                     }}>
-                        <h3 style={{ fontSize: '1.6rem', marginBottom: '2rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>Send a Message</h3>
+                        <h3 style={{ fontSize: '1.6rem', marginBottom: '2rem', color: '#0B1F3A', fontFamily: 'Poppins, Inter, sans-serif' }}>Send a Message</h3>
                         <form style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                             <div className="form-group" style={{ marginBottom: 0 }}>
                                 <label>Your Name</label>
@@ -111,7 +111,7 @@ export const ContactPage = () => {
                                 type="button"
                                 style={{
                                     width: '100%', padding: '1rem', borderRadius: 16, border: 'none',
-                                    background: '#1e3a5f', color: 'white', fontWeight: 600,
+                                    background: '#0B1F3A', color: 'white', fontWeight: 600,
                                     fontSize: '1rem', cursor: 'pointer', fontFamily: 'inherit',
                                     transition: 'background 0.2s',
                                 }}
