@@ -30,9 +30,9 @@ const children = [
 ];
 
 const plans = [
-    { amount: '₹500', label: '/month', desc: 'Books & study materials', icon: <BookOpen size={20} />, color: '#2563eb' },
+    { amount: '₹500', label: '/month', desc: 'Books & study materials', icon: <BookOpen size={20} />, color: '#123C73' },
     { amount: '₹1,000', label: '/month', desc: 'School support & tutoring', icon: <GraduationCap size={20} />, color: '#E6B325', featured: true },
-    { amount: '₹2,000', label: '/month', desc: 'Complete educational assistance', icon: <Heart size={20} />, color: '#1e3a5f' },
+    { amount: '₹2,000', label: '/month', desc: 'Complete educational assistance', icon: <Heart size={20} />, color: '#0B1F3A' },
 ];
 
 export const SponsorChild = () => {
@@ -48,7 +48,7 @@ export const SponsorChild = () => {
         }}>
             {/* Decorative */}
             <div style={{ position: 'absolute', top: '10%', left: -100, width: 300, height: 300, borderRadius: '50%', background: 'rgba(230,179,37,0.05)', pointerEvents: 'none' }} />
-            <div style={{ position: 'absolute', bottom: '5%', right: -80, width: 220, height: 220, borderRadius: '50%', background: 'rgba(37,99,235,0.04)', pointerEvents: 'none' }} />
+            <div style={{ position: 'absolute', bottom: '5%', right: -80, width: 220, height: 220, borderRadius: '50%', background: 'rgba(18,60,115,0.04)', pointerEvents: 'none' }} />
 
             <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
                 {/* Section Header */}
@@ -62,7 +62,7 @@ export const SponsorChild = () => {
                         <span style={{ color: '#C99A1E', fontWeight: 700, fontSize: '0.78rem', letterSpacing: 1, textTransform: 'uppercase' }}>Change a Life</span>
                     </motion.div>
                     <motion.h2 {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.05 }} style={{
-                        fontSize: 'clamp(1.8rem, 4.5vw, 2.8rem)', fontWeight: 900, color: '#1e3a5f',
+                        fontSize: 'clamp(1.8rem, 4.5vw, 2.8rem)', fontWeight: 900, color: '#0B1F3A',
                         fontFamily: 'Poppins, Inter, sans-serif', marginBottom: '0.75rem', lineHeight: 1.15,
                     }}>
                         Sponsor a <span style={{ color: '#E6B325' }}>Child's Future</span>
@@ -82,8 +82,8 @@ export const SponsorChild = () => {
                         style={{ position: 'relative' }}>
                         <div style={{
                             background: 'white', borderRadius: 24, overflow: 'hidden',
-                            border: '1px solid rgba(30,58,95,0.06)',
-                            boxShadow: '0 4px 16px rgba(30,58,95,0.05), 0 16px 40px rgba(30,58,95,0.08)',
+                            border: '1px solid rgba(11,31,58,0.06)',
+                            boxShadow: '0 4px 16px rgba(11,31,58,0.05), 0 16px 40px rgba(11,31,58,0.08)',
                         }}>
                             {/* Image with navigation */}
                             <div style={{ position: 'relative', overflow: 'hidden' }}>
@@ -112,7 +112,7 @@ export const SponsorChild = () => {
                                                 cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
                                                 boxShadow: '0 4px 12px rgba(0,0,0,0.15)', transition: 'all 0.2s',
                                             }}
-                                        ><ChevronLeft size={18} color="#1e3a5f" /></button>
+                                        ><ChevronLeft size={18} color="#0B1F3A" /></button>
                                         <button onClick={() => setActiveChild(p => (p + 1) % children.length)}
                                             style={{
                                                 position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)',
@@ -121,14 +121,14 @@ export const SponsorChild = () => {
                                                 cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
                                                 boxShadow: '0 4px 12px rgba(0,0,0,0.15)', transition: 'all 0.2s',
                                             }}
-                                        ><ChevronRight size={18} color="#1e3a5f" /></button>
+                                        ><ChevronRight size={18} color="#0B1F3A" /></button>
                                     </>
                                 )}
 
                                 {/* Gradient overlay at bottom */}
                                 <div style={{
                                     position: 'absolute', bottom: 0, left: 0, right: 0,
-                                    background: 'linear-gradient(to top, rgba(30,58,95,0.85) 0%, transparent 100%)',
+                                    background: 'linear-gradient(to top, rgba(11,31,58,0.85) 0%, transparent 100%)',
                                     padding: '3rem 1.5rem 1.25rem', color: 'white',
                                 }} />
                             </div>
@@ -144,9 +144,9 @@ export const SponsorChild = () => {
                                         transition={{ duration: 0.35 }}
                                     >
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-                                            <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif', margin: 0 }}>{child.name}</h3>
+                                            <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#0B1F3A', fontFamily: 'Poppins, Inter, sans-serif', margin: 0 }}>{child.name}</h3>
                                             <span style={{
-                                                background: 'rgba(37,99,235,0.08)', color: '#2563eb',
+                                                background: 'rgba(18,60,115,0.08)', color: '#123C73',
                                                 padding: '0.2rem 0.7rem', borderRadius: 99, fontSize: '0.78rem', fontWeight: 700,
                                             }}>Age {child.age}</span>
                                         </div>
@@ -154,14 +154,14 @@ export const SponsorChild = () => {
                                         <div style={{ marginBottom: '1rem' }}>
                                             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', marginBottom: '0.6rem' }}>
                                                 <Sparkles size={16} color="#E6B325" style={{ flexShrink: 0, marginTop: 3 }} />
-                                                <p style={{ color: '#4b5563', fontSize: '0.92rem', lineHeight: 1.6, margin: 0 }}>
-                                                    <strong style={{ color: '#1e3a5f' }}>Dream:</strong> {child.dream}
+                                                <p style={{ color: '#6B7280', fontSize: '0.92rem', lineHeight: 1.6, margin: 0 }}>
+                                                    <strong style={{ color: '#0B1F3A' }}>Dream:</strong> {child.dream}
                                                 </p>
                                             </div>
                                             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-                                                <BookOpen size={16} color="#2563eb" style={{ flexShrink: 0, marginTop: 3 }} />
-                                                <p style={{ color: '#4b5563', fontSize: '0.92rem', lineHeight: 1.6, margin: 0 }}>
-                                                    <strong style={{ color: '#1e3a5f' }}>Need:</strong> {child.need}
+                                                <BookOpen size={16} color="#123C73" style={{ flexShrink: 0, marginTop: 3 }} />
+                                                <p style={{ color: '#6B7280', fontSize: '0.92rem', lineHeight: 1.6, margin: 0 }}>
+                                                    <strong style={{ color: '#0B1F3A' }}>Need:</strong> {child.need}
                                                 </p>
                                             </div>
                                         </div>
@@ -178,7 +178,7 @@ export const SponsorChild = () => {
                                         <button key={i} onClick={() => setActiveChild(i)}
                                             style={{
                                                 width: activeChild === i ? 24 : 8, height: 8, borderRadius: 99,
-                                                background: activeChild === i ? '#E6B325' : 'rgba(30,58,95,0.12)',
+                                                background: activeChild === i ? '#E6B325' : 'rgba(11,31,58,0.12)',
                                                 border: 'none', cursor: 'pointer', transition: 'all 0.3s ease',
                                             }}
                                         />
@@ -191,7 +191,7 @@ export const SponsorChild = () => {
                     {/* Right — Sponsorship Plans */}
                     <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.2 }}>
                         <h3 style={{
-                            fontSize: '1.35rem', fontWeight: 800, color: '#1e3a5f',
+                            fontSize: '1.35rem', fontWeight: 800, color: '#0B1F3A',
                             fontFamily: 'Poppins, Inter, sans-serif', marginBottom: '0.5rem',
                         }}>
                             Choose Your Impact
@@ -204,12 +204,12 @@ export const SponsorChild = () => {
                             {plans.map((plan, idx) => (
                                 <motion.div
                                     key={idx}
-                                    whileHover={{ y: -3, boxShadow: '0 8px 24px rgba(30,58,95,0.1), 0 16px 40px rgba(30,58,95,0.08)' }}
+                                    whileHover={{ y: -3, boxShadow: '0 8px 24px rgba(11,31,58,0.1), 0 16px 40px rgba(11,31,58,0.08)' }}
                                     style={{
-                                        background: plan.featured ? 'linear-gradient(135deg, #1e3a5f 0%, #2a5080 100%)' : 'white',
+                                        background: plan.featured ? 'linear-gradient(135deg, #0B1F3A 0%, #2a5080 100%)' : 'white',
                                         borderRadius: 16, padding: '1.25rem 1.5rem',
-                                        border: plan.featured ? '2px solid rgba(230,179,37,0.4)' : '1px solid rgba(30,58,95,0.06)',
-                                        boxShadow: '0 2px 8px rgba(30,58,95,0.04), 0 8px 24px rgba(30,58,95,0.06)',
+                                        border: plan.featured ? '2px solid rgba(230,179,37,0.4)' : '1px solid rgba(11,31,58,0.06)',
+                                        boxShadow: '0 2px 8px rgba(11,31,58,0.04), 0 8px 24px rgba(11,31,58,0.06)',
                                         display: 'flex', alignItems: 'center', gap: '1rem',
                                         cursor: 'pointer', position: 'relative', overflow: 'hidden',
                                     }}
@@ -218,7 +218,7 @@ export const SponsorChild = () => {
                                     {plan.featured && (
                                         <div style={{
                                             position: 'absolute', top: 0, right: 0,
-                                            background: '#E6B325', color: '#1e3a5f',
+                                            background: '#E6B325', color: '#0B1F3A',
                                             padding: '0.15rem 0.75rem', borderRadius: '0 0 0 12px',
                                             fontSize: '0.68rem', fontWeight: 800, letterSpacing: 0.5,
                                         }}>MOST POPULAR</div>
@@ -233,7 +233,7 @@ export const SponsorChild = () => {
                                         <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.25rem' }}>
                                             <span style={{
                                                 fontSize: '1.4rem', fontWeight: 900,
-                                                color: plan.featured ? 'white' : '#1e3a5f',
+                                                color: plan.featured ? 'white' : '#0B1F3A',
                                                 fontFamily: 'Poppins, Inter, sans-serif',
                                             }}>{plan.amount}</span>
                                             <span style={{
@@ -257,7 +257,7 @@ export const SponsorChild = () => {
                             style={{
                                 width: '100%', padding: '1.1rem 2rem', borderRadius: 9999, border: 'none',
                                 background: 'linear-gradient(135deg, #E6B325 0%, #F4C542 50%, #E6B325 100%)',
-                                color: '#1e3a5f', fontWeight: 800, fontSize: '1.08rem', cursor: 'pointer',
+                                color: '#0B1F3A', fontWeight: 800, fontSize: '1.08rem', cursor: 'pointer',
                                 fontFamily: 'inherit', boxShadow: '0 6px 24px rgba(230,179,37,0.35)',
                                 transition: 'all 0.3s cubic-bezier(0.16,1,0.3,1)',
                                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',

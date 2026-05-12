@@ -90,7 +90,7 @@ const CATEGORIES = [
 ];
 
 const CATEGORY_BADGE: Record<string, { label: string; color: string; bg: string }> = {
-    volunteer: { label: 'Volunteer', color: '#2563eb', bg: 'rgba(37,99,235,0.08)' },
+    volunteer: { label: 'Volunteer', color: '#123C73', bg: 'rgba(18,60,115,0.08)' },
     parent: { label: 'Parent', color: '#E6B325', bg: 'rgba(230,179,37,0.08)' },
     student: { label: 'Student', color: '#16a34a', bg: 'rgba(22,163,74,0.08)' },
 };

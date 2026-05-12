@@ -4,8 +4,7 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-
 import { JoinCommunity, Footer } from './Footer';
 import { FloatingShapes } from '../ui/FloatingShapes';
 import { Chatbot } from '../Chatbot';
-import { DonationProgress } from '../DonationProgress';
-import { SponsorChild } from '../SponsorChild';
+
 import { SEOHead } from '../SEOHead';
 
 /* ── Nav link data ─────────────────────────────────────────── */
@@ -120,13 +119,15 @@ export const MainLayout = () => {
                     {/* ── Right Section ── */}
                     <div className="navbar__actions">
                         {/* Donate CTA — always visible */}
-                        <button
+                        <a
                             className="navbar__donate-btn"
-                            onClick={() => handleNavigate('/login')}
+                            href="https://milaap.org/fundraisers/support-underprivileged-communities-14?utm_medium=whatsapp_status_poster&utm_source=app"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             aria-label="Donate to Arunya Foundation"
                         >
                             Donate <span className="navbar__donate-heart">❤️</span>
-                        </button>
+                        </a>
 
                         {/* Hamburger — mobile only */}
                         <button
@@ -198,12 +199,14 @@ export const MainLayout = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.35, duration: 0.4 }}
                             >
-                                <button
+                                <a
                                     className="mobile-menu__donate"
-                                    onClick={() => handleNavigate('/login')}
+                                    href="https://milaap.org/fundraisers/support-underprivileged-communities-14?utm_medium=whatsapp_status_poster&utm_source=app"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                 >
                                     Donate ❤️
-                                </button>
+                                </a>
                                 <p className="mobile-menu__tagline">Every contribution changes a life.</p>
                             </motion.div>
                         </motion.div>
@@ -218,12 +221,10 @@ export const MainLayout = () => {
                 </AnimatePresence>
             </main>
 
-            {/* ═══════════════════ DONATION & SPONSOR ═══════════════════ */}
-            <DonationProgress />
-            <SponsorChild />
+
 
             {/* ═══════════════════ FOOTER ═══════════════════ */}
-            <JoinCommunity />
+            {isHome && <JoinCommunity />}
             <Footer />
 
             {/* ═══════════════════ CHATBOT ═══════════════════ */}

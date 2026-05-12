@@ -64,7 +64,7 @@ export const VolunteerPage = () => {
             <section style={{ padding: '2rem', position: 'relative', zIndex: 10 }}>
                 {/* Header */}
                 <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-                    <motion.h2 {...fadeUp} style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, color: '#1e3a5f', marginBottom: '1rem', fontFamily: 'Poppins, Inter, sans-serif' }}>
+                    <motion.h2 {...fadeUp} style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, color: '#0B1F3A', marginBottom: '1rem', fontFamily: 'Poppins, Inter, sans-serif' }}>
                         Join Our Volunteer Family
                     </motion.h2>
                     <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #E6B325, #C99A1E)', borderRadius: 2, margin: '1rem auto' }} />
@@ -78,12 +78,12 @@ export const VolunteerPage = () => {
                 <div style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '3rem' }}>
                     {/* Left: Info */}
                     <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.15 }}>
-                        <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#1e3a5f', marginBottom: '1.5rem', fontFamily: 'Poppins, Inter, sans-serif' }}>
+                        <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#0B1F3A', marginBottom: '1.5rem', fontFamily: 'Poppins, Inter, sans-serif' }}>
                             Why Volunteer with Arunya?
                         </h3>
 
                         {[
-                            { icon: <BookOpen size={24} style={{ color: '#2563eb' }} />, title: 'Teach & Inspire', desc: 'Conduct weekend classes for children aged 5–16. No teaching degree required — just passion.' },
+                            { icon: <BookOpen size={24} style={{ color: '#123C73' }} />, title: 'Teach & Inspire', desc: 'Conduct weekend classes for children aged 5–16. No teaching degree required — just passion.' },
                             { icon: <Star size={24} style={{ color: '#E6B325' }} />, title: 'Make Real Impact', desc: 'See students grow, score well, and dream bigger because of your effort.' },
                             { icon: <Handshake size={24} style={{ color: '#10b981' }} />, title: 'Build Community', desc: 'Join volunteers across villages. Network and grow with like-minded youth.' },
                             { icon: <ScrollText size={24} style={{ color: '#8b5cf6' }} />, title: 'Get Certified', desc: 'Receive official volunteering certificates for your resume and college applications.' },
@@ -93,15 +93,15 @@ export const VolunteerPage = () => {
                                 display: 'flex', gap: '1rem', marginBottom: '1.5rem',
                                 padding: '1.25rem', borderRadius: 16,
                                 background: 'var(--color-offwhite)',
-                                border: '1px solid rgba(30,58,95,0.06)',
+                                border: '1px solid rgba(11,31,58,0.06)',
                                 transition: 'transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease',
                             }}
-                            onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-3px)'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 8px 24px rgba(30,58,95,0.08)'; }}
+                            onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-3px)'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 8px 24px rgba(11,31,58,0.08)'; }}
                             onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)'; (e.currentTarget as HTMLDivElement).style.boxShadow = 'none'; }}
                             >
                                 <span style={{ fontSize: '1.5rem', flexShrink: 0 }}>{item.icon}</span>
                                 <div>
-                                    <h4 style={{ color: '#1e3a5f', fontWeight: 700, marginBottom: '0.25rem', fontSize: '1rem' }}>{item.title}</h4>
+                                    <h4 style={{ color: '#0B1F3A', fontWeight: 700, marginBottom: '0.25rem', fontSize: '1rem' }}>{item.title}</h4>
                                     <p style={{ color: '#6b7280', fontSize: '0.88rem', lineHeight: 1.5, margin: 0 }}>{item.desc}</p>
                                 </div>
                             </div>
@@ -111,12 +111,12 @@ export const VolunteerPage = () => {
                         <div style={{
                             marginTop: '1rem', padding: '1.5rem', borderRadius: 16,
                             background: 'linear-gradient(135deg, #eef4fb, #dbeafe)',
-                            border: '1px solid rgba(37,99,235,0.1)',
+                            border: '1px solid rgba(18,60,115,0.1)',
                         }}>
-                            <p style={{ color: '#1e3a5f', fontSize: '0.95rem', fontStyle: 'italic', lineHeight: 1.6, marginBottom: '0.75rem' }}>
+                            <p style={{ color: '#0B1F3A', fontSize: '0.95rem', fontStyle: 'italic', lineHeight: 1.6, marginBottom: '0.75rem' }}>
                                 "Seeing a child learn to write their own name for the first time — that feeling is truly unmatched. Be a part of the change."
                             </p>
-                            <p style={{ color: '#2563eb', fontWeight: 700, fontSize: '0.9rem', margin: 0 }}>— Arunya Foundation</p>
+                            <p style={{ color: '#123C73', fontWeight: 700, fontSize: '0.9rem', margin: 0 }}>— Arunya Foundation</p>
                         </div>
                     </motion.div>
 
@@ -125,20 +125,20 @@ export const VolunteerPage = () => {
                         {submitted ? (
                             <div style={{
                                 textAlign: 'center', padding: '4rem 2rem',
-                                background: 'var(--color-white)', border: '1px solid rgba(30,58,95,0.08)',
+                                background: 'var(--color-white)', border: '1px solid rgba(11,31,58,0.08)',
                                 borderRadius: 24, boxShadow: 'var(--card-shadow)',
                             }}>
                                 <div style={{
                                     width: 72, height: 72, borderRadius: '50%',
-                                    background: 'linear-gradient(135deg, #2563eb, #1e3a5f)',
+                                    background: 'linear-gradient(135deg, #123C73, #0B1F3A)',
                                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                    margin: '0 auto 1.5rem', boxShadow: '0 0 40px rgba(37,99,235,0.2)',
+                                    margin: '0 auto 1.5rem', boxShadow: '0 0 40px rgba(18,60,115,0.2)',
                                 }}>
                                     <svg width="32" height="32" viewBox="0 0 24 24" fill="white">
                                         <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
                                     </svg>
                                 </div>
-                                <h3 style={{ color: '#1e3a5f', fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.5rem', fontFamily: 'Poppins, Inter, sans-serif' }}>
+                                <h3 style={{ color: '#0B1F3A', fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.5rem', fontFamily: 'Poppins, Inter, sans-serif' }}>
                                     Thank You for Joining!
                                 </h3>
                                 <p style={{ color: '#6b7280', fontSize: '0.95rem', lineHeight: 1.6 }}>
@@ -148,10 +148,10 @@ export const VolunteerPage = () => {
                             </div>
                         ) : (
                             <form onSubmit={handleSubmit} style={{
-                                background: 'var(--color-white)', border: '1px solid rgba(30,58,95,0.06)',
-                                borderRadius: 20, padding: '2.5rem', boxShadow: '0 2px 8px rgba(30,58,95,0.04), 0 8px 24px rgba(30,58,95,0.06)',
+                                background: 'var(--color-white)', border: '1px solid rgba(11,31,58,0.06)',
+                                borderRadius: 20, padding: '2.5rem', boxShadow: '0 2px 8px rgba(11,31,58,0.04), 0 8px 24px rgba(11,31,58,0.06)',
                             }}>
-                                <h3 style={{ color: '#1e3a5f', fontSize: '1.4rem', fontWeight: 700, marginBottom: '2rem', fontFamily: 'Poppins, Inter, sans-serif' }}>
+                                <h3 style={{ color: '#0B1F3A', fontSize: '1.4rem', fontWeight: 700, marginBottom: '2rem', fontFamily: 'Poppins, Inter, sans-serif' }}>
                                     Volunteer Application Form
                                 </h3>
 

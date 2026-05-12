@@ -20,7 +20,7 @@ const PageSkeleton = () => (
         minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center',
     }}>
         <div style={{
-            width: 36, height: 36, border: '3px solid rgba(30,58,95,0.1)',
+            width: 36, height: 36, border: '3px solid rgba(11,31,58,0.1)',
             borderTopColor: '#E6B325', borderRadius: '50%',
             animation: 'spin 0.8s linear infinite',
         }} />

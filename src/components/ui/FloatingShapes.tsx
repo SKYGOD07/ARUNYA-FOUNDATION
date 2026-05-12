@@ -24,8 +24,8 @@ export const FloatingShapes = () => {
                     style={{
                         width: '30vw', height: '30vw', maxWidth: 400, maxHeight: 400,
                         borderRadius: '50%',
-                        background: 'rgba(30, 58, 95, 0.12)',
-                        border: '1px solid rgba(30, 58, 95, 0.2)',
+                        background: 'rgba(11, 31, 58, 0.12)',
+                        border: '1px solid rgba(11, 31, 58, 0.2)',
                     }}
                     animate={{ x: [0, 40, -20, 0], y: [0, -30, 20, 0] }}
                     transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
@@ -64,8 +64,8 @@ export const FloatingShapes = () => {
                     style={{
                         width: '12vw', height: '25vw', maxWidth: 150, maxHeight: 300,
                         borderRadius: '999px',
-                        background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.15), rgba(37, 99, 235, 0.05))',
-                        border: '1px solid rgba(37, 99, 235, 0.20)',
+                        background: 'linear-gradient(135deg, rgba(18, 60, 115, 0.15), rgba(18, 60, 115, 0.05))',
+                        border: '1px solid rgba(18, 60, 115, 0.20)',
                         transformOrigin: 'center center',
                     }}
                     animate={{ rotate: [-20, 20, -20], x: [0, 40, 0] }}
@@ -80,7 +80,7 @@ export const FloatingShapes = () => {
                         width: '45vw', height: '45vw', maxWidth: 600, maxHeight: 600,
                         borderRadius: '50%',
                         background: 'rgba(255, 255, 255, 0.4)',
-                        boxShadow: '0 8px 32px rgba(30, 58, 95, 0.03)',
+                        boxShadow: '0 8px 32px rgba(11, 31, 58, 0.03)',
                         backdropFilter: 'blur(2px)',
                     }}
                     animate={{ y: [0, 50, -20, 0], scale: [1, 1.02, 0.98, 1] }}

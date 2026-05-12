@@ -196,7 +196,7 @@ const LandingPage = () => {
                 </p>
 
                 <div className="hero-cta scroll-animate" style={{ opacity: 0, transform: 'translateY(20px)', transition: 'all 0.8s ease-out 0.3s', animation: 'none' }}>
-                    <a href="https://forms.gle/CGpuK1YiLiF1D5UJA" target="_blank" rel="noreferrer" className="btn btn-primary" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>Join as Volunteer</a>
+                    <a href="https://forms.gle/CGpuK1YiLiF1D5UJA" target="_blank" rel="noreferrer" className="btn btn-primary" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center'}}>Join as Volunteer</a>
                     <a href="#causes" className="btn btn-secondary glass-panel" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>View Our Causes</a>
                 </div>
 

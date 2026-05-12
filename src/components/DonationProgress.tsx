@@ -60,7 +60,7 @@ export const DonationProgress = () => {
         }}>
             {/* Decorative elements */}
             <div style={{ position: 'absolute', top: -100, right: -100, width: 350, height: 350, borderRadius: '50%', background: 'rgba(230,179,37,0.06)', pointerEvents: 'none' }} />
-            <div style={{ position: 'absolute', bottom: -80, left: -80, width: 250, height: 250, borderRadius: '50%', background: 'rgba(37,99,235,0.04)', pointerEvents: 'none' }} />
+            <div style={{ position: 'absolute', bottom: -80, left: -80, width: 250, height: 250, borderRadius: '50%', background: 'rgba(18,60,115,0.04)', pointerEvents: 'none' }} />
 
             <div style={{ maxWidth: 900, margin: '0 auto', position: 'relative', zIndex: 1 }}>
                 {/* Header */}
@@ -74,7 +74,7 @@ export const DonationProgress = () => {
                         <span style={{ color: '#C99A1E', fontWeight: 700, fontSize: '0.78rem', letterSpacing: 1, textTransform: 'uppercase' }}>Your Impact</span>
                     </motion.div>
                     <motion.h2 {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.05 }} style={{
-                        fontSize: 'clamp(1.8rem, 4.5vw, 2.8rem)', fontWeight: 900, color: '#1e3a5f',
+                        fontSize: 'clamp(1.8rem, 4.5vw, 2.8rem)', fontWeight: 900, color: '#0B1F3A',
                         fontFamily: 'Poppins, Inter, sans-serif', marginBottom: '0.75rem', lineHeight: 1.15,
                     }}>
                         Together We Can <span style={{ color: '#E6B325' }}>Change Lives</span>
@@ -92,28 +92,28 @@ export const DonationProgress = () => {
                     ref={progressRef}
                     style={{
                         background: 'white', borderRadius: 20, padding: 'clamp(2rem, 4vw, 3rem)',
-                        border: '1px solid rgba(30,58,95,0.06)',
-                        boxShadow: '0 2px 8px rgba(30,58,95,0.04), 0 12px 32px rgba(30,58,95,0.08)',
+                        border: '1px solid rgba(11,31,58,0.06)',
+                        boxShadow: '0 2px 8px rgba(11,31,58,0.04), 0 12px 32px rgba(11,31,58,0.08)',
                         marginBottom: '2rem',
                     }}
                 >
                     {/* Amount row */}
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
                         <div>
-                            <span style={{ fontSize: 'clamp(1.8rem, 4vw, 2.5rem)', fontWeight: 900, color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>
+                            <span style={{ fontSize: 'clamp(1.8rem, 4vw, 2.5rem)', fontWeight: 900, color: '#0B1F3A', fontFamily: 'Poppins, Inter, sans-serif' }}>
                                 ₹{animatedRaised.toLocaleString('en-IN')}
                             </span>
                             <span style={{ color: '#9ca3af', fontSize: '1rem', marginLeft: '0.5rem', fontWeight: 500 }}>raised</span>
                         </div>
                         <div style={{ textAlign: 'right' }}>
                             <span style={{ color: '#6b7280', fontSize: '0.95rem', fontWeight: 600 }}>Goal: </span>
-                            <span style={{ color: '#1e3a5f', fontSize: '1.1rem', fontWeight: 800 }}>₹{goal.toLocaleString('en-IN')}</span>
+                            <span style={{ color: '#0B1F3A', fontSize: '1.1rem', fontWeight: 800 }}>₹{goal.toLocaleString('en-IN')}</span>
                         </div>
                     </div>
 
                     {/* Progress Bar */}
                     <div style={{
-                        height: 14, borderRadius: 99, background: 'rgba(30,58,95,0.06)',
+                        height: 14, borderRadius: 99, background: 'rgba(11,31,58,0.06)',
                         overflow: 'hidden', position: 'relative', marginBottom: '1.25rem',
                     }}>
                         <motion.div
@@ -142,13 +142,13 @@ export const DonationProgress = () => {
                         <div ref={donorsRef} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                             <div style={{
                                 width: 36, height: 36, borderRadius: '50%',
-                                background: 'rgba(37,99,235,0.08)', display: 'flex',
+                                background: 'rgba(18,60,115,0.08)', display: 'flex',
                                 alignItems: 'center', justifyContent: 'center',
                             }}>
-                                <Users size={16} color="#2563eb" />
+                                <Users size={16} color="#123C73" />
                             </div>
                             <div>
-                                <span style={{ fontWeight: 800, color: '#1e3a5f', fontSize: '1rem' }}>{animatedDonors}</span>
+                                <span style={{ fontWeight: 800, color: '#0B1F3A', fontSize: '1rem' }}>{animatedDonors}</span>
                                 <span style={{ color: '#9ca3af', fontSize: '0.85rem', marginLeft: '0.3rem' }}>donors</span>
                             </div>
                         </div>
@@ -184,7 +184,7 @@ export const DonationProgress = () => {
                         style={{
                             padding: '1rem 2.5rem', borderRadius: 9999, border: 'none',
                             background: 'linear-gradient(135deg, #E6B325 0%, #F4C542 50%, #E6B325 100%)',
-                            color: '#1e3a5f', fontWeight: 800, fontSize: '1.05rem', cursor: 'pointer',
+                            color: '#0B1F3A', fontWeight: 800, fontSize: '1.05rem', cursor: 'pointer',
                             fontFamily: 'inherit', boxShadow: '0 6px 24px rgba(230,179,37,0.35)',
                             transition: 'all 0.3s cubic-bezier(0.16,1,0.3,1)',
                             display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
@@ -198,13 +198,13 @@ export const DonationProgress = () => {
                         onClick={() => navigate('/volunteer')}
                         style={{
                             padding: '1rem 2.5rem', borderRadius: 9999,
-                            border: '2px solid #1e3a5f', background: 'transparent',
-                            color: '#1e3a5f', fontWeight: 700, fontSize: '1.05rem', cursor: 'pointer',
+                            border: '2px solid #0B1F3A', background: 'transparent',
+                            color: '#0B1F3A', fontWeight: 700, fontSize: '1.05rem', cursor: 'pointer',
                             fontFamily: 'inherit', transition: 'all 0.3s cubic-bezier(0.16,1,0.3,1)',
                             display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
                         }}
-                        onMouseEnter={e => { e.currentTarget.style.background = '#1e3a5f'; e.currentTarget.style.color = 'white'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
-                        onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#1e3a5f'; e.currentTarget.style.transform = 'none'; }}
+                        onMouseEnter={e => { e.currentTarget.style.background = '#0B1F3A'; e.currentTarget.style.color = 'white'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
+                        onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#0B1F3A'; e.currentTarget.style.transform = 'none'; }}
                     >
                         Become a Sponsor
                     </button>
