@@ -20,7 +20,7 @@ const values = [
         hindi: 'सम्मान',
         title: 'Service with Dignity',
         icon: <Heart size={24} />,
-        color: '#2563eb',
+        color: '#123C73',
         concept: 'We do not view the communities we serve as "projects" to be fixed, but as equals who deserve respect, resources, and opportunity.',
         action: 'Our educators approach every student with respect, ensuring that our help builds self-reliance rather than dependency.',
     },
@@ -36,7 +36,7 @@ const values = [
         hindi: 'सहानुभूति',
         title: 'Empathetic Leadership',
         icon: <SunMedium size={24} />,
-        color: '#2563eb',
+        color: '#123C73',
         concept: 'We seek to deeply understand the psychological and social barriers our communities face before attempting to remove them.',
         action: 'Our volunteers lead with emotional intelligence, creating safe, encouraging, and highly attuned learning environments for minority and underserved youth.',
     },
@@ -52,7 +52,7 @@ const values = [
         hindi: 'कर्मयोग',
         title: 'Resilient Action',
         icon: <Flame size={24} />,
-        color: '#2563eb',
+        color: '#123C73',
         concept: 'Social change is a marathon, not a sprint. We are committed to showing up, especially when the work gets difficult.',
         action: 'Like the first rays of the sun (Arunya) that persistently pierce through the dark, our team remains dedicated to our mission, regardless of obstacles.',
     },
@@ -105,7 +105,7 @@ export const AboutPage = () => {
             <section className="about-section" style={{ padding: '2rem', position: 'relative', zIndex: 10 }}>
                 {/* Header */}
                 <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                    <motion.h2 {...fadeUp} style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, marginBottom: '1rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>
+                    <motion.h2 {...fadeUp} style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, marginBottom: '1rem', color: '#0B1F3A', fontFamily: 'Poppins, Inter, sans-serif' }}>
                         About Arunya Foundation
                     </motion.h2>
                     <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #E6B325, #C99A1E)', borderRadius: 2, margin: '1rem auto' }} />
@@ -122,43 +122,43 @@ export const AboutPage = () => {
                 {/* Vision / Mission / Goal Grid */}
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', maxWidth: 1200, margin: '0 auto' }}>
                     {/* Vision Card */}
-                    <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.15 }} whileHover={{ y: -5, boxShadow: '0 8px 24px rgba(30,58,95,0.08), 0 20px 48px rgba(30,58,95,0.12)' }} style={{
+                    <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.15 }} whileHover={{ y: -5, boxShadow: '0 8px 24px rgba(11,31,58,0.08), 0 20px 48px rgba(11,31,58,0.12)' }} style={{
                         padding: '2rem', borderRadius: 20, background: 'white',
-                        border: '1px solid rgba(30,58,95,0.06)',
-                        boxShadow: '0 2px 8px rgba(30,58,95,0.04), 0 8px 24px rgba(30,58,95,0.06)',
+                        border: '1px solid rgba(11,31,58,0.06)',
+                        boxShadow: '0 2px 8px rgba(11,31,58,0.04), 0 8px 24px rgba(11,31,58,0.06)',
                     }}>
-                        <div style={{ width: 60, height: 60, borderRadius: '50%', background: 'linear-gradient(135deg, #2563eb, #1e3a5f)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', marginBottom: '1.5rem' }}>
+                        <div style={{ width: 60, height: 60, borderRadius: '50%', background: 'linear-gradient(135deg, #123C73, #0B1F3A)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', marginBottom: '1.5rem' }}>
                             <Eye size={28} />
                         </div>
-                        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>Our Vision</h3>
+                        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#0B1F3A', fontFamily: 'Poppins, Inter, sans-serif' }}>Our Vision</h3>
                         <p style={{ color: '#6b7280', lineHeight: 1.6 }}>To achieve the social and economic upliftment of underserved and minority communities by ensuring every individual has the direction, goals, and educational foundation needed to thrive.</p>
                         <img src="/assets/work/63624.jpg.jpeg" alt="Arunya Foundation vision — children learning in a classroom" loading="lazy" decoding="async" width={400} height={200} style={{ width: '100%', height: 200, objectFit: 'cover', borderRadius: 16, marginTop: '1.5rem' }} />
                     </motion.div>
 
                     {/* Mission Card */}
-                    <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.2 }} whileHover={{ y: -5, boxShadow: '0 8px 24px rgba(30,58,95,0.08), 0 20px 48px rgba(30,58,95,0.12)' }} style={{
+                    <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.2 }} whileHover={{ y: -5, boxShadow: '0 8px 24px rgba(11,31,58,0.08), 0 20px 48px rgba(11,31,58,0.12)' }} style={{
                         padding: '2rem', borderRadius: 20, background: 'white',
-                        border: '1px solid rgba(30,58,95,0.06)',
-                        boxShadow: '0 2px 8px rgba(30,58,95,0.04), 0 8px 24px rgba(30,58,95,0.06)',
+                        border: '1px solid rgba(11,31,58,0.06)',
+                        boxShadow: '0 2px 8px rgba(11,31,58,0.04), 0 8px 24px rgba(11,31,58,0.06)',
                     }}>
                         <div style={{ width: 60, height: 60, borderRadius: '50%', background: 'linear-gradient(135deg, #E6B325, #C99A1E)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', marginBottom: '1.5rem' }}>
                             <Target size={28} />
                         </div>
-                        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>Our Mission</h3>
+                        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#0B1F3A', fontFamily: 'Poppins, Inter, sans-serif' }}>Our Mission</h3>
                         <p style={{ color: '#6b7280', lineHeight: 1.6 }}>To provide transformative education and mentorship to underserved communities by creating a premier platform where young educators and youth can showcase their skills, grow professionally, and serve as catalysts for social change.</p>
                         <img src="/assets/work/63626.jpg.jpeg" alt="Arunya Foundation mission — volunteer teaching underprivileged children" loading="lazy" decoding="async" width={400} height={200} style={{ width: '100%', height: 200, objectFit: 'cover', borderRadius: 16, marginTop: '1.5rem' }} />
                     </motion.div>
 
                     {/* Objective Card */}
-                    <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.25 }} whileHover={{ y: -5, boxShadow: '0 8px 24px rgba(30,58,95,0.08), 0 20px 48px rgba(30,58,95,0.12)' }} style={{
+                    <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.25 }} whileHover={{ y: -5, boxShadow: '0 8px 24px rgba(11,31,58,0.08), 0 20px 48px rgba(11,31,58,0.12)' }} style={{
                         padding: '2rem', borderRadius: 20, background: 'white',
-                        border: '1px solid rgba(30,58,95,0.06)',
-                        boxShadow: '0 2px 8px rgba(30,58,95,0.04), 0 8px 24px rgba(30,58,95,0.06)',
+                        border: '1px solid rgba(11,31,58,0.06)',
+                        boxShadow: '0 2px 8px rgba(11,31,58,0.04), 0 8px 24px rgba(11,31,58,0.06)',
                     }}>
-                        <div style={{ width: 60, height: 60, borderRadius: '50%', background: 'linear-gradient(135deg, #2563eb, #1e3a5f)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', marginBottom: '1.5rem' }}>
+                        <div style={{ width: 60, height: 60, borderRadius: '50%', background: 'linear-gradient(135deg, #123C73, #0B1F3A)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', marginBottom: '1.5rem' }}>
                             <ClipboardList size={28} />
                         </div>
-                        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>Our Objectives</h3>
+                        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#0B1F3A', fontFamily: 'Poppins, Inter, sans-serif' }}>Our Objectives</h3>
                         <ul style={{ color: '#6b7280', lineHeight: 1.5, textAlign: 'left', listStyleType: 'disc', paddingLeft: '1.2rem', fontSize: '0.95rem' }}>
                             <li style={{ marginBottom: '0.4rem' }}>Promote educational equity for children aged 5–16 in underserved communities</li>
                             <li style={{ marginBottom: '0.4rem' }}>Empower youth educators through a collaborative teaching platform</li>
@@ -173,7 +173,7 @@ export const AboutPage = () => {
 
                 {/* ═══════════════ PRIMARY OBJECTIVES ═══════════════ */}
                 <div style={{ maxWidth: 1200, margin: '5rem auto 0' }}>
-                    <motion.h3 {...fadeUp} style={{ fontSize: '2rem', textAlign: 'center', marginBottom: '0.75rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>Primary Objectives</motion.h3>
+                    <motion.h3 {...fadeUp} style={{ fontSize: '2rem', textAlign: 'center', marginBottom: '0.75rem', color: '#0B1F3A', fontFamily: 'Poppins, Inter, sans-serif' }}>Primary Objectives</motion.h3>
                     <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #E6B325, #C99A1E)', borderRadius: 2, margin: '0 auto 1rem' }} />
                     <motion.p {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.05 }} style={{ textAlign: 'center', color: '#6b7280', marginBottom: '3rem', maxWidth: 600, margin: '0 auto 3rem', fontSize: '0.95rem', lineHeight: 1.7 }}>
                         The foundational goals that define why Arunya Foundation exists.
@@ -184,17 +184,17 @@ export const AboutPage = () => {
                                 key={idx}
                                 {...fadeUp}
                                 transition={{ ...fadeUp.transition, delay: idx * 0.1 }}
-                                whileHover={{ y: -5, boxShadow: '0 8px 24px rgba(30,58,95,0.08), 0 20px 48px rgba(30,58,95,0.12)' }}
+                                whileHover={{ y: -5, boxShadow: '0 8px 24px rgba(11,31,58,0.08), 0 20px 48px rgba(11,31,58,0.12)' }}
                                 style={{
                                     background: 'white',
                                     borderRadius: 20,
                                     padding: '2rem',
-                                    border: '1px solid rgba(30,58,95,0.06)',
-                                    boxShadow: '0 2px 8px rgba(30,58,95,0.04), 0 8px 24px rgba(30,58,95,0.06)',
+                                    border: '1px solid rgba(11,31,58,0.06)',
+                                    boxShadow: '0 2px 8px rgba(11,31,58,0.04), 0 8px 24px rgba(11,31,58,0.06)',
                                 }}
                             >
                                 <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>{obj.icon}</div>
-                                <h4 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#1e3a5f', marginBottom: '0.75rem', fontFamily: 'Poppins, Inter, sans-serif' }}>{obj.title}</h4>
+                                <h4 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#0B1F3A', marginBottom: '0.75rem', fontFamily: 'Poppins, Inter, sans-serif' }}>{obj.title}</h4>
                                 <p style={{ color: '#6b7280', fontSize: '0.9rem', lineHeight: 1.7 }}>{obj.desc}</p>
                             </motion.div>
                         ))}
@@ -203,8 +203,8 @@ export const AboutPage = () => {
 
                 {/* ═══════════════ ANCILLARY OBJECTIVES ═══════════════ */}
                 <div style={{ maxWidth: 1200, margin: '4rem auto 0' }}>
-                    <motion.h3 {...fadeUp} style={{ fontSize: '1.5rem', textAlign: 'center', marginBottom: '0.75rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>Ancillary Objectives</motion.h3>
-                    <div style={{ display: 'block', width: 40, height: 3, background: 'linear-gradient(135deg, #2563eb, #1e3a5f)', borderRadius: 2, margin: '0 auto 1rem' }} />
+                    <motion.h3 {...fadeUp} style={{ fontSize: '1.5rem', textAlign: 'center', marginBottom: '0.75rem', color: '#0B1F3A', fontFamily: 'Poppins, Inter, sans-serif' }}>Ancillary Objectives</motion.h3>
+                    <div style={{ display: 'block', width: 40, height: 3, background: 'linear-gradient(135deg, #123C73, #0B1F3A)', borderRadius: 2, margin: '0 auto 1rem' }} />
                     <motion.p {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.05 }} style={{ textAlign: 'center', color: '#9ca3af', marginBottom: '2.5rem', maxWidth: 500, margin: '0 auto 2.5rem', fontSize: '0.9rem', lineHeight: 1.6 }}>
                         Supporting goals that drive day-to-day volunteer activities and community engagement.
                     </motion.p>
@@ -218,11 +218,11 @@ export const AboutPage = () => {
                                     background: 'linear-gradient(135deg, #f0f7ff, #fefefe)',
                                     borderRadius: 16,
                                     padding: '1.5rem',
-                                    border: '1px solid rgba(37,99,235,0.08)',
+                                    border: '1px solid rgba(18,60,115,0.08)',
                                 }}
                             >
                                 <div style={{ fontSize: '1.5rem', marginBottom: '0.75rem' }}>{obj.icon}</div>
-                                <h4 style={{ fontSize: '1rem', fontWeight: 700, color: '#1e3a5f', marginBottom: '0.5rem', fontFamily: 'Poppins, Inter, sans-serif' }}>{obj.title}</h4>
+                                <h4 style={{ fontSize: '1rem', fontWeight: 700, color: '#0B1F3A', marginBottom: '0.5rem', fontFamily: 'Poppins, Inter, sans-serif' }}>{obj.title}</h4>
                                 <p style={{ color: '#6b7280', fontSize: '0.85rem', lineHeight: 1.6 }}>{obj.desc}</p>
                             </motion.div>
                         ))}
@@ -231,7 +231,7 @@ export const AboutPage = () => {
 
                 {/* ═══════════════ VALUES ═══════════════ */}
                 <div style={{ maxWidth: 1200, margin: '5rem auto 0' }}>
-                    <motion.h3 {...fadeUp} style={{ fontSize: '2rem', textAlign: 'center', marginBottom: '0.75rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>Our Values</motion.h3>
+                    <motion.h3 {...fadeUp} style={{ fontSize: '2rem', textAlign: 'center', marginBottom: '0.75rem', color: '#0B1F3A', fontFamily: 'Poppins, Inter, sans-serif' }}>Our Values</motion.h3>
                     <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #E6B325, #C99A1E)', borderRadius: 2, margin: '0 auto 3rem' }} />
 
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
@@ -240,30 +240,30 @@ export const AboutPage = () => {
                                 key={idx}
                                 {...fadeUp}
                                 transition={{ ...fadeUp.transition, delay: idx * 0.08 }}
-                                whileHover={{ y: -5, boxShadow: '0 8px 24px rgba(30,58,95,0.08), 0 20px 48px rgba(30,58,95,0.12)' }}
+                                whileHover={{ y: -5, boxShadow: '0 8px 24px rgba(11,31,58,0.08), 0 20px 48px rgba(11,31,58,0.12)' }}
                                 style={{
                                     background: 'white',
                                     borderRadius: 20,
                                     padding: '2rem',
-                                    border: '1px solid rgba(30,58,95,0.06)',
-                                    boxShadow: '0 2px 8px rgba(30,58,95,0.04), 0 8px 24px rgba(30,58,95,0.06)',
+                                    border: '1px solid rgba(11,31,58,0.06)',
+                                    boxShadow: '0 2px 8px rgba(11,31,58,0.04), 0 8px 24px rgba(11,31,58,0.06)',
                                     position: 'relative',
                                     overflow: 'hidden',
                                 }}
                             >
-                                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: value.color === '#E6B325' ? 'linear-gradient(135deg, #E6B325, #C99A1E)' : 'linear-gradient(135deg, #2563eb, #1e3a5f)', borderRadius: '20px 20px 0 0' }} />
+                                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: value.color === '#E6B325' ? 'linear-gradient(135deg, #E6B325, #C99A1E)' : 'linear-gradient(135deg, #123C73, #0B1F3A)', borderRadius: '20px 20px 0 0' }} />
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
-                                    <div style={{ width: 48, height: 48, borderRadius: '50%', background: value.color === '#E6B325' ? 'linear-gradient(135deg, #E6B325, #C99A1E)' : 'linear-gradient(135deg, #2563eb, #1e3a5f)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.3rem', flexShrink: 0 }}>
+                                    <div style={{ width: 48, height: 48, borderRadius: '50%', background: value.color === '#E6B325' ? 'linear-gradient(135deg, #E6B325, #C99A1E)' : 'linear-gradient(135deg, #123C73, #0B1F3A)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.3rem', flexShrink: 0 }}>
                                         {value.icon}
                                     </div>
                                     <div>
-                                        <h4 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif', lineHeight: 1.2 }}>{value.title}</h4>
+                                        <h4 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#0B1F3A', fontFamily: 'Poppins, Inter, sans-serif', lineHeight: 1.2 }}>{value.title}</h4>
                                         <span style={{ fontSize: '0.85rem', color: value.color, fontWeight: 700 }}>({value.hindi})</span>
                                     </div>
                                 </div>
                                 <div style={{ marginBottom: '0.75rem' }}>
                                     <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1, color: '#9ca3af' }}>The Concept</span>
-                                    <p style={{ color: '#4b5563', fontSize: '0.9rem', lineHeight: 1.6, marginTop: '0.25rem' }}>{value.concept}</p>
+                                    <p style={{ color: '#6B7280', fontSize: '0.9rem', lineHeight: 1.6, marginTop: '0.25rem' }}>{value.concept}</p>
                                 </div>
                                 <div>
                                     <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1, color: '#9ca3af' }}>In Action</span>
@@ -276,7 +276,7 @@ export const AboutPage = () => {
 
                 {/* Team Section */}
                 <div style={{ maxWidth: 1200, margin: '6rem auto 0' }}>
-                    <motion.h3 {...fadeUp} style={{ fontSize: '2rem', textAlign: 'center', marginBottom: '0.75rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>Our Leadership</motion.h3>
+                    <motion.h3 {...fadeUp} style={{ fontSize: '2rem', textAlign: 'center', marginBottom: '0.75rem', color: '#0B1F3A', fontFamily: 'Poppins, Inter, sans-serif' }}>Our Leadership</motion.h3>
                     <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #E6B325, #C99A1E)', borderRadius: 2, margin: '0 auto 3rem' }} />
                     <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
                         {/* ── Prabal — Featured Founder Card ── */}
@@ -290,7 +290,7 @@ export const AboutPage = () => {
                                 background: 'white',
                                 overflow: 'hidden',
                                 transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-                                boxShadow: '0 8px 40px rgba(30,58,95,0.12)',
+                                boxShadow: '0 8px 40px rgba(11,31,58,0.12)',
                                 border: '2px solid rgba(212,168,71,0.2)',
                             }}
                             whileHover={{ y: -10 }}
@@ -313,13 +313,13 @@ export const AboutPage = () => {
                                     <a href="https://www.instagram.com/withprabal_/" target="_blank" rel="noopener noreferrer" style={{ width: 36, height: 36, borderRadius: 10, background: 'rgba(255,255,255,0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', textDecoration: 'none', color: '#db2777' }}>
                                         <FaInstagram size={20} />
                                     </a>
-                                    <a href="https://www.linkedin.com/in/prabal-pandey-854803358/" target="_blank" rel="noopener noreferrer" style={{ width: 36, height: 36, borderRadius: 10, background: 'rgba(255,255,255,0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#2563eb', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', textDecoration: 'none' }}>
+                                    <a href="https://www.linkedin.com/in/prabal-pandey-854803358/" target="_blank" rel="noopener noreferrer" style={{ width: 36, height: 36, borderRadius: 10, background: 'rgba(255,255,255,0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#123C73', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', textDecoration: 'none' }}>
                                         <FaLinkedin size={20} />
                                     </a>
                                 </div>
                             </div>
                             <div style={{ padding: '0 1.5rem 1.5rem' }}>
-                                <h4 style={{ fontSize: '1.6rem', fontWeight: 800, marginBottom: '0.35rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>Prabal</h4>
+                                <h4 style={{ fontSize: '1.6rem', fontWeight: 800, marginBottom: '0.35rem', color: '#0B1F3A', fontFamily: 'Poppins, Inter, sans-serif' }}>Prabal</h4>
                                 <p style={{ color: '#E6B325', fontSize: '1rem', fontWeight: 700, marginBottom: '0.85rem' }}>Founder</p>
                                 <p style={{ color: '#6b7280', fontSize: '0.95rem', fontStyle: 'italic', lineHeight: 1.6 }}>"True empowerment doesn't come from simply opening a door, but from lighting the path that leads to it. At the Arunya Foundation, our mission is to be that guiding light, equipping communities with the tools they need to build their own brighter futures."</p>
                             </div>

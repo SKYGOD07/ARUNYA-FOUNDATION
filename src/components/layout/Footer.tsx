@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Heart, Mail, Phone, MapPin, Clock, Leaf, ArrowUp, Send, BookOpen, Users, GraduationCap } from 'lucide-react';
+import { Heart, Mail, Phone, MapPin, Clock, Leaf, ArrowUp, Send, ExternalLink } from 'lucide-react';
 import { FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
@@ -8,11 +8,10 @@ import { motion } from 'framer-motion';
    JOIN COMMUNITY / PRE-FOOTER CTA
    ═══════════════════════════════════════════════════════════════ */
 export const JoinCommunity = () => {
-    const navigate = useNavigate();
 
     return (
         <section style={{
-            background: 'linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%)',
+            background: 'linear-gradient(135deg, #0B1F3A 0%, #123C73 100%)',
             padding: 'clamp(3.5rem, 6vw, 5rem) clamp(1rem, 4vw, 2rem)',
             position: 'relative', overflow: 'hidden',
         }}>
@@ -32,13 +31,15 @@ export const JoinCommunity = () => {
                         Every Rupee Lights<br /><span style={{ color: '#E6B325' }}>a Child's Future</span>
                     </h2>
                     <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: 'clamp(0.95rem, 2.5vw, 1.1rem)', maxWidth: 520, margin: '0 auto', lineHeight: 1.75 }}>
-                        Your donation directly funds free study kits, classroom materials, and weekend classes for children who cannot afford education.
+                        Your donation directly funds free study kits, classroom materials, and community programs for children who cannot afford education.
                     </p>
                 </div>
 
                 <div style={{ textAlign: 'center' }}>
-                    <button
-                        onClick={() => navigate('/login')}
+                    <a
+                        href="https://milaap.org/fundraisers/support-underprivileged-communities-14?utm_medium=whatsapp_status_poster&utm_source=app"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         style={{
                             padding: 'clamp(0.875rem, 2vw, 1.1rem) clamp(2rem, 5vw, 3rem)',
                             borderRadius: 9999, background: '#E6B325', color: 'white',
@@ -46,12 +47,13 @@ export const JoinCommunity = () => {
                             border: 'none', cursor: 'pointer', fontFamily: 'inherit',
                             boxShadow: '0 8px 28px rgba(212,168,71,0.45)', transition: 'all 0.2s',
                             display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+                            textDecoration: 'none',
                         }}
                         onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px)')}
                         onMouseLeave={e => (e.currentTarget.style.transform = 'none')}
                     >
                         <Heart size={20} fill="currentColor" strokeWidth={2} /> Donate Now — Change a Life
-                    </button>
+                    </a>
                     <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.8rem', marginTop: '0.85rem' }}>
                         ₹200 covers a child's study materials for one month.
                     </p>
@@ -84,11 +86,11 @@ export const Footer = () => {
 
     return (
         <footer style={{
-            background: 'linear-gradient(180deg, #0b1a30 0%, #0f1f38 100%)',
+            background: 'linear-gradient(180deg, #060F1E 0%, #0B1F3A 100%)',
             position: 'relative', zIndex: 10, overflow: 'hidden',
         }}>
             {/* Decorative top border */}
-            <div style={{ height: 3, background: 'linear-gradient(90deg, #1e3a5f, #E6B325, #2563eb, #E6B325, #1e3a5f)' }} />
+            <div style={{ height: 3, background: 'linear-gradient(90deg, #0B1F3A, #E6B325, #123C73, #E6B325, #0B1F3A)' }} />
 
             {/* Mini Impact Stats Bar */}
             <div style={{
@@ -101,10 +103,10 @@ export const Footer = () => {
                     display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 'clamp(1.5rem, 4vw, 3rem)',
                 }}>
                     {[
-                        { icon: <Users size={18} />, value: '150+', label: 'Children Educated' },
-                        { icon: <BookOpen size={18} />, value: '50+', label: 'Weekend Classes' },
-                        { icon: <GraduationCap size={18} />, value: '3', label: 'Study Programs' },
-                        { icon: <Heart size={18} />, value: '100%', label: 'Volunteer-Run' },
+                        { icon: <Heart size={18} />, value: '150+', label: 'Children Educated' },
+                        { icon: <Send size={18} />, value: '50+', label: 'Community Sessions' },
+                        { icon: <Leaf size={18} />, value: '1', label: 'Founding 100 Initiative' },
+                        { icon: <ArrowUp size={18} />, value: '100%', label: 'Volunteer-Run' },
                     ].map((stat, i) => (
                         <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
                             <div style={{ color: '#E6B325', opacity: 0.8 }}>{stat.icon}</div>
@@ -256,32 +258,40 @@ export const Footer = () => {
                                 Our Programs
                             </h4>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                                {[
-                                    { name: 'Weekend Basic Classes', desc: 'Free education every Sat & Sun', icon: <BookOpen size={16} /> },
-                                    { name: 'Project DISHA', desc: 'Career guidance (Upcoming)', icon: <GraduationCap size={16} /> },
-                                ].map((p, i) => (
-                                    <button key={i} onClick={() => navigate('/causes')} style={{
-                                        display: 'flex', alignItems: 'flex-start', gap: '0.75rem',
-                                        background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)',
-                                        borderRadius: 12, padding: '0.85rem 1rem', cursor: 'pointer',
-                                        textAlign: 'left', transition: 'all 0.2s', width: '100%',
-                                        fontFamily: 'inherit',
-                                    }}
-                                        onMouseEnter={e => { e.currentTarget.style.background = 'rgba(230,179,37,0.06)'; e.currentTarget.style.borderColor = 'rgba(230,179,37,0.15)'; }}
-                                        onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.03)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'; }}
-                                    >
-                                        <div style={{
-                                            width: 36, height: 36, borderRadius: 10,
-                                            background: 'rgba(230,179,37,0.1)', display: 'flex',
-                                            alignItems: 'center', justifyContent: 'center',
-                                            color: '#E6B325', flexShrink: 0,
-                                        }}>{p.icon}</div>
-                                        <div>
-                                            <div style={{ color: 'rgba(255,255,255,0.8)', fontWeight: 700, fontSize: '0.9rem', marginBottom: 2 }}>{p.name}</div>
-                                            <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.78rem' }}>{p.desc}</div>
-                                        </div>
-                                    </button>
-                                ))}
+                                <a href="https://milaap.org/fundraisers/support-underprivileged-communities-14?utm_medium=whatsapp_status_poster&utm_source=app" target="_blank" rel="noopener noreferrer" style={{
+                                    display: 'flex', alignItems: 'flex-start', gap: '0.75rem',
+                                    background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)',
+                                    borderRadius: 12, padding: '0.85rem 1rem', cursor: 'pointer',
+                                    textAlign: 'left', transition: 'all 0.2s', width: '100%',
+                                    fontFamily: 'inherit', textDecoration: 'none',
+                                }}
+                                    onMouseEnter={e => { e.currentTarget.style.background = 'rgba(230,179,37,0.06)'; e.currentTarget.style.borderColor = 'rgba(230,179,37,0.15)'; }}
+                                    onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.03)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'; }}
+                                >
+                                    <div style={{
+                                        width: 36, height: 36, borderRadius: 10,
+                                        background: 'rgba(230,179,37,0.1)', display: 'flex',
+                                        alignItems: 'center', justifyContent: 'center',
+                                        color: '#E6B325', flexShrink: 0,
+                                    }}><Heart size={16} fill="#E6B325" strokeWidth={0} /></div>
+                                    <div>
+                                        <div style={{ color: 'rgba(255,255,255,0.8)', fontWeight: 700, fontSize: '0.9rem', marginBottom: 2, display: 'flex', alignItems: 'center', gap: '0.35rem' }}>Founding 100 <ExternalLink size={12} style={{ opacity: 0.5 }} /></div>
+                                        <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.78rem' }}>Support impactful educational initiatives</div>
+                                    </div>
+                                </a>
+                                <a href="https://www.instagram.com/founding100_arunyaa?igsh=eDRqaDlkY2ZmYmN5" target="_blank" rel="noopener noreferrer" style={{
+                                    display: 'flex', alignItems: 'center', gap: '0.6rem',
+                                    background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)',
+                                    borderRadius: 12, padding: '0.7rem 1rem', cursor: 'pointer',
+                                    transition: 'all 0.2s', width: '100%',
+                                    fontFamily: 'inherit', textDecoration: 'none',
+                                    color: 'rgba(255,255,255,0.55)', fontSize: '0.82rem', fontWeight: 600,
+                                }}
+                                    onMouseEnter={e => { e.currentTarget.style.background = 'rgba(225,48,108,0.08)'; e.currentTarget.style.borderColor = 'rgba(225,48,108,0.2)'; e.currentTarget.style.color = '#E1306C'; }}
+                                    onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.03)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'; e.currentTarget.style.color = 'rgba(255,255,255,0.55)'; }}
+                                >
+                                    <FaInstagram size={16} /> Founding 100 Instagram
+                                </a>
                             </div>
 
                             {/* Social Media */}
@@ -344,9 +354,9 @@ export const Footer = () => {
                             </h4>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
                                 {[
-                                    { icon: <Mail size={18} />, text: 'arunya.trust@gmail.com', gradient: 'linear-gradient(135deg, #2563eb, #1e3a5f)' },
+                                    { icon: <Mail size={18} />, text: 'connect@arunyaedu.org', gradient: 'linear-gradient(135deg, #123C73, #0B1F3A)' },
                                     { icon: <Phone size={18} />, text: '+91 82238 34121', gradient: 'linear-gradient(135deg, #E6B325, #C99A1E)' },
-                                    { icon: <MapPin size={18} />, text: 'Gwalior, Madhya Pradesh, India', gradient: 'linear-gradient(135deg, #2563eb, #1e3a5f)' },
+                                    { icon: <MapPin size={18} />, text: 'Gwalior, Madhya Pradesh, India', gradient: 'linear-gradient(135deg, #123C73, #0B1F3A)' },
                                     { icon: <Clock size={18} />, text: 'Sat & Sun: 10 AM – 1 PM', gradient: 'linear-gradient(135deg, #E6B325, #C99A1E)' },
                                 ].map((c, i) => (
                                     <div key={i} style={{ display: 'flex', gap: '0.85rem', alignItems: 'flex-start' }}>
@@ -415,7 +425,7 @@ export const Footer = () => {
                                     cursor: 'pointer', color: '#E6B325',
                                     transition: 'all 0.3s cubic-bezier(0.16,1,0.3,1)',
                                 }}
-                                onMouseEnter={e => { e.currentTarget.style.background = '#E6B325'; e.currentTarget.style.color = '#1e3a5f'; e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(230,179,37,0.3)'; }}
+                                onMouseEnter={e => { e.currentTarget.style.background = '#E6B325'; e.currentTarget.style.color = '#0B1F3A'; e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(230,179,37,0.3)'; }}
                                 onMouseLeave={e => { e.currentTarget.style.background = 'rgba(230,179,37,0.1)'; e.currentTarget.style.color = '#E6B325'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; }}
                             >
                                 <ArrowUp size={18} />

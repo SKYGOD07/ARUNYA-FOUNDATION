@@ -10,15 +10,15 @@ interface SEOConfig {
 const SEO_MAP: Record<string, SEOConfig> = {
     '/': {
         title: 'Arunya Foundation — Free Education for Underprivileged Children | NGO Gwalior',
-        description: 'Arunya Foundation empowers underprivileged children aged 5–16 through free weekend education, study materials, and career guidance in Gwalior, India. Donate, volunteer, or sponsor a child.',
+        description: 'Arunya Foundation empowers underprivileged children aged 5–16 through free education, study materials, and the Founding 100 initiative in Gwalior, India. Donate or volunteer today.',
     },
     '/about': {
         title: 'About Us — Arunya Foundation | Our Vision, Mission & Values',
         description: 'Learn about Arunya Foundation\'s vision to provide free education to every underprivileged child in India. Discover our mission, values, and the team behind the movement.',
     },
     '/causes': {
-        title: 'Our Programs — Weekend Classes & Project DISHA | Arunya Foundation',
-        description: 'Explore Arunya Foundation\'s education programs — free weekend classes covering literacy, math, life skills, and value education for children aged 5–16 in Gwalior.',
+        title: 'Our Programs — Founding 100 Initiative | Arunya Foundation',
+        description: 'Explore Arunya Foundation\'s Founding 100 initiative — empowering underprivileged communities through impactful educational programs and sustainable development in Gwalior.',
     },
     '/blog': {
         title: 'Stories of Impact — Real Stories from Our Classrooms | Arunya Foundation',
@@ -26,7 +26,7 @@ const SEO_MAP: Record<string, SEOConfig> = {
     },
     '/gallery': {
         title: 'Photo Gallery — Moments of Joy & Learning | Arunya Foundation',
-        description: 'See the moments of joy, learning, and transformation from Arunya Foundation\'s weekend classes and community programs in Gwalior, India.',
+        description: 'See the moments of joy, learning, and transformation from Arunya Foundation\'s community programs and educational initiatives in Gwalior, India.',
     },
     '/contact': {
         title: 'Contact Us — Get in Touch with Arunya Foundation',
@@ -34,7 +34,7 @@ const SEO_MAP: Record<string, SEOConfig> = {
     },
     '/volunteer': {
         title: 'Volunteer With Us — Join the Arunya Foundation Team',
-        description: 'Join Arunya Foundation as a volunteer teacher or organizer. Help provide free education to underprivileged children every weekend in Gwalior.',
+        description: 'Join Arunya Foundation as a volunteer teacher or organizer. Help provide free education to underprivileged children in Gwalior.',
     },
     '/curriculum': {
         title: 'Our Curriculum — Structured Teaching Framework | Arunya Foundation',
@@ -42,7 +42,7 @@ const SEO_MAP: Record<string, SEOConfig> = {
     },
     '/login': {
         title: 'Donate — Support a Child\'s Education | Arunya Foundation',
-        description: 'Make a donation to support free education for underprivileged children. Every rupee helps provide books, materials, and weekend classes.',
+        description: 'Make a donation to support free education for underprivileged children. Every rupee helps provide books, materials, and community programs.',
     },
 };
 

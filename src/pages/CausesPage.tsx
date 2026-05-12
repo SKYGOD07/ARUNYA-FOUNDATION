@@ -1,8 +1,7 @@
-import { useState } from 'react';
 import { PageTransition } from '../components/ui/PageTransition';
-import { BookOpen, Calendar, CheckCircle2, Compass, Rocket } from 'lucide-react';
+import { Heart, ExternalLink } from 'lucide-react';
+import { FaInstagram } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import { ModalOverlay } from '../components/ui/ModalOverlay';
 
 const fadeUp = {
     initial: { opacity: 0, y: 40 },
@@ -11,238 +10,148 @@ const fadeUp = {
     transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const },
 };
 
-interface Program {
-    title: string;
-    category: string;
-    icon: React.ReactNode;
-    tagline: string;
-    detail: string;
-    img: string;
-    fullDetail: string;
-    stats: { label: string; value: string }[];
-    schedule: string;
-    eligibility: string;
-}
-
-const programs: Program[] = [
-    {
-        title: 'Weekend Basic Classes',
-        category: 'Teaching',
-        icon: <BookOpen size={24} />,
-        tagline: 'Free education every Saturday & Sunday',
-        detail: 'Every Saturday & Sunday, our volunteers teach Hindi, English, Math, Science, and GK to children aged 5–16. Classes are held in community spaces and are completely free.',
-        img: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=900&q=80',
-        fullDetail: `Our weekend classes are the heart of Arunya Foundation. Every Saturday and Sunday, trained volunteers gather in community halls, temples, and open spaces across 12+ villages to teach children who cannot afford private schooling.\n\nThe curriculum covers Hindi, English, Mathematics, Science, and General Knowledge — tailored to the national curriculum framework. Age groups are divided into three batches: Foundation (5–8), Primary (9–12), and Secondary (13–16).\n\nVolunteers go through a structured orientation where they learn child-friendly teaching techniques including storytelling, group activities, and visual aids. We currently run classes in 5 locations simultaneously every weekend.`,
-        stats: [
-            { label: 'Children per Session', value: '250+' },
-            { label: 'Subjects Covered', value: '6' },
-            { label: 'Volunteers per Day', value: '40+' },
-            { label: 'Locations', value: '5' },
-        ],
-        schedule: 'Every Saturday & Sunday, 10 AM – 1 PM',
-        eligibility: 'Children aged 5–16 from underprivileged families in Gwalior region.',
-    },
-];
-
-const categoryColors: Record<string, string> = {
-    Teaching: '#2563eb',
+const FOUNDING_100 = {
+    milaapUrl: 'https://milaap.org/fundraisers/support-underprivileged-communities-14?utm_medium=whatsapp_status_poster&utm_source=app',
+    instagramUrl: 'https://www.instagram.com/founding100_arunyaa?igsh=eDRqaDlkY2ZmYmN5',
 };
 
 export const CausesPage = () => {
-    const [selectedProgram, setSelectedProgram] = useState<Program | null>(null);
-
     return (
         <PageTransition className="pt-[140px] pb-16">
             <section id="causes" style={{ padding: '2rem', maxWidth: 1400, margin: '0 auto' }}>
                 {/* Header */}
                 <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-                    <motion.h2 {...fadeUp} style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif', marginBottom: '0.5rem' }}>
+                    <motion.h2 {...fadeUp} style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, color: '#0B1F3A', fontFamily: 'Poppins, Inter, sans-serif', marginBottom: '0.5rem' }}>
                         Our Programs
                     </motion.h2>
                     <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #E6B325, #C99A1E)', borderRadius: 2, margin: '0.75rem auto 1.25rem' }} />
                     <motion.p {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }} style={{ color: '#6b7280', fontSize: '1.1rem', maxWidth: 600, margin: '0 auto', lineHeight: 1.7 }}>
-                        Structured educational programs designed to teach, empower, and prepare underprivileged children for a self-sufficient future.
+                        Empowering underprivileged communities through impactful educational initiatives and sustainable development.
                     </motion.p>
                 </div>
 
-                {/* Programs Grid */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', maxWidth: 800, margin: '0 auto' }}>
-                    {programs.map((prog, idx) => (
-                        <motion.div
-                            key={prog.title}
-                            {...fadeUp}
-                            transition={{ ...fadeUp.transition, delay: 0.05 + idx * 0.07 }}
-                            style={{
-                                background: 'white', borderRadius: 20,
-                                boxShadow: '0 2px 8px rgba(30,58,95,0.04), 0 8px 24px rgba(30,58,95,0.06)',
-                                overflow: 'hidden', border: '1px solid rgba(30,58,95,0.06)',
-                                display: 'flex', flexDirection: 'column',
-                                cursor: 'pointer', transition: 'transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease',
-                            }}
-                            onMouseEnter={e => {
-                                (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-6px)';
-                                (e.currentTarget as HTMLDivElement).style.boxShadow = '0 16px 48px rgba(30,58,95,0.14)';
-                            }}
-                            onMouseLeave={e => {
-                                (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)';
-                                (e.currentTarget as HTMLDivElement).style.boxShadow = '0 4px 24px rgba(30,58,95,0.07)';
-                            }}
-                        >
-                            {/* Image */}
-                            <div style={{ position: 'relative', height: 220, overflow: 'hidden' }}>
-                                <img src={prog.img} alt={prog.title} loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} />
-                                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(30,58,95,0.5) 0%, transparent 60%)' }} />
-                                <div style={{ position: 'absolute', bottom: 14, left: 16, padding: '4px 14px', borderRadius: 999, background: categoryColors[prog.category] || '#2563eb', color: 'white', fontWeight: 700, fontSize: '0.78rem' }}>{prog.category}</div>
-                            </div>
-
-                            {/* Content */}
-                            <div style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
-                                <h3 style={{ color: '#1e3a5f', fontSize: '1.2rem', fontWeight: 800, fontFamily: 'Poppins, Inter, sans-serif', marginBottom: '0.4rem' }}>
-                                    {prog.icon} {prog.title}
-                                </h3>
-                                <p style={{ color: '#E6B325', fontStyle: 'italic', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.75rem' }}>{prog.tagline}</p>
-                                <p style={{ color: '#6b7280', fontSize: '0.9rem', lineHeight: 1.65, marginBottom: '1.5rem', flex: 1 }}>
-                                    {prog.detail}
-                                </p>
-                                <button
-                                    onClick={() => setSelectedProgram(prog)}
-                                    style={{
-                                        width: '100%', padding: '0.875rem', borderRadius: 14,
-                                        background: 'linear-gradient(135deg, #1e3a5f, #2563eb)',
-                                        color: 'white', fontWeight: 700, fontSize: '0.9rem',
-                                        border: 'none', cursor: 'pointer', fontFamily: 'inherit',
-                                        transition: 'opacity 0.2s',
-                                    }}
-                                    onMouseEnter={e => (e.currentTarget.style.opacity = '0.9')}
-                                    onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
-                                >
-                                    Learn More →
-                                </button>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
-            </section>
-
-            {/* Upcoming Programs Section */}
-            <section style={{ padding: '4rem 2rem 2rem', maxWidth: 1400, margin: '0 auto' }}>
-                <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-                    <motion.h2 {...fadeUp} style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)', fontWeight: 800, color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-                        <Rocket size={28} style={{ color: '#E6B325' }} /> Upcoming Programs
-                    </motion.h2>
-                    <div style={{ display: 'block', width: 60, height: 4, background: 'linear-gradient(135deg, #E6B325, #C99A1E)', borderRadius: 2, margin: '0.75rem auto 1.25rem' }} />
-                    <motion.p {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }} style={{ color: '#6b7280', fontSize: '1.05rem', maxWidth: 550, margin: '0 auto', lineHeight: 1.7 }}>
-                        New initiatives on the horizon — empowering more lives, one program at a time.
-                    </motion.p>
-                </div>
-
+                {/* Founding 100 — Featured Card */}
                 <motion.div
                     {...fadeUp}
-                    transition={{ ...fadeUp.transition, delay: 0.15 }}
+                    transition={{ ...fadeUp.transition, delay: 0.12 }}
                     style={{
-                        maxWidth: 800, margin: '0 auto',
-                        background: 'linear-gradient(135deg, #f0f7ff 0%, #fefce8 100%)',
-                        borderRadius: 24, overflow: 'hidden',
-                        border: '1px solid rgba(30,58,95,0.08)',
-                        boxShadow: '0 4px 32px rgba(30,58,95,0.06)',
-                        display: 'flex', flexDirection: 'column',
+                        maxWidth: 640, margin: '0 auto',
+                        background: 'white', borderRadius: 24,
+                        boxShadow: '0 2px 8px rgba(11,31,58,0.04), 0 8px 32px rgba(11,31,58,0.07)',
+                        overflow: 'hidden',
+                        border: '2px solid rgba(230,179,37,0.2)',
+                        transition: 'transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s, border-color 0.3s',
                     }}
+                    whileHover={{ y: -6, boxShadow: '0 16px 48px rgba(230,179,37,0.15), 0 8px 24px rgba(11,31,58,0.08)' }}
                 >
-                    {/* Upcoming Banner */}
+                    {/* Gold gradient banner */}
                     <div style={{
-                        background: 'linear-gradient(135deg, #1e3a5f, #2563eb)',
-                        padding: '1rem 1.5rem',
-                        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                        background: 'linear-gradient(135deg, #E6B325 0%, #C99A1E 100%)',
+                        padding: '2rem 2rem 1.75rem',
+                        position: 'relative', overflow: 'hidden',
                     }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                            <Compass size={22} color="white" />
-                            <span style={{ color: 'white', fontWeight: 700, fontSize: '0.95rem', fontFamily: 'Poppins, Inter, sans-serif' }}>Coming Soon</span>
+                        <div style={{ position: 'absolute', top: -30, right: -30, width: 140, height: 140, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', pointerEvents: 'none' }} />
+                        <div style={{ position: 'absolute', bottom: -20, left: -20, width: 100, height: 100, borderRadius: '50%', background: 'rgba(255,255,255,0.08)', pointerEvents: 'none' }} />
+                        <div style={{ position: 'relative', zIndex: 1 }}>
+                            <div style={{
+                                display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+                                background: 'rgba(255,255,255,0.25)', borderRadius: 999,
+                                padding: '0.3rem 0.9rem', marginBottom: '0.75rem',
+                            }}>
+                                <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#0B1F3A', letterSpacing: '0.05em', textTransform: 'uppercase' }}>Flagship Initiative</span>
+                            </div>
+                            <h3 style={{
+                                color: '#0B1F3A', fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 900,
+                                fontFamily: 'Poppins, Inter, sans-serif', margin: 0,
+                                display: 'flex', alignItems: 'center', gap: '0.5rem',
+                            }}>
+                                <Heart size={28} fill="#0B1F3A" strokeWidth={0} /> Founding 100
+                            </h3>
                         </div>
-                        <span style={{
-                            background: 'rgba(212,168,71,0.25)', color: '#fbbf24',
-                            padding: '4px 14px', borderRadius: 999,
-                            fontWeight: 700, fontSize: '0.75rem', letterSpacing: '0.05em',
-                        }}>UPCOMING</span>
                     </div>
 
                     {/* Content */}
-                    <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                        <h3 style={{
-                            color: '#1e3a5f', fontSize: '1.5rem', fontWeight: 800,
-                            fontFamily: 'Poppins, Inter, sans-serif', margin: 0,
-                            display: 'flex', alignItems: 'center', gap: '0.5rem',
-                        }}>
-                            🧭 Project DISHA
-                        </h3>
-                        <p style={{ color: '#E6B325', fontStyle: 'italic', fontSize: '0.9rem', fontWeight: 600, margin: 0 }}>
-                            Direction · Inspiration · Skill-building · Holistic growth · Awareness
+                    <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                        <p style={{ color: '#6b7280', fontSize: '1rem', lineHeight: 1.75, margin: 0 }}>
+                            Support impactful educational initiatives and community development through Founding 100. Your contribution directly empowers underprivileged communities with access to quality education and essential resources for a brighter future.
                         </p>
-                        <p style={{ color: '#6b7280', fontSize: '0.95rem', lineHeight: 1.75, margin: 0 }}>
-                            Project DISHA is Arunya Foundation's upcoming flagship initiative designed to guide adolescents from underserved communities toward a brighter future. Combining mentorship, life-skills training, career awareness, and emotional well-being workshops, DISHA aims to equip young learners with the confidence and clarity they need to navigate their paths ahead.
-                        </p>
-                        <div style={{
-                            marginTop: '0.5rem', padding: '0.875rem 1.25rem',
-                            background: 'rgba(30,58,95,0.04)', borderRadius: 14,
-                            border: '1px dashed rgba(30,58,95,0.12)',
-                            display: 'flex', alignItems: 'center', gap: '0.5rem',
-                        }}>
-                            <Calendar size={16} style={{ color: '#1e3a5f', flexShrink: 0 }} />
-                            <span style={{ color: '#4b5563', fontSize: '0.88rem' }}>
-                                Launch details will be announced soon — stay tuned!
-                            </span>
+
+                        {/* Stats */}
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '0.75rem' }}>
+                            {[
+                                { value: '100', label: 'Founding Members' },
+                                { value: '₹500', label: 'Monthly Contribution' },
+                                { value: '∞', label: 'Impact Created' },
+                            ].map((s, i) => (
+                                <div key={i} style={{
+                                    background: '#f8fafc', borderRadius: 16, padding: '1rem',
+                                    textAlign: 'center', border: '1px solid rgba(11,31,58,0.06)',
+                                }}>
+                                    <div style={{ fontWeight: 900, fontSize: '1.3rem', color: '#0B1F3A', fontFamily: 'Poppins, Inter, sans-serif' }}>{s.value}</div>
+                                    <div style={{ color: '#6b7280', fontSize: '0.72rem', marginTop: '0.15rem' }}>{s.label}</div>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* CTA Buttons */}
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                            <a
+                                href={FOUNDING_100.milaapUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{
+                                    width: '100%', padding: '1rem', borderRadius: 14,
+                                    background: 'linear-gradient(135deg, #E6B325 0%, #C99A1E 100%)',
+                                    color: '#0B1F3A', fontWeight: 800, fontSize: '1rem',
+                                    border: 'none', cursor: 'pointer', fontFamily: 'inherit',
+                                    textDecoration: 'none', textAlign: 'center',
+                                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                                    boxShadow: '0 4px 16px rgba(230,179,37,0.3)',
+                                    transition: 'all 0.3s cubic-bezier(0.16,1,0.3,1)',
+                                }}
+                                onMouseEnter={e => {
+                                    e.currentTarget.style.transform = 'translateY(-2px)';
+                                    e.currentTarget.style.boxShadow = '0 8px 28px rgba(230,179,37,0.45)';
+                                }}
+                                onMouseLeave={e => {
+                                    e.currentTarget.style.transform = 'none';
+                                    e.currentTarget.style.boxShadow = '0 4px 16px rgba(230,179,37,0.3)';
+                                }}
+                            >
+                                <ExternalLink size={18} /> Support Founding 100
+                            </a>
+
+                            <a
+                                href={FOUNDING_100.instagramUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{
+                                    width: '100%', padding: '0.85rem', borderRadius: 14,
+                                    background: 'rgba(11,31,58,0.04)',
+                                    border: '1px solid rgba(11,31,58,0.1)',
+                                    color: '#0B1F3A', fontWeight: 600, fontSize: '0.9rem',
+                                    cursor: 'pointer', fontFamily: 'inherit',
+                                    textDecoration: 'none', textAlign: 'center',
+                                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                                    transition: 'all 0.25s ease',
+                                }}
+                                onMouseEnter={e => {
+                                    e.currentTarget.style.background = 'linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%)';
+                                    e.currentTarget.style.color = 'white';
+                                    e.currentTarget.style.borderColor = 'transparent';
+                                }}
+                                onMouseLeave={e => {
+                                    e.currentTarget.style.background = 'rgba(11,31,58,0.04)';
+                                    e.currentTarget.style.color = '#0B1F3A';
+                                    e.currentTarget.style.borderColor = 'rgba(11,31,58,0.1)';
+                                }}
+                            >
+                                <FaInstagram size={18} /> Follow Founding 100 on Instagram
+                            </a>
                         </div>
                     </div>
                 </motion.div>
             </section>
-
-            {/* Program Detail Modal via Portal */}
-            <ModalOverlay open={!!selectedProgram} onClose={() => setSelectedProgram(null)} maxWidth={720}>
-                {selectedProgram && (
-                    <>
-                        {/* Hero Image */}
-                        <div style={{ position: 'relative', flexShrink: 0 }}>
-                            <img src={selectedProgram.img} alt={selectedProgram.title} style={{ width: '100%', height: 220, objectFit: 'cover', display: 'block' }} />
-                            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(30,58,95,0.75) 0%, transparent 50%)', padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
-                                <div style={{ display: 'inline-block', padding: '4px 14px', borderRadius: 999, background: categoryColors[selectedProgram.category] || '#2563eb', color: 'white', fontWeight: 700, fontSize: '0.75rem', marginBottom: '0.5rem', width: 'fit-content' }}>{selectedProgram.category}</div>
-                                <h2 style={{ color: 'white', fontFamily: 'Poppins, Inter, sans-serif', fontSize: 'clamp(1.1rem, 3vw, 1.5rem)', fontWeight: 800, margin: 0 }}>{selectedProgram.icon} {selectedProgram.title}</h2>
-                            </div>
-                            <button onClick={() => setSelectedProgram(null)} style={{ position: 'absolute', top: 12, right: 12, background: 'rgba(255,255,255,0.9)', border: 'none', borderRadius: '50%', width: 36, height: 36, fontSize: '1.2rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, color: '#1e3a5f', boxShadow: '0 4px 12px rgba(0,0,0,0.15)' }}>×</button>
-                        </div>
-
-                        <div style={{ padding: '1.5rem', overflowY: 'auto', flex: 1 }}>
-                            {/* Tagline */}
-                            <p style={{ color: '#E6B325', fontStyle: 'italic', fontWeight: 700, fontSize: '0.95rem', marginBottom: '1.25rem' }}>"{selectedProgram.tagline}"</p>
-
-                            {/* Stats Grid */}
-                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '0.75rem', marginBottom: '1.5rem' }}>
-                                {selectedProgram.stats.map((s, i) => (
-                                    <div key={i} style={{ background: '#f8fafc', borderRadius: 14, padding: '0.875rem', textAlign: 'center', border: '1px solid rgba(30,58,95,0.06)' }}>
-                                        <div style={{ fontWeight: 800, fontSize: '1.2rem', color: '#1e3a5f', fontFamily: 'Poppins, Inter, sans-serif' }}>{s.value}</div>
-                                        <div style={{ color: '#6b7280', fontSize: '0.72rem', marginTop: '0.15rem' }}>{s.label}</div>
-                                    </div>
-                                ))}
-                            </div>
-
-                            {/* Full Detail */}
-                            {selectedProgram.fullDetail.split('\n\n').map((para, i) => (
-                                <p key={i} style={{ color: '#374151', lineHeight: 1.8, fontSize: '0.9rem', marginBottom: '0.875rem' }}>{para}</p>
-                            ))}
-
-                            {/* Schedule + Eligibility */}
-                            <div style={{ marginTop: '1.25rem', padding: '1rem 1.25rem', background: '#eef4fb', borderRadius: 14, border: '1px solid rgba(37,99,235,0.1)' }}>
-                                <div style={{ marginBottom: '0.5rem', display: 'flex', alignItems: 'center' }}>
-                                    <span style={{ fontWeight: 700, color: '#1e3a5f', fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}><Calendar size={14} /> Schedule: </span>
-                                    <span style={{ color: '#4b5563', fontSize: '0.85rem', marginLeft: '0.25rem' }}>{selectedProgram.schedule}</span>
-                                </div>
-                                <div style={{ display: 'flex', alignItems: 'center' }}>
-                                    <span style={{ fontWeight: 700, color: '#1e3a5f', fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}><CheckCircle2 size={14} /> Eligibility: </span>
-                                    <span style={{ color: '#4b5563', fontSize: '0.85rem', marginLeft: '0.25rem' }}>{selectedProgram.eligibility}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </>
-                )}
-            </ModalOverlay>
         </PageTransition>
     );
 };
