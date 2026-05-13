@@ -31,7 +31,9 @@ export const JoinCommunity = () => {
                         Every Rupee Lights<br /><span style={{ color: '#E6B325' }}>a Child's Future</span>
                     </h2>
                     <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: 'clamp(0.95rem, 2.5vw, 1.1rem)', maxWidth: 520, margin: '0 auto', lineHeight: 1.75 }}>
-                        Your donation directly funds free study kits, classroom materials, and community programs for children who cannot afford education.
+                        Help us legalise our foundation
+                        Be one of our Founders
+                        Support today
                     </p>
                 </div>
 
@@ -54,8 +56,8 @@ export const JoinCommunity = () => {
                     >
                         <Heart size={20} fill="currentColor" strokeWidth={2} /> Donate Now — Change a Life
                     </a>
-                    <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.8rem', marginTop: '0.85rem' }}>
-                        ₹200 covers a child's study materials for one month.
+                    <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '1rem', marginTop: '0.85rem' }}>
+                        Be a part of founding 100
                     </p>
                 </div>
             </div>
