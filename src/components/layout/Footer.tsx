@@ -56,7 +56,9 @@ export const JoinCommunity = () => {
                     >
                         <Heart size={20} fill="currentColor" strokeWidth={2} /> Donate Now — Change a Life
                     </a>
-
+                    <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '1rem', marginTop: '0.85rem' }}>
+                        Be a part of founding 100
+                    </p>
                 </div>
             </div>
         </section>
