@@ -126,7 +126,7 @@ export const MainLayout = () => {
                             rel="noopener noreferrer"
                             aria-label="Donate to Arunya Foundation"
                         >
-                            Donate <span className="navbar__donate-heart">❤️</span>
+                            Support
                         </a>
 
                         {/* Hamburger — mobile only */}
@@ -205,7 +205,7 @@ export const MainLayout = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
-                                    Donate ❤️
+                                    Support
                                 </a>
                                 <p className="mobile-menu__tagline">Every contribution changes a life.</p>
                             </motion.div>
